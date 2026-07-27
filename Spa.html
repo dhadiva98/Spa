@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#F6F5F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0D" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Spa">
+<title>Spa · Segunda memoria</title>
+<link id="favicon" rel="icon" href="data:image/png;base64,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">
+<link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+/* ============================================================
+   TOKENS  ·  paleta, tipografía y medidas base
+   ============================================================ */
+:root{
+  --canvas:#F6F5F2;          /* porcelana cálida */
+  --card:#FFFFFF;
+  --card-2:#FBFAF8;          /* filas dentro de tarjetas */
+  --ink:#171614;             /* negro de la marca */
+  --ink-2:#75716A;           /* texto secundario */
+  --ink-3:#A9A49B;           /* texto terciario */
+  --line:rgba(23,22,20,.08);
+  --line-2:rgba(23,22,20,.14);
+  --accent:#9C7A3C;          /* oro profundo (configurable) */
+  --accent-soft:rgba(156,122,60,.10);
+  --ok:#3E9B6A;              /* completado */
+  --wait:#E0A83A;            /* pendiente */
+  --alert:#C8503C;           /* requiere atención */
+  --shadow-s:0 1px 2px rgba(23,22,20,.05);
+  --shadow-m:0 2px 6px rgba(23,22,20,.05), 0 12px 28px -16px rgba(23,22,20,.22);
+  --shadow-l:0 4px 10px rgba(23,22,20,.06), 0 26px 50px -22px rgba(23,22,20,.30);
+  --r-card:22px;
+  --r-row:14px;
+  --r-btn:18px;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
+  --serif:ui-serif,"New York",Charter,"Iowan Old Style",Georgia,serif;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+  --tabbar:64px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --canvas:#0E0E0D; --card:#1A1A18; --card-2:#211F1D;
+    --ink:#F2F0EC; --ink-2:#98938A; --ink-3:#6B665E;
+    --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+    --accent:#DCBB76; --accent-soft:rgba(220,187,118,.12);
+    --ok:#5FBE87; --wait:#E9B856; --alert:#E0705A;
+    --shadow-s:0 1px 2px rgba(0,0,0,.4);
+    --shadow-m:0 2px 6px rgba(0,0,0,.35), 0 12px 28px -16px rgba(0,0,0,.7);
+    --shadow-l:0 4px 10px rgba(0,0,0,.4), 0 26px 50px -22px rgba(0,0,0,.8);
+  }
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  margin:0; background:var(--canvas); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.45;
+  -webkit-font-smoothing:antialiased; overscroll-behavior-y:none;
+}
+button,input,textarea,select{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+input,textarea{background:transparent;border:0;outline:none;width:100%}
+::placeholder{color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+.eyebrow{font-size:11px;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.tnum{font-variant-numeric:tabular-nums}
+.hide{display:none !important}
+
+/* ============================================================
+   ESTRUCTURA DE PANTALLAS
+   ============================================================ */
+#app{min-height:100%;display:flex;flex-direction:column}
+.view{display:none;flex:1;padding:calc(var(--safe-t) + 14px) 20px calc(var(--tabbar) + var(--safe-b) + 28px);max-width:640px;width:100%;margin:0 auto}
+.view.on{display:block;animation:viewIn .28s cubic-bezier(.22,.9,.3,1)}
+@keyframes viewIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Barra fina de progreso del día, fija arriba */
+#dayline{position:fixed;top:0;left:0;right:0;height:2px;background:var(--line);z-index:60}
+#dayline i{display:block;height:100%;width:0;background:var(--accent);transition:width .5s cubic-bezier(.22,.9,.3,1)}
+
+/* Encabezado de pantalla */
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:6px 0 20px}
+.head h1{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.1;margin:0;letter-spacing:-.02em}
+.head .sub{color:var(--ink-2);font-size:14px;margin-top:6px}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:16px;margin-bottom:10px}
+.back svg{width:16px;height:16px}
+.txtbtn{color:var(--accent);font-size:16px}
+
+/* ============================================================
+   HOY  ·  el escenario de una sola tarea
+   ============================================================ */
+.hero{margin:4px 0 26px}
+.hero h1{font-family:var(--serif);font-size:32px;line-height:1.08;margin:0;letter-spacing:-.02em}
+.hero .meta{margin-top:8px;color:var(--ink-2);font-size:14px;display:flex;align-items:center;gap:8px}
+.hero .meta b{font-weight:500;color:var(--ink-2)}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--ink-3);flex:none}
+
+.progress{margin:0 0 30px}
+.progress .bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.progress .bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:2px;transition:width .55s cubic-bezier(.22,.9,.3,1)}
+.progress .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.progress .pct{font-family:var(--serif);font-size:22px;letter-spacing:-.01em}
+
+/* Pila de tarjetas: las fantasmas revelan cuánto falta */
+.stage{position:relative;margin-bottom:26px}
+.ghost{position:absolute;left:0;right:0;top:0;height:60px;border-radius:var(--r-card);background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow-s)}
+.ghost.g1{transform:translateY(-9px) scale(.955);opacity:.75}
+.ghost.g2{transform:translateY(-17px) scale(.91);opacity:.45}
+.card-next{position:relative;background:var(--card);border-radius:var(--r-card);box-shadow:var(--shadow-l);padding:26px 22px 22px;border:1px solid var(--line)}
+.card-next .where{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.card-next .task{font-family:var(--serif);font-size:29px;line-height:1.2;letter-spacing:-.02em;margin:0 0 24px;word-break:break-word}
+.btn-done{display:block;width:100%;background:var(--accent);color:#fff;border-radius:var(--r-btn);padding:17px;font-size:17px;font-weight:600;letter-spacing:-.01em;box-shadow:0 6px 18px -8px var(--accent);transition:transform .12s ease,filter .12s ease}
+@media (prefers-color-scheme: dark){.btn-done{color:#14120E}}
+.btn-done:active{transform:scale(.975);filter:brightness(.96)}
+.btn-skip{display:block;width:100%;text-align:center;color:var(--ink-3);font-size:14px;padding:14px 0 2px}
+.queue-note{text-align:center;color:var(--ink-3);font-size:13px;margin-top:18px}
+
+/* Estados vacío / celebración */
+.calm{text-align:center;padding:34px 20px 30px;background:var(--card);border-radius:var(--r-card);border:1px solid var(--line);box-shadow:var(--shadow-m)}
+.calm img{width:56px;height:56px;border-radius:14px;opacity:.9;margin-bottom:14px}
+.calm h2{font-family:var(--serif);font-weight:400;font-size:24px;margin:0 0 6px}
+.calm p{color:var(--ink-2);font-size:15px;margin:0}
+.cheer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--card);border-radius:var(--r-card);border:1px solid var(--line);z-index:3;animation:cheerIn .3s cubic-bezier(.22,.9,.3,1)}
+.cheer .mark{width:40px;height:40px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.cheer .mark svg{width:20px;height:20px}
+.cheer span{font-family:var(--serif);font-size:19px}
+@keyframes cheerIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+
+/* Animaciones de la pila */
+.fly{animation:fly .34s cubic-bezier(.35,0,.6,1) forwards}
+@keyframes fly{to{opacity:0;transform:translateY(-26px) scale(.97)}}
+.rise{animation:rise .38s cubic-bezier(.22,.9,.3,1)}
+@keyframes rise{from{opacity:0;transform:translateY(20px) scale(.985)}to{opacity:1;transform:none}}
+
+/* Recordatorios del spa */
+.nudges{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.nudge{display:flex;align-items:center;gap:10px;padding:13px 15px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-row);font-size:15px;color:var(--ink-2);box-shadow:var(--shadow-s)}
+.nudge .sdot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--wait)}
+.nudge.alert .sdot{background:var(--alert)}
+
+/* ============================================================
+   LISTAS Y FILAS
+   ============================================================ */
+.section-label{margin:26px 0 10px}
+.stack{display:flex;flex-direction:column;gap:10px}
+.tile{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px 16px;box-shadow:var(--shadow-s);text-align:left;width:100%;transition:transform .14s ease}
+.tile:active{transform:scale(.988)}
+.tile .emoji{font-size:22px;width:28px;text-align:center;flex:none}
+.tile .body{flex:1;min-width:0}
+.tile .body>span{display:block}
+.tile .name{font-size:17px;font-weight:500;letter-spacing:-.01em}
+.tile .meta{font-size:13px;color:var(--ink-3);margin-top:3px}
+.tile .sdot{width:8px;height:8px;border-radius:50%;flex:none}
+.sdot.ok{background:var(--ok)} .sdot.wait{background:var(--wait)} .sdot.alert{background:var(--alert)}
+.tile .chev{color:var(--ink-3);width:8px;height:14px;flex:none}
+.minibar{height:3px;border-radius:2px;background:var(--line);margin-top:9px;overflow:hidden}
+.minibar i{display:block;height:100%;background:var(--accent);border-radius:2px;transition:width .45s cubic-bezier(.22,.9,.3,1)}
+
+.rooms{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.room{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px;box-shadow:var(--shadow-s);text-align:left;transition:transform .14s ease}
+.room:active{transform:scale(.985)}
+.room .name{font-size:16px;font-weight:500;letter-spacing:-.01em;margin-bottom:8px}
+.room .state{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2)}
+
+/* Fila de checklist */
+.list{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow-s);overflow:hidden}
+.item{display:flex;align-items:center;gap:13px;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--card);position:relative;touch-action:pan-y}
+.item:last-child{border-bottom:0}
+.item.dragging{z-index:5;box-shadow:var(--shadow-m);border-radius:var(--r-row);border-bottom-color:transparent}
+.check{width:23px;height:23px;border-radius:50%;border:1.8px solid var(--line-2);flex:none;display:grid;place-items:center;transition:background .18s ease,border-color .18s ease,transform .18s cubic-bezier(.3,1.4,.5,1)}
+.check svg{width:12px;height:12px;color:#fff;opacity:0;transform:scale(.5);transition:opacity .18s ease,transform .22s cubic-bezier(.3,1.5,.5,1)}
+.item.done .check{background:var(--ok);border-color:var(--ok)}
+.item.done .check svg{opacity:1;transform:none}
+.item.done .label{color:var(--ink-3);text-decoration:line-through;text-decoration-color:var(--line-2)}
+.item .label{flex:1;min-width:0;font-size:16.5px;letter-spacing:-.01em;transition:color .2s ease}
+.item input.label{padding:2px 0}
+.handle{width:26px;flex:none;display:grid;place-items:center;color:var(--ink-3);cursor:grab;touch-action:none}
+.handle svg{width:15px;height:15px}
+.del{width:26px;flex:none;display:grid;place-items:center;color:var(--alert)}
+.del svg{width:17px;height:17px}
+.add-row{display:flex;align-items:center;gap:13px;padding:14px 16px;color:var(--ink-3)}
+.add-row .plus{width:23px;height:23px;border-radius:50%;border:1.8px dashed var(--line-2);display:grid;place-items:center;flex:none;color:var(--ink-3)}
+.add-row input{font-size:16.5px}
+
+.btn-big{display:block;width:100%;background:var(--accent);color:#fff;border-radius:var(--r-btn);padding:16px;font-size:17px;font-weight:600;margin-top:18px;box-shadow:0 6px 18px -8px var(--accent);transition:transform .12s ease}
+@media (prefers-color-scheme: dark){.btn-big{color:#14120E}}
+.btn-big:active{transform:scale(.985)}
+.btn-ghost{display:block;width:100%;border:1px solid var(--line-2);border-radius:var(--r-btn);padding:15px;font-size:16px;margin-top:10px;color:var(--ink-2);background:var(--card)}
+.btn-ghost.danger{color:var(--alert);border-color:transparent;background:transparent}
+
+/* Buscador */
+.search{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin-bottom:14px;box-shadow:var(--shadow-s)}
+.search svg{width:16px;height:16px;color:var(--ink-3);flex:none}
+.search input{font-size:16px}
+
+/* Notas y compras */
+.note{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:15px 17px;box-shadow:var(--shadow-s);text-align:left;width:100%;transition:transform .14s ease}
+.note:active{transform:scale(.99)}
+.note .txt{font-size:16px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+.note .when{font-size:12px;color:var(--ink-3);margin-top:9px;letter-spacing:.01em}
+.buy{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:14px 15px;box-shadow:var(--shadow-s);width:100%;text-align:left}
+.buy .body{flex:1;min-width:0}
+.buy .name{font-size:16.5px;font-weight:500;letter-spacing:-.01em}
+.buy .meta{font-size:13px;color:var(--ink-3);margin-top:3px}
+.buy .price{font-family:var(--serif);font-size:17px;color:var(--ink);flex:none}
+.star{width:30px;height:30px;display:grid;place-items:center;flex:none;color:var(--ink-3);border-radius:50%}
+.star.on{color:var(--accent)}
+.star svg{width:17px;height:17px}
+.empty{text-align:center;color:var(--ink-3);font-size:15px;padding:44px 20px;line-height:1.6}
+
+/* Ajustes */
+.field{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.field:last-child{border-bottom:0}
+.field .k{color:var(--ink-2);font-size:15px;flex:none;min-width:104px}
+.field input{text-align:right;font-size:16px}
+.swatches{display:flex;gap:12px;padding:16px;flex-wrap:wrap}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid transparent;box-shadow:inset 0 0 0 1px var(--line);transition:transform .16s ease}
+.sw.on{border-color:var(--ink);transform:scale(1.06)}
+.iconrow{display:flex;align-items:center;gap:14px;padding:14px 16px}
+.iconrow img{width:52px;height:52px;border-radius:13px;box-shadow:var(--shadow-s)}
+.fineprint{color:var(--ink-3);font-size:12.5px;line-height:1.6;text-align:center;margin:24px 6px 0}
+
+/* ============================================================
+   BARRA INFERIOR Y BOTÓN FLOTANTE
+   ============================================================ */
+#tabbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;
+  padding-bottom:var(--safe-b);background:var(--canvas);background:color-mix(in srgb,var(--canvas) 82%,transparent);
+  backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-top:1px solid var(--line)}
+#tabbar .inner{display:flex;width:100%;max-width:640px}
+.tab{flex:1;height:var(--tabbar);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--ink-3);transition:color .18s ease}
+.tab svg{width:22px;height:22px}
+.tab span{font-size:10.5px;letter-spacing:.01em}
+.tab.on{color:var(--accent)}
+.tab:active svg{transform:scale(.92)}
+
+#fab{position:fixed;right:20px;bottom:calc(var(--tabbar) + var(--safe-b) + 18px);z-index:55;
+  width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;
+  box-shadow:0 10px 26px -8px rgba(23,22,20,.5);transition:transform .16s cubic-bezier(.3,1.3,.5,1)}
+@media (prefers-color-scheme: dark){#fab{color:#14120E}}
+#fab svg{width:25px;height:25px}
+#fab:active{transform:scale(.9)}
+
+/* ============================================================
+   HOJA INFERIOR (sheets) Y AVISOS
+   ============================================================ */
+#scrim{position:fixed;inset:0;background:rgba(10,9,8,.32);backdrop-filter:blur(2px);z-index:70;opacity:0;pointer-events:none;transition:opacity .26s ease}
+#scrim.on{opacity:1;pointer-events:auto}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--card);
+  border-radius:26px 26px 0 0;padding:10px 20px calc(22px + var(--safe-b));
+  box-shadow:0 -12px 40px -12px rgba(0,0,0,.3);transform:translateY(101%);
+  transition:transform .34s cubic-bezier(.22,.9,.3,1);max-width:640px;margin:0 auto;max-height:88vh;overflow-y:auto}
+#sheet.on{transform:none}
+.grabber{width:36px;height:4px;border-radius:2px;background:var(--line-2);margin:0 auto 16px}
+.sheet-title{font-family:var(--serif);font-size:21px;margin:0 0 14px}
+.bigfield{background:var(--card-2);border:1px solid var(--line);border-radius:16px;padding:15px 16px;font-size:17px;margin-bottom:14px}
+.bigfield textarea{resize:none;font-size:17px;line-height:1.5;min-height:96px;display:block}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.choice{background:var(--card-2);border:1px solid var(--line);border-radius:18px;padding:16px 8px;display:flex;flex-direction:column;align-items:center;gap:7px;transition:transform .14s ease,background .14s ease}
+.choice:active{transform:scale(.96);background:var(--accent-soft)}
+.choice .e{font-size:22px}
+.choice .t{font-size:13.5px;font-weight:500;color:var(--ink-2)}
+.frow{display:flex;gap:10px}
+.frow>*{flex:1}
+
+#toast{position:fixed;left:50%;bottom:calc(var(--tabbar) + var(--safe-b) + 86px);transform:translate(-50%,10px);
+  z-index:90;background:var(--ink);color:var(--canvas);padding:11px 18px;border-radius:999px;font-size:14.5px;
+  opacity:0;pointer-events:none;transition:opacity .24s ease,transform .24s ease;box-shadow:var(--shadow-m);max-width:82vw;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+@media (min-width:700px){
+  .view{padding-top:34px}
+  .rooms{grid-template-columns:repeat(3,1fr)}
+  /* el botón flotante acompaña a la columna de contenido, no al borde de la ventana */
+  #fab{right:auto;left:50%;margin-left:244px}
+}
+</style>
+</head>
+<body>
+
+<div id="dayline"><i></i></div>
+
+<div id="app">
+  <section id="v-home" class="view on"></section>
+  <section id="v-lists" class="view"></section>
+  <section id="v-detail" class="view"></section>
+  <section id="v-notes" class="view"></section>
+  <section id="v-shop" class="view"></section>
+  <section id="v-settings" class="view"></section>
+</div>
+
+<button id="fab" aria-label="Añadir rápido">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+</button>
+
+<nav id="tabbar"><div class="inner">
+  <button class="tab on" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg><span>Hoy</span></button>
+  <button class="tab" data-tab="lists"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span>Listas</span></button>
+  <button class="tab" data-tab="notes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h9l5 5v11H5z"/><path d="M14 4v5h5"/><path d="M8.5 13h7M8.5 16.5h4.5"/></svg><span>Notas</span></button>
+  <button class="tab" data-tab="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.2 12.2H6.2z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg><span>Compras</span></button>
+  <button class="tab" data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/></svg><span>Ajustes</span></button>
+</div></nav>
+
+<div id="scrim"></div>
+<div id="sheet" role="dialog" aria-modal="true"></div>
+<div id="toast" role="status"></div>
+
+<script>
+/* ============================================================
+   SPA · SEGUNDA MEMORIA
+   Aplicación de un solo archivo. Sin frameworks.
+   Guarda todo automáticamente en el navegador (LocalStorage).
+   ============================================================ */
+(function(){
+'use strict';
+
+/* Icono oficial incrustado en el propio archivo */
+const DEFAULT_ICON = 'data:image/png;base64,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';
+
+/* ---------- 1. Almacenamiento seguro -------------------------
+   Usa LocalStorage. Si el navegador lo bloquea (modo privado o
+   vista previa), cae a memoria para que la app nunca se rompa. */
+const Store = (function(){
+  let ok = true;
+  try { localStorage.setItem('__t','1'); localStorage.removeItem('__t'); }
+  catch(e){ ok = false; }
+  const mem = {};
+  return {
+    get(k){ try{ return ok ? localStorage.getItem(k) : (mem[k] ?? null); }catch(e){ return mem[k] ?? null; } },
+    set(k,v){ try{ ok ? localStorage.setItem(k,v) : (mem[k]=v); }catch(e){ mem[k]=v; } },
+    persistent: ok
+  };
+})();
+
+const KEY = 'spa-memory-v1';
+
+/* ---------- 2. Utilidades ---------------------------------- */
+const $  = (s,r)=> (r||document).querySelector(s);
+const $$ = (s,r)=> Array.from((r||document).querySelectorAll(s));
+const uid = ()=> Math.random().toString(36).slice(2,9) + Date.now().toString(36).slice(-3);
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const DAYS   = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const MONTHS = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const dayKey = d => { d = d||new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
+const hhmm   = d => String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+
+function whenLabel(ts){
+  const d = new Date(ts), now = new Date();
+  const same = dayKey(d) === dayKey(now);
+  const yest = dayKey(d) === dayKey(new Date(now.getTime()-864e5));
+  if(same) return 'Hoy · ' + hhmm(d);
+  if(yest) return 'Ayer · ' + hhmm(d);
+  return d.getDate()+' '+MONTHS[d.getMonth()].slice(0,3)+' · '+hhmm(d);
+}
+function haptic(ms){ if(navigator.vibrate) try{ navigator.vibrate(ms||8); }catch(e){} }
+
+let toastTimer;
+function toast(msg){
+  const t = $('#toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove('on'), 1900);
+}
+
+/* Iconos SVG reutilizables */
+const IC = {
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg>',
+  chev :'<svg class="chev" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l6 6-6 6"/></svg>',
+  back :'<svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1 1 7l6 6"/></svg>',
+  drag :'<svg viewBox="0 0 16 16" fill="currentColor"><circle cx="5" cy="3.5" r="1.35"/><circle cx="11" cy="3.5" r="1.35"/><circle cx="5" cy="8" r="1.35"/><circle cx="11" cy="8" r="1.35"/><circle cx="5" cy="12.5" r="1.35"/><circle cx="11" cy="12.5" r="1.35"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4.5 6.5h15M9.5 6.5V4.6h5v1.9M6.7 6.5 7.7 20h8.6l1-13.5"/></svg>',
+  star :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.8l5.9-.8z"/></svg>',
+  starOn:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.8l5.9-.8z"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>',
+  plus :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><path d="M12 6v12M6 12h12"/></svg>'
+};
+
+/* ---------- 3. Datos por defecto ---------------------------- */
+const ROOM_LIST = ['Sábana limpia','Toalla limpia','Papel','Alcohol','Aceites','Música','Luz','Basurero vacío','Ambiente limpio'];
+const mkTasks = arr => arr.map(t => ({ id:uid(), text:t, done:false, skip:false }));
+
+function defaults(){
+  return {
+    v:1,
+    spaName:'Spa',
+    userName:'',
+    accent:'#9C7A3C',
+    icon:null,
+    day:dayKey(),
+    categories:[
+      { id:'apertura',  emoji:'🌅', name:'Apertura',   tasks:mkTasks(['Encender luces','Conectar letreros','Encender computadora','Abrir programa del spa','Encender música','Encender aromatizador','Revisar recepción','Revisar caja','Revisar POS','Verificar WiFi','Abrir cortinas','Revisar baño','Revisar cocina']) },
+      { id:'pendientes',emoji:'📌', name:'Pendientes', tasks:[] },
+      { id:'banos',     emoji:'🚿', name:'Baños',      tasks:mkTasks(['Papel higiénico','Jabón','Papel toalla','Ambientador','Basurero','Espejo limpio','Piso limpio']) },
+      { id:'limpieza',  emoji:'🧹', name:'Limpieza',   tasks:mkTasks(['Barrer recepción','Trapear recepción','Limpiar puertas','Limpiar vidrios','Limpiar cocina','Sacar basura']) },
+      { id:'mara',      emoji:'🐈', name:'Mara',       tasks:mkTasks(['Dar comida','Cambiar agua','Limpiar recipiente']) }
+    ],
+    rooms:[
+      { id:uid(), name:'Habitación 1', tasks:mkTasks(ROOM_LIST) },
+      { id:uid(), name:'Habitación 2', tasks:mkTasks(ROOM_LIST) }
+    ],
+    notes:[],
+    shopping:[]
+  };
+}
+
+/* ---------- 4. Estado --------------------------------------- */
+let S = load();
+function load(){
+  try{
+    const raw = Store.get(KEY);
+    if(!raw) return defaults();
+    const d = JSON.parse(raw);
+    const base = defaults();
+    return Object.assign(base, d);
+  }catch(e){ return defaults(); }
+}
+function save(){ Store.set(KEY, JSON.stringify(S)); }
+
+/* Reinicio diario: al abrir en un día nuevo, todo vuelve a empezar.
+   Las notas y la lista de compras nunca se borran. */
+function newDayCheck(){
+  const today = dayKey();
+  if(S.day === today) return false;
+  S.day = today;
+  allOwners().forEach(o => o.tasks.forEach(t => { t.done=false; t.skip=false; }));
+  save();
+  return true;
+}
+
+const cat  = id => S.categories.find(c => c.id === id);
+const room = id => S.rooms.find(r => r.id === id);
+const allOwners = () => S.categories.concat(S.rooms);
+const ownerOf = (type,id) => type === 'room' ? room(id) : cat(id);
+
+/* Orden en el que la app va guiando el día */
+const QUEUE_ORDER = ['apertura','pendientes','__rooms__','banos','limpieza','mara'];
+
+function buildQueue(){
+  const out = [];
+  const add = (owner, type) => {
+    if(!owner) return;
+    owner.tasks.forEach(t => { if(!t.done) out.push({ ownerType:type, ownerId:owner.id, owner, task:t }); });
+  };
+  QUEUE_ORDER.forEach(step => {
+    if(step === '__rooms__') S.rooms.forEach(r => add(r,'room'));
+    else add(cat(step),'cat');
+  });
+  S.categories.forEach(c => { if(QUEUE_ORDER.indexOf(c.id) < 0) add(c,'cat'); });
+  /* lo saltado se va al final, sin perderse */
+  return out.filter(x => !x.task.skip).concat(out.filter(x => x.task.skip));
+}
+function counts(owner){
+  const total = owner.tasks.length;
+  const done  = owner.tasks.filter(t => t.done).length;
+  return { total, done, pct: total ? Math.round(done/total*100) : 0 };
+}
+function dayProgress(){
+  let total=0, done=0;
+  allOwners().forEach(o => { total += o.tasks.length; done += o.tasks.filter(t=>t.done).length; });
+  return { total, done, pct: total ? Math.round(done/total*100) : 0 };
+}
+
+/* ---------- 5. Color de acento ------------------------------ */
+const isDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+function mix(hex, withWhite, amt){
+  const n = parseInt(hex.slice(1),16);
+  let r=(n>>16)&255, g=(n>>8)&255, b=n&255;
+  const t = withWhite ? 255 : 0;
+  r=Math.round(r+(t-r)*amt); g=Math.round(g+(t-g)*amt); b=Math.round(b+(t-b)*amt);
+  return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+function applyAccent(){
+  const base = S.accent || '#9C7A3C';
+  const c = isDark() ? mix(base,true,.42) : base;
+  document.documentElement.style.setProperty('--accent', c);
+  document.documentElement.style.setProperty('--accent-soft', hexA(c,.12));
+}
+function hexA(hex,a){
+  const n=parseInt(hex.slice(1),16);
+  return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')';
+}
+const PALETTE = [
+  ['#9C7A3C','Oro'], ['#5E7F63','Salvia'], ['#6C5F8C','Lavanda'],
+  ['#A2724A','Arena'], ['#7E4A55','Vino'], ['#4F6373','Piedra']
+];
+
+/* ---------- 6. Navegación ----------------------------------- */
+let view = 'home';
+let detail = null;          /* {type:'cat'|'room', id} */
+let editMode = false;
+let searchNote = '', searchBuy = '';
+
+function go(v, opts){
+  view = v; editMode = false;
+  $$('.view').forEach(s => s.classList.remove('on'));
+  $('#v-'+(v==='detail'?'detail':v)).classList.add('on');
+  const activeTab = (v === 'detail') ? 'lists' : v;
+  $$('.tab').forEach(b => b.classList.toggle('on', b.dataset.tab === activeTab));
+  render(opts);
+  window.scrollTo({top:0});
+}
+
+function render(opts){
+  opts = opts || {};
+  if(view==='home')     renderHome(opts);
+  if(view==='lists')    renderLists();
+  if(view==='detail')   renderDetail();
+  if(view==='notes')    renderNotes();
+  if(view==='shop')     renderShop();
+  if(view==='settings') renderSettings();
+  const p = dayProgress();
+  $('#dayline i').style.width = p.pct + '%';
+}
+
+/* ---------- 7. Pantalla HOY --------------------------------- */
+function greeting(){
+  const h = new Date().getHours();
+  const g = h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches';
+  return S.userName ? g + ', ' + esc(S.userName) : g;
+}
+function dateLine(){
+  const d = new Date();
+  return DAYS[d.getDay()] + ' ' + d.getDate() + ' de ' + MONTHS[d.getMonth()];
+}
+
+/* Recordatorios: solo cosas del spa, derivadas de lo que falta */
+function nudges(){
+  const h = new Date().getHours(), out = [];
+  const pend = o => o.tasks.filter(t=>!t.done).length;
+  const ap = cat('apertura'), ma = cat('mara'), ba = cat('banos');
+  if(ap && h >= 11 && pend(ap)) out.push({ level:'alert', text: counts(ap).done === 0
+    ? 'La apertura sigue sin empezar · ' + pend(ap) + ' tareas'
+    : 'La apertura quedó a medias · faltan ' + pend(ap) });
+  if(ma && h >= 13 && pend(ma)) out.push({ level:'wait',  text:'Recuerda alimentar a Mara' });
+  const roomPend = S.rooms.filter(r => counts(r).done < counts(r).total);
+  if(h >= 10 && roomPend.length) out.push({ level:'wait', text:roomPend.length===1 ? 'Falta verificar ' + esc(roomPend[0].name) : 'Faltan ' + roomPend.length + ' habitaciones por verificar' });
+  if(ba && h >= 15 && pend(ba)) out.push({ level:'wait', text:'No olvides revisar el baño' });
+  return out.slice(0,2);
+}
+
+function renderHome(opts){
+  opts = opts || {};
+  const q = buildQueue();
+  const p = dayProgress();
+  const cur = q[0];
+  let stage;
+
+  if(cur){
+    const ghosts = (q.length > 1 ? '<div class="ghost g1"></div>' : '') + (q.length > 2 ? '<div class="ghost g2"></div>' : '');
+    stage =
+      '<div class="stage">' + ghosts +
+        '<div class="card-next' + (opts.rise ? ' rise' : '') + '">' +
+          '<div class="where"><span style="font-size:15px">' + esc(cur.owner.emoji || '🛋️') + '</span><span class="eyebrow">' + esc(cur.owner.name) + '</span></div>' +
+          '<p class="task">' + esc(cur.task.text) + '</p>' +
+          '<button class="btn-done" data-act="done">Hecho</button>' +
+          (q.length > 1 ? '<button class="btn-skip" data-act="skip">Ahora no</button>' : '') +
+        '</div>' +
+      '</div>' +
+      '<p class="queue-note">' + (q.length === 1 ? 'Es lo último que queda' : 'Quedan ' + q.length + ' cosas por hacer') + '</p>';
+  } else {
+    stage =
+      '<div class="stage"><div class="calm rise">' +
+        (S.icon ? '<img src="' + S.icon + '" alt="">' : '') +
+        '<h2>Todo en orden</h2>' +
+        '<p>' + (p.total ? 'Terminaste las ' + p.total + ' tareas del día.' : 'Aún no hay tareas en tus listas.') + '<br>Puedes trabajar tranquila.</p>' +
+      '</div></div>';
+  }
+
+  const nd = nudges();
+  $('#v-home').innerHTML =
+    '<header class="hero">' +
+      (S.spaName ? '<div class="eyebrow" style="margin-bottom:9px">' + esc(S.spaName) + '</div>' : '') +
+      '<h1>' + greeting() + '</h1>' +
+      '<div class="meta"><span>' + dateLine() + '</span><span class="dot"></span><span class="tnum" id="clock">' + hhmm(new Date()) + '</span></div>' +
+    '</header>' +
+    '<div class="progress">' +
+      '<div class="row"><span class="eyebrow">Progreso del día</span><span class="pct tnum">' + p.pct + '%</span></div>' +
+      '<div class="bar"><i style="width:' + p.pct + '%"></i></div>' +
+    '</div>' +
+    stage +
+    (nd.length ? '<div class="nudges">' + nd.map(n => '<div class="nudge ' + n.level + '"><span class="sdot"></span><span>' + n.text + '</span></div>').join('') + '</div>' : '');
+
+  if(opts.cheer) showCheer(opts.cheer);
+}
+
+/* Celebración discreta al terminar una categoría */
+function showCheer(name){
+  const stage = $('#v-home .stage'); if(!stage) return;
+  const el = document.createElement('div');
+  el.className = 'cheer';
+  el.innerHTML = '<span class="mark">' + IC.check + '</span><span class="serif">' + esc(name) + ' al día</span>';
+  stage.appendChild(el);
+  setTimeout(()=>{ if(el.parentNode) el.remove(); }, 1500);
+}
+
+function completeCurrent(){
+  const q = buildQueue(); if(!q.length) return;
+  const cur = q[0];
+  cur.task.done = true; cur.task.skip = false;
+  const finished = cur.owner.tasks.every(t => t.done);
+  save(); haptic(10);
+  const card = $('#v-home .card-next');
+  if(card) card.classList.add('fly');
+  setTimeout(()=>{
+    renderHome({ rise:true, cheer: finished ? cur.owner.name : null });
+    $('#dayline i').style.width = dayProgress().pct + '%';
+  }, 240);
+}
+function skipCurrent(){
+  const q = buildQueue(); if(q.length < 2) return;
+  q[0].task.skip = true; save(); haptic(6);
+  const card = $('#v-home .card-next');
+  if(card) card.classList.add('fly');
+  setTimeout(()=> renderHome({rise:true}), 200);
+}
+
+/* ---------- 8. Pantalla LISTAS ------------------------------ */
+function renderLists(){
+  const tile = (c) => {
+    const k = counts(c);
+    const state = k.total===0 ? '' : (k.done===k.total ? 'ok' : (k.done===0 ? 'alert' : 'wait'));
+    return '<button class="tile" data-act="open-cat" data-id="' + c.id + '">' +
+      '<span class="emoji">' + esc(c.emoji) + '</span>' +
+      '<span class="body"><span class="name">' + esc(c.name) + '</span>' +
+        '<span class="meta">' + (k.total ? k.done + ' de ' + k.total : 'Sin tareas') + '</span>' +
+        '<span class="minibar"><i style="width:' + k.pct + '%"></i></span></span>' +
+      (state ? '<span class="sdot ' + state + '"></span>' : '') + IC.chev + '</button>';
+  };
+  const roomCard = (r) => {
+    const k = counts(r);
+    const ready = k.total && k.done === k.total;
+    return '<button class="room" data-act="open-room" data-id="' + r.id + '">' +
+      '<div class="name">' + esc(r.name) + '</div>' +
+      '<div class="state"><span class="sdot ' + (ready?'ok':'wait') + '"></span>' + (ready ? 'Lista' : k.done + '/' + k.total) + '</div>' +
+    '</button>';
+  };
+  $('#v-lists').innerHTML =
+    '<header class="head"><div><h1>Listas</h1><div class="sub">Todo editable, siempre</div></div></header>' +
+    '<div class="stack">' + S.categories.map(tile).join('') + '</div>' +
+    '<div class="section-label eyebrow">Habitaciones</div>' +
+    '<div class="rooms">' + S.rooms.map(roomCard).join('') +
+      '<button class="room" data-act="add-room" style="display:grid;place-items:center;color:var(--ink-3);border-style:dashed">' + IC.plus + '<span style="font-size:13px;margin-top:6px">Añadir</span></button>' +
+    '</div>';
+}
+
+/* ---------- 9. Pantalla DETALLE (categoría o habitación) ----- */
+function renderDetail(){
+  const o = detail && ownerOf(detail.type, detail.id);
+  if(!o){ go('lists'); return; }
+  const k = counts(o);
+  const isRoom = detail.type === 'room';
+
+  const rows = o.tasks.map(t =>
+    '<div class="item' + (t.done ? ' done' : '') + '" data-id="' + t.id + '">' +
+      (editMode
+        ? '<span class="handle" data-handle>' + IC.drag + '</span><input class="label" value="' + esc(t.text) + '" data-rename="' + t.id + '">' +
+          '<button class="del" data-act="del-item" data-id="' + t.id + '" aria-label="Eliminar">' + IC.trash + '</button>'
+        : '<button class="check" data-act="toggle" data-id="' + t.id + '" aria-label="Marcar">' + IC.check + '</button>' +
+          '<span class="label" data-act="toggle" data-id="' + t.id + '">' + esc(t.text) + '</span>')
+    + '</div>').join('');
+
+  const addRow = '<div class="add-row"><span class="plus">' + IC.plus + '</span>' +
+    '<input id="newTask" placeholder="Añadir tarea" enterkeyhint="done"></div>';
+
+  $('#v-detail').innerHTML =
+    '<button class="back" data-act="back-lists">' + IC.back + ' Listas</button>' +
+    '<header class="head"><div>' +
+      (editMode && isRoom
+        ? '<input class="serif" id="roomName" value="' + esc(o.name) + '" style="font-size:30px;letter-spacing:-.02em">'
+        : '<h1>' + esc(o.emoji ? o.emoji + ' ' : '') + esc(o.name) + '</h1>') +
+      '<div class="sub">' + (k.total ? k.done + ' de ' + k.total + ' listo' : 'Añade la primera tarea') + '</div>' +
+    '</div><button class="txtbtn" data-act="edit-mode">' + (editMode ? 'Listo' : 'Editar') + '</button></header>' +
+    '<div class="list" id="taskList">' + (rows || '') + addRow + '</div>' +
+    (isRoom && !editMode ? '<button class="btn-big" data-act="room-ready">' + (k.done===k.total && k.total ? 'Reabrir habitación' : 'Habitación lista') + '</button>' : '') +
+    (editMode && isRoom ? '<button class="btn-ghost danger" data-act="del-room">Eliminar habitación</button>' : '');
+
+  /* añadir tarea: Enter la guarda y deja el campo listo para la siguiente */
+  const nt = $('#newTask');
+  const addTask = keepFocus => {
+    const v = nt.value.trim();
+    nt.value = '';                       /* se limpia antes de repintar */
+    if(!v) return;
+    o.tasks.push({ id:uid(), text:v, done:false, skip:false });
+    save(); haptic(6); renderDetail();
+    if(keepFocus){ const f = $('#newTask'); if(f) f.focus(); }
+  };
+  nt.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); addTask(true); } });
+  nt.addEventListener('blur', () => addTask(false));
+
+  /* renombrar tareas y habitación */
+  $$('[data-rename]').forEach(inp => {
+    const t = o.tasks.find(x => x.id === inp.dataset.rename);
+    inp.addEventListener('change', () => {
+      const v = inp.value.trim();
+      if(v){ t.text = v; save(); } else { inp.value = t.text; }
+    });
+    inp.addEventListener('keydown', e => { if(e.key==='Enter') inp.blur(); });
+  });
+  const rn = $('#roomName');
+  if(rn) rn.addEventListener('change', () => {
+    const v = rn.value.trim(); if(v){ o.name = v; save(); } else rn.value = o.name;
+  });
+
+  if(editMode) makeSortable($('#taskList'), o);
+}
+
+function toggleTask(id){
+  const o = ownerOf(detail.type, detail.id); if(!o) return;
+  const t = o.tasks.find(x => x.id === id); if(!t) return;
+  t.done = !t.done; if(t.done) t.skip = false;
+  save(); haptic(8);
+  const row = $('#taskList .item[data-id="' + id + '"]');
+  if(row) row.classList.toggle('done', t.done);
+  const k = counts(o);
+  const sub = $('#v-detail .sub'); if(sub) sub.textContent = k.done + ' de ' + k.total + ' listo';
+  $('#dayline i').style.width = dayProgress().pct + '%';
+  if(k.total && k.done === k.total && t.done) toast(o.name + ' al día');
+}
+
+/* ---------- 10. Reordenar arrastrando ----------------------- */
+function makeSortable(container, owner){
+  let drag = null;
+  container.addEventListener('pointerdown', e => {
+    const handle = e.target.closest('[data-handle]'); if(!handle) return;
+    const row = handle.closest('.item'); if(!row) return;
+    e.preventDefault();
+    const rows = $$('.item', container);
+    const rects = rows.map(r => r.getBoundingClientRect());
+    const idx = rows.indexOf(row);
+    drag = { row, rows, rects, from: idx, to: idx, y0: e.clientY, h: rects[idx].height };
+    row.classList.add('dragging');
+    row.setPointerCapture(e.pointerId);
+    haptic(6);
+  });
+  container.addEventListener('pointermove', e => {
+    if(!drag) return;
+    const dy = e.clientY - drag.y0;
+    drag.row.style.transform = 'translateY(' + dy + 'px)';
+    const center = drag.rects[drag.from].top + drag.rects[drag.from].height/2 + dy;
+    let to = drag.from;
+    drag.rects.forEach((r,i) => { if(i !== drag.from && center > r.top && center < r.bottom) to = i; });
+    if(to !== drag.to){
+      drag.to = to; haptic(4);
+      drag.rows.forEach((r,i) => {
+        if(r === drag.row) return;
+        let shift = 0;
+        if(drag.from < to && i > drag.from && i <= to) shift = -drag.h;
+        if(drag.from > to && i < drag.from && i >= to) shift =  drag.h;
+        r.style.transition = 'transform .18s cubic-bezier(.22,.9,.3,1)';
+        r.style.transform = 'translateY(' + shift + 'px)';
+      });
+    }
+  });
+  const end = () => {
+    if(!drag) return;
+    const { from, to } = drag;
+    drag.rows.forEach(r => { r.style.transition=''; r.style.transform=''; });
+    drag.row.classList.remove('dragging');
+    drag = null;
+    if(from !== to){
+      const moved = owner.tasks.splice(from,1)[0];
+      owner.tasks.splice(to,0,moved);
+      save();
+    }
+    renderDetail();
+  };
+  container.addEventListener('pointerup', end);
+  container.addEventListener('pointercancel', end);
+}
+
+/* ---------- 11. NOTAS --------------------------------------- */
+function renderNotes(){
+  const q = searchNote.toLowerCase();
+  const list = S.notes.filter(n => !q || n.text.toLowerCase().includes(q)).sort((a,b)=>b.ts-a.ts);
+  $('#v-notes').innerHTML =
+    '<header class="head"><div><h1>Notas</h1><div class="sub">' + S.notes.length + (S.notes.length===1?' nota guardada':' notas guardadas') + '</div></div></header>' +
+    '<div class="search">' + IC.search + '<input id="qNote" placeholder="Buscar en tus notas" value="' + esc(searchNote) + '"></div>' +
+    (list.length
+      ? '<div class="stack">' + list.map(n =>
+          '<button class="note" data-act="open-note" data-id="' + n.id + '">' +
+            '<div class="txt">' + esc(n.text) + '</div><div class="when">' + whenLabel(n.ts) + '</div></button>').join('') + '</div>'
+      : '<div class="empty">' + (q ? 'Ninguna nota coincide.' : 'Aquí van las cosas que no quieres olvidar.<br>Usa el botón + para escribir la primera.') + '</div>');
+  const qn = $('#qNote');
+  qn.addEventListener('input', () => { searchNote = qn.value; const p = qn.selectionStart; renderNotes(); const f=$('#qNote'); f.focus(); f.setSelectionRange(p,p); });
+}
+
+function openNote(id){
+  const n = S.notes.find(x => x.id === id); if(!n) return;
+  openSheet(
+    '<h3 class="sheet-title">Nota</h3>' +
+    '<div class="bigfield"><textarea id="nText">' + esc(n.text) + '</textarea></div>' +
+    '<div class="frow"><button class="btn-big" style="margin-top:0" data-sheet="save-note">Guardar</button></div>' +
+    '<button class="btn-ghost danger" data-sheet="del-note">Eliminar nota</button>',
+    {
+      'save-note': () => { const v = $('#nText').value.trim(); if(v){ n.text=v; n.ts=Date.now(); save(); } closeSheet(); renderNotes(); toast('Nota guardada'); },
+      'del-note' : () => { S.notes = S.notes.filter(x => x.id !== id); save(); closeSheet(); renderNotes(); toast('Nota eliminada'); }
+    }
+  );
+}
+
+/* ---------- 12. COMPRAS ------------------------------------- */
+function renderShop(){
+  const q = searchBuy.toLowerCase();
+  const all = S.shopping.filter(i => !q || (i.name + ' ' + (i.place||'')).toLowerCase().includes(q));
+  const favs = all.filter(i => i.fav), rest = all.filter(i => !i.fav);
+  const row = i =>
+    '<div class="buy">' +
+      '<button class="star ' + (i.fav?'on':'') + '" data-act="fav" data-id="' + i.id + '" aria-label="Favorito">' + (i.fav?IC.starOn:IC.star) + '</button>' +
+      '<button class="body" data-act="open-buy" data-id="' + i.id + '" style="text-align:left">' +
+        '<div class="name">' + esc(i.name) + '</div>' +
+        (i.place || i.note ? '<div class="meta">' + esc([i.place, i.note].filter(Boolean).join(' · ')) + '</div>' : '') +
+      '</button>' +
+      (i.price ? '<span class="price">S/' + esc(i.price) + '</span>' : '') +
+    '</div>';
+  $('#v-shop').innerHTML =
+    '<header class="head"><div><h1>Compras</h1><div class="sub">Lo que sueles reponer</div></div></header>' +
+    '<div class="search">' + IC.search + '<input id="qBuy" placeholder="Buscar producto o lugar" value="' + esc(searchBuy) + '"></div>' +
+    (all.length
+      ? (favs.length ? '<div class="section-label eyebrow" style="margin-top:6px">Favoritos</div><div class="stack">' + favs.map(row).join('') + '</div>' : '') +
+        (rest.length ? (favs.length ? '<div class="section-label eyebrow">Todo</div>' : '') + '<div class="stack">' + rest.map(row).join('') + '</div>' : '')
+      : '<div class="empty">' + (q ? 'Ningún producto coincide.' : 'Guarda aquí lo que compras siempre:<br>nombre, precio y dónde lo consigues.') + '</div>');
+  const qb = $('#qBuy');
+  qb.addEventListener('input', () => { searchBuy = qb.value; const p = qb.selectionStart; renderShop(); const f=$('#qBuy'); f.focus(); f.setSelectionRange(p,p); });
+}
+
+function openBuy(id){
+  const i = S.shopping.find(x => x.id === id); if(!i) return;
+  openSheet(
+    '<h3 class="sheet-title">Producto</h3>' +
+    '<div class="bigfield"><input id="bName" value="' + esc(i.name) + '" placeholder="Nombre"></div>' +
+    '<div class="frow"><div class="bigfield"><input id="bPrice" value="' + esc(i.price||'') + '" placeholder="Precio aprox." inputmode="decimal"></div>' +
+    '<div class="bigfield"><input id="bPlace" value="' + esc(i.place||'') + '" placeholder="Dónde"></div></div>' +
+    '<div class="bigfield"><input id="bNote" value="' + esc(i.note||'') + '" placeholder="Nota (opcional)"></div>' +
+    '<button class="btn-big" style="margin-top:0" data-sheet="save-buy">Guardar</button>' +
+    '<button class="btn-ghost danger" data-sheet="del-buy">Eliminar producto</button>',
+    {
+      'save-buy': () => {
+        const v = $('#bName').value.trim(); if(!v){ closeSheet(); return; }
+        i.name=v; i.price=$('#bPrice').value.trim(); i.place=$('#bPlace').value.trim(); i.note=$('#bNote').value.trim();
+        save(); closeSheet(); renderShop(); toast('Producto guardado');
+      },
+      'del-buy': () => { S.shopping = S.shopping.filter(x=>x.id!==id); save(); closeSheet(); renderShop(); toast('Producto eliminado'); }
+    }
+  );
+}
+
+/* ---------- 13. AJUSTES ------------------------------------- */
+function renderSettings(){
+  $('#v-settings').innerHTML =
+    '<header class="head"><div><h1>Ajustes</h1><div class="sub">Todo se guarda solo</div></div></header>' +
+
+    '<div class="section-label eyebrow">Tu spa</div>' +
+    '<div class="list">' +
+      '<div class="field"><span class="k">Nombre del spa</span><input id="setSpa" value="' + esc(S.spaName) + '" placeholder="Mi spa"></div>' +
+      '<div class="field"><span class="k">Tu nombre</span><input id="setUser" value="' + esc(S.userName) + '" placeholder="Para el saludo"></div>' +
+    '</div>' +
+
+    '<div class="section-label eyebrow">Color principal</div>' +
+    '<div class="list"><div class="swatches">' +
+      PALETTE.map(p => '<button class="sw ' + (S.accent===p[0]?'on':'') + '" data-act="accent" data-hex="' + p[0] + '" style="background:' + p[0] + '" aria-label="' + p[1] + '"></button>').join('') +
+    '</div></div>' +
+
+    '<div class="section-label eyebrow">Icono</div>' +
+    '<div class="list"><div class="iconrow">' +
+      '<img src="' + (S.icon || DEFAULT_ICON) + '" alt="Icono">' +
+      '<div style="flex:1"><div style="font-size:15px">Icono de la app</div><div style="font-size:13px;color:var(--ink-3)">Se usa al añadirla a la pantalla de inicio</div></div>' +
+      '<button class="txtbtn" data-act="pick-icon">Cambiar</button>' +
+    '</div></div>' +
+
+    '<div class="section-label eyebrow">Tus datos</div>' +
+    '<div class="list">' +
+      '<button class="field" data-act="backup" style="width:100%"><span class="k" style="flex:1;text-align:left;color:var(--ink)">Guardar copia de seguridad</span><span class="txtbtn">Descargar</span></button>' +
+      '<button class="field" data-act="restore" style="width:100%"><span class="k" style="flex:1;text-align:left;color:var(--ink)">Restaurar copia</span><span class="txtbtn">Abrir archivo</span></button>' +
+    '</div>' +
+    '<button class="btn-ghost danger" data-act="reset">Restablecer todo</button>' +
+    '<p class="fineprint">' + (Store.persistent
+      ? 'Tus datos viven solo en este dispositivo y no salen de él.<br>Las tareas se reinician cada mañana; notas y compras se quedan.'
+      : 'Este navegador no está guardando datos de forma permanente. Descarga una copia de seguridad para no perder nada.') + '</p>';
+
+  const sp = $('#setSpa'), us = $('#setUser');
+  sp.addEventListener('change', () => { S.spaName = sp.value.trim(); save(); });
+  us.addEventListener('change', () => { S.userName = us.value.trim(); save(); toast('Listo'); });
+}
+
+function pickIcon(){
+  const inp = document.createElement('input');
+  inp.type='file'; inp.accept='image/*';
+  inp.onchange = () => {
+    const f = inp.files[0]; if(!f) return;
+    const rd = new FileReader();
+    rd.onload = () => { S.icon = rd.result; save(); applyIcon(); renderSettings(); toast('Icono actualizado'); };
+    rd.readAsDataURL(f);
+  };
+  inp.click();
+}
+function applyIcon(){
+  const src = S.icon || DEFAULT_ICON;
+  $('#favicon').href = src; $('#touchicon').href = src;
+}
+function backup(){
+  const blob = new Blob([JSON.stringify(S,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'spa-memoria-' + dayKey() + '.json';
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Copia descargada');
+}
+function restore(){
+  const inp = document.createElement('input');
+  inp.type='file'; inp.accept='application/json,.json';
+  inp.onchange = () => {
+    const f = inp.files[0]; if(!f) return;
+    const rd = new FileReader();
+    rd.onload = () => {
+      try{
+        const d = JSON.parse(rd.result);
+        if(!d.categories) throw new Error('bad');
+        S = Object.assign(defaults(), d); save(); applyAccent(); applyIcon();
+        go('home'); toast('Copia restaurada');
+      }catch(e){ toast('Ese archivo no es una copia válida'); }
+    };
+    rd.readAsText(f);
+  };
+  inp.click();
+}
+function confirmReset(){
+  openSheet(
+    '<h3 class="sheet-title">¿Restablecer todo?</h3>' +
+    '<p style="color:var(--ink-2);font-size:15px;margin:0 0 18px">Se borran tus listas, notas y compras, y todo vuelve como al principio. No se puede deshacer.</p>' +
+    '<button class="btn-big" style="margin-top:0;background:var(--alert);box-shadow:none;color:#fff" data-sheet="do-reset">Sí, restablecer</button>' +
+    '<button class="btn-ghost" data-sheet="cancel">Cancelar</button>',
+    {
+      'do-reset': () => { S = defaults(); save(); applyAccent(); applyIcon(); closeSheet(); go('home'); toast('Todo restablecido'); },
+      'cancel'  : closeSheet
+    }
+  );
+}
+
+/* ---------- 14. Hoja inferior (sheet) ----------------------- */
+let sheetActions = {};
+function openSheet(html, actions){
+  sheetActions = actions || {};
+  $('#sheet').innerHTML = '<div class="grabber"></div>' + html;
+  $('#scrim').classList.add('on');
+  requestAnimationFrame(()=> $('#sheet').classList.add('on'));
+}
+function closeSheet(){
+  $('#sheet').classList.remove('on');
+  $('#scrim').classList.remove('on');
+  sheetActions = {};
+  setTimeout(()=>{ if(!$('#sheet').classList.contains('on')) $('#sheet').innerHTML=''; }, 340);
+}
+
+/* ---------- 15. Añadir rápido ------------------------------- */
+function quickAdd(){
+  openSheet(
+    '<h3 class="sheet-title">Añadir rápido</h3>' +
+    '<div class="bigfield"><textarea id="qaText" placeholder="Escribe y elige dónde va…" style="min-height:76px"></textarea></div>' +
+    '<div class="choices">' +
+      '<button class="choice" data-sheet="qa-note"><span class="e">📝</span><span class="t">Nota</span></button>' +
+      '<button class="choice" data-sheet="qa-task"><span class="e">✅</span><span class="t">Tarea</span></button>' +
+      '<button class="choice" data-sheet="qa-buy"><span class="e">🛒</span><span class="t">Compra</span></button>' +
+    '</div>',
+    {
+      'qa-note': () => finishQuick('note'),
+      'qa-task': () => finishQuick('task'),
+      'qa-buy' : () => finishQuick('buy')
+    }
+  );
+  setTimeout(()=>{ const f = $('#qaText'); if(f) f.focus(); }, 320);
+}
+function finishQuick(kind){
+  const v = ($('#qaText').value || '').trim();
+  if(!v){ closeSheet(); return; }
+  if(kind === 'note'){
+    S.notes.unshift({ id:uid(), text:v, ts:Date.now() });
+    save(); closeSheet(); toast('Guardado en Notas'); if(view==='notes') renderNotes();
+  }
+  if(kind === 'task'){
+    cat('pendientes').tasks.push({ id:uid(), text:v, done:false, skip:false });
+    save(); closeSheet(); toast('Añadido a Pendientes'); render();
+  }
+  if(kind === 'buy'){
+    S.shopping.unshift({ id:uid(), name:v, price:'', place:'', note:'', fav:false });
+    save(); closeSheet(); toast('Añadido a Compras'); if(view==='shop') renderShop();
+  }
+  haptic(8);
+}
+
+/* ---------- 16. Eventos globales ---------------------------- */
+document.addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if(tab){ go(tab.dataset.tab); return; }
+
+  const sheetBtn = e.target.closest('[data-sheet]');
+  if(sheetBtn){ const fn = sheetActions[sheetBtn.dataset.sheet]; if(fn) fn(); return; }
+
+  const el = e.target.closest('[data-act]'); if(!el) return;
+  const id = el.dataset.id;
+  switch(el.dataset.act){
+    case 'done':      completeCurrent(); break;
+    case 'skip':      skipCurrent(); break;
+    case 'open-cat':  detail = {type:'cat', id};  go('detail'); break;
+    case 'open-room': detail = {type:'room', id}; go('detail'); break;
+    case 'back-lists':go('lists'); break;
+    case 'edit-mode': editMode = !editMode; renderDetail(); break;
+    case 'toggle':    toggleTask(id); break;
+    case 'del-item': {
+      const o = ownerOf(detail.type, detail.id);
+      o.tasks = o.tasks.filter(t => t.id !== id); save(); renderDetail(); break;
+    }
+    case 'room-ready': {
+      const r = room(detail.id); const all = r.tasks.every(t => t.done);
+      r.tasks.forEach(t => { t.done = !all; t.skip = false; });
+      save(); haptic(12); renderDetail();
+      if(!all) toast(r.name + ' lista');
+      break;
+    }
+    case 'add-room': {
+      const r = { id:uid(), name:'Habitación ' + (S.rooms.length+1), tasks:mkTasks(ROOM_LIST) };
+      S.rooms.push(r); save(); detail = {type:'room', id:r.id}; editMode = true; go('detail');
+      break;
+    }
+    case 'del-room': {
+      const r = room(detail.id);
+      openSheet('<h3 class="sheet-title">¿Eliminar ' + esc(r.name) + '?</h3>' +
+        '<p style="color:var(--ink-2);font-size:15px;margin:0 0 18px">Se borra su checklist. No se puede deshacer.</p>' +
+        '<button class="btn-big" style="margin-top:0;background:var(--alert);box-shadow:none;color:#fff" data-sheet="yes">Eliminar</button>' +
+        '<button class="btn-ghost" data-sheet="no">Cancelar</button>',
+        { yes: () => { S.rooms = S.rooms.filter(x => x.id !== r.id); save(); closeSheet(); go('lists'); }, no: closeSheet });
+      break;
+    }
+    case 'open-note': openNote(id); break;
+    case 'open-buy':  openBuy(id); break;
+    case 'fav': {
+      const i = S.shopping.find(x => x.id === id); i.fav = !i.fav; save(); haptic(6); renderShop(); break;
+    }
+    case 'accent':    S.accent = el.dataset.hex; save(); applyAccent(); renderSettings(); break;
+    case 'pick-icon': pickIcon(); break;
+    case 'backup':    backup(); break;
+    case 'restore':   restore(); break;
+    case 'reset':     confirmReset(); break;
+  }
+});
+
+$('#fab').addEventListener('click', quickAdd);
+$('#scrim').addEventListener('click', closeSheet);
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeSheet(); });
+
+/* Reloj y control de día nuevo */
+setInterval(() => {
+  const c = $('#clock'); if(c) c.textContent = hhmm(new Date());
+  if(newDayCheck() && view === 'home') renderHome();
+}, 20000);
+document.addEventListener('visibilitychange', () => {
+  if(!document.hidden){ if(newDayCheck()) toast('Buen día nuevo · listas reiniciadas'); render(); }
+});
+if(window.matchMedia){
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  if(mq.addEventListener) mq.addEventListener('change', applyAccent);
+}
+
+/* ---------- 17. Arranque ------------------------------------ */
+newDayCheck();
+applyAccent();
+applyIcon();
+go('home');
+
+})();
+
+</script>
+</body>
+</html>
