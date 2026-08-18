@@ -1138,8 +1138,7 @@ function htmlZonaLista(){
     <div class="list">
       ${lista.length?lista.map(a=>itemAtencion(a,proximas)).join(''):'<div class="empty">Sin citas registradas.</div>'}
     </div>
-  </div>
-  ${proximas?'':cardDisponibles()}`;
+  </div>`;
 }
 function bindZonaLista(v){
   v.querySelectorAll('[data-modo]').forEach(b=>b.onclick=()=>{ UI.modoAgenda=b.dataset.modo; repintarLista(v); });
@@ -1148,7 +1147,6 @@ function bindZonaLista(v){
   const h=z.querySelector('[data-hoy]'); if(h) h.onclick=()=>{ UI.fecha=hoyISO(); repintarLista(v); };
   const i=z.querySelector('#fInput'); if(i) i.onchange=()=>{ UI.fecha=i.value||hoyISO(); repintarLista(v); };
   v.querySelectorAll('[data-at]').forEach(n=>n.onclick=()=>detalleAtencion(n.dataset.at));
-  bindDisponibles(v);
 }
 /* Cambiar de día o de vista no debe borrar lo que hay escrito arriba. */
 function repintarLista(v){
@@ -1175,40 +1173,6 @@ function itemAtencion(a,conFecha){
     </div>
   </div>`;
 }
-function cardDisponibles(){
-  const hora=UI.dispHora||horaGuardar(String(new Date().getHours())+':'+String(new Date().getMinutes()).padStart(2,'0'));
-  const dur=UI.dispDur||60;
-  const min=horaMin(hora)??540;
-  const ts=terapeutasDe(UI.spa);
-  const filas=ts.map(m=>{
-    const as=asistenciaDe(m,UI.spa,UI.fecha);
-    const presente = as ? (num(as,'Asistio')===1&&num(as,'SeRetiro')!==1) : null;
-    const st=estaLibre(m,UI.fecha,min,Number(dur));
-    let badge,txt;
-    if(presente===false){ badge='b-mut'; txt='no asiste / se retiró'; }
-    else if(!st.libre){ badge='b-bad'; txt='ocupada hasta '+hora12(st.hasta); }
-    else { badge='b-ok'; txt=presente===null?'libre (asistencia sin marcar)':'libre'; }
-    return `<div class="item" style="cursor:default">
-      <div class="t"><b>${esc(nombreVisible(m,UI.spa))}</b><span>${txt}</span></div>
-      <div class="r"><span class="badge ${badge}">${presente===false?'—':st.libre?'✓':'✗'}</span></div>
-    </div>`;
-  }).join('');
-  return `<div class="card">
-    <h2><span class="sp">Terapeutas disponibles</span></h2>
-    <div class="row" style="margin-bottom:10px">
-      <div style="flex:1"><label class="f">A las</label><input id="dHora" value="${esc(hora12(hora))}"></div>
-      <div style="flex:1"><label class="f">Por (min)</label>
-        <select id="dDur">${DURACIONES.map(d=>`<option ${d==dur?'selected':''}>${d}</option>`).join('')}</select></div>
-    </div>
-    <div class="list">${filas||'<div class="empty">Sin terapeutas activas en este spa.</div>'}</div>
-  </div>`;
-}
-function bindDisponibles(v){
-  const h=v.querySelector('#dHora'), d=v.querySelector('#dDur');
-  if(h) h.onchange=()=>{ UI.dispHora=horaGuardar(h.value); render(); };
-  if(d) d.onchange=()=>{ UI.dispDur=+d.value; render(); };
-}
-
 /* ---------- Detalle de una atención ---------- */
 function detalleAtencion(key){
   const a=rowByKey('Atenciones',key); if(!a) return;
@@ -1391,8 +1355,11 @@ function montarFormAtencion(cont, existing, ovl){
         <div><label class="f">Terapeuta 1</label>
           <select data-k="t1"><option value="">— sin asignar —</option>${
             ts.map(m=>{const n=nombreVisible(m,S.spa);
+              // Se avisa en la misma lista quién está ocupada a esa hora.
               const st=estaLibre(m,S.fecha,horaMin(S.hora)??540,S.dur);
-              return `<option ${normalizeText(n)===normalizeText(S.t1)?'selected':''}>${esc(n)}</option>`;}).join('')}</select></div>
+              const nota=st.libre?'':' · ocupada hasta '+hora12(st.hasta);
+              return `<option value="${esc(n)}" ${normalizeText(n)===normalizeText(S.t1)?'selected':''}>${esc(n)}${nota}</option>`;
+            }).join('')}</select></div>
         ${S.terapeutas2>=2?`<div><label class="f">Terapeuta 2 (4 manos)</label>
           <select data-k="t2"><option value="">— sin asignar —</option>${
             ts.map(m=>{const n=nombreVisible(m,S.spa);
@@ -1828,16 +1795,107 @@ function formAsistencia(nombreVis){
    VISTA · CATÁLOGO (precios, promos, inventario)
    ===================================================================== */
 function viewCatalogo(v){
-  const sub=UI.catTab==='promos'?'promos':'precios';
+  const sub=['promos','terapeutas'].includes(UI.catTab)?UI.catTab:'precios';
   v.innerHTML=`
   <div class="seg" style="margin-bottom:12px">
     <button data-ct="precios" class="${sub==='precios'?'on':''}">Precios</button>
-    <button data-ct="promos" class="${sub==='promos'?'on':''}">Promos y paquetes</button>
+    <button data-ct="promos" class="${sub==='promos'?'on':''}">Promos</button>
+    <button data-ct="terapeutas" class="${sub==='terapeutas'?'on':''}">Terapeutas</button>
   </div>
   <div id="catBody"></div>`;
   v.querySelectorAll('[data-ct]').forEach(b=>b.onclick=()=>{ UI.catTab=b.dataset.ct; render(); });
   const b=v.querySelector('#catBody');
-  if(sub==='precios') catPrecios(b); else catPromos(b);
+  if(sub==='precios') catPrecios(b);
+  else if(sub==='promos') catPromos(b);
+  else catTerapeutas(b);
+}
+
+/* Alta y baja de terapeutas. Vive detrás de la clave interna: esta pantalla
+   no aparece en Asistencia ni en la agenda. */
+function catTerapeutas(b){
+  const lista=rows('Masajistas').sort((x,y)=>
+    (num(y,'Activa')-num(x,'Activa')) || str(x,'Nombre').localeCompare(str(y,'Nombre')));
+  const activas=lista.filter(m=>num(m,'Activa')===1).length;
+  b.innerHTML=`<div class="card">
+    <h2><span class="sp">Terapeutas</span><button class="btn s" data-w data-nueva>+ Nueva</button></h2>
+    <p class="sub" style="margin:0 0 10px">${activas} trabajando · ${lista.length-activas} dadas de baja.
+    Al dar de baja a alguien deja de aparecer en las citas y en la asistencia, pero
+    <b>su historial de atenciones y pagos se conserva</b>.</p>
+    <div class="list">${lista.map(m=>{
+      const act=num(m,'Activa')===1;
+      const donde=[num(m,'ActivaAdhamar')===1?'Adhamar':'', num(m,'ActivaUlianov')===1?'Ulianov':'']
+        .filter(Boolean).join(' · ')||'ningún spa';
+      return `<div class="item" data-ter="${esc(m.__key)}" ${act?'':'style="opacity:.55"'}>
+        <div class="t"><b>${esc(str(m,'Nombre'))}</b>
+          <span>${act?esc(donde):'dada de baja'}${num(m,'PuedeHolisticos')===1?' · holísticos':''}</span></div>
+        <div class="r"><span class="badge ${act?'b-ok':'b-mut'}">${act?'trabaja':'baja'}</span></div>
+      </div>`;}).join('')||'<div class="empty">Sin terapeutas registradas.</div>'}</div>
+  </div>`;
+  b.querySelectorAll('[data-ter]').forEach(n=>n.onclick=()=>formTerapeuta(rowByKey('Masajistas',n.dataset.ter)));
+  const nueva=b.querySelector('[data-nueva]');
+  if(nueva) nueva.onclick=()=>formTerapeuta(null);
+}
+
+function formTerapeuta(existing){
+  const S={};
+  ['Nombre','NombreAdhamar','ApodoUlianov','Apodo','NombreReal','TelefonoPago','Turno','Notas']
+    .forEach(k=>S[k]=existing?str(existing,k):(k==='Turno'?'Ambos':''));
+  ['Activa','ActivaAdhamar','ActivaUlianov','PuedeManana','PuedeTarde','PuedeHolisticos','TieneHijos']
+    .forEach(k=>S[k]=existing?num(existing,k)===1:(k==='Activa'||k==='ActivaAdhamar'||k==='ActivaUlianov'||k==='PuedeManana'||k==='PuedeTarde'));
+  const alta=!existing;
+  openSheet(alta?'Nueva terapeuta':esc(str(existing,'Nombre')),`
+    <div><label class="f">Nombre (con el que la buscas)</label><input data-k="Nombre" value="${esc(S.Nombre)}"></div>
+    <div class="grid g2" style="margin-top:8px">
+      <div><label class="f">Cómo se llama en Adhamar</label><input data-k="NombreAdhamar" value="${esc(S.NombreAdhamar)}"></div>
+      <div><label class="f">Cómo se llama en Ulianov</label><input data-k="ApodoUlianov" value="${esc(S.ApodoUlianov)}"></div>
+    </div>
+    <div class="grid g2" style="margin-top:8px">
+      <div><label class="f">Teléfono de pago</label><input data-k="TelefonoPago" value="${esc(S.TelefonoPago)}"></div>
+      <div><label class="f">Turno</label><select data-k="Turno">${TURNOS.map(t=>`<option ${t===S.Turno?'selected':''}>${t}</option>`).join('')}</select></div>
+    </div>
+    <div class="grid g2" style="margin-top:8px">
+      <label class="chk"><input type="checkbox" data-k="ActivaAdhamar" ${S.ActivaAdhamar?'checked':''}> Trabaja en Adhamar</label>
+      <label class="chk"><input type="checkbox" data-k="ActivaUlianov" ${S.ActivaUlianov?'checked':''}> Trabaja en Ulianov</label>
+      <label class="chk"><input type="checkbox" data-k="PuedeManana" ${S.PuedeManana?'checked':''}> Mañana</label>
+      <label class="chk"><input type="checkbox" data-k="PuedeTarde" ${S.PuedeTarde?'checked':''}> Tarde</label>
+      <label class="chk"><input type="checkbox" data-k="PuedeHolisticos" ${S.PuedeHolisticos?'checked':''}> Puede holísticos</label>
+    </div>
+    <div style="margin-top:8px"><label class="f">Notas</label><input data-k="Notas" value="${esc(S.Notas)}"></div>
+    ${alta?'':(S.Activa
+      ? `<button class="btn d w" data-baja style="margin-top:12px">Ya no trabaja aquí</button>
+         <p class="sub" style="margin-top:6px">Deja de salir en las citas y en la asistencia. Su historial se conserva
+         y puedes volver a darle de alta cuando quieras.</p>`
+      : `<div class="warnbox">Esta terapeuta está dada de baja.</div>
+         <button class="btn w" data-alta>Volver a darle de alta</button>`)}
+    <div class="sticky-actions">
+      <button class="btn" data-cancel>Cancelar</button>
+      <button class="btn p" data-save>Guardar</button>
+    </div>`, ovl=>{
+    ovl._datos();
+    ovl.querySelectorAll('[data-k]').forEach(i=>i.addEventListener('change',()=>{
+      S[i.dataset.k]= i.type==='checkbox'?i.checked:i.value; }));
+    ovl.querySelector('[data-cancel]').onclick=closeSheet;
+    const datos=()=>({Spa:existing?str(existing,'Spa'):UI.spa, Nombre:titleName(S.Nombre),
+      NombreNormalizado:normalizeText(S.Nombre), NombreAdhamar:S.NombreAdhamar, ApodoUlianov:S.ApodoUlianov,
+      Apodo:S.Apodo, NombreReal:S.NombreReal, TelefonoPago:S.TelefonoPago, Turno:S.Turno, Notas:S.Notas,
+      Activa:S.Activa?1:0, ActivaAdhamar:S.ActivaAdhamar?1:0, ActivaUlianov:S.ActivaUlianov?1:0,
+      PuedeManana:S.PuedeManana?1:0, PuedeTarde:S.PuedeTarde?1:0,
+      PuedeHolisticos:S.PuedeHolisticos?1:0, TieneHijos:S.TieneHijos?1:0});
+    const baja=ovl.querySelector('[data-baja]');
+    // Solo se apaga "Activa": las marcas de spa se conservan tal cual, para que
+    // al darle de alta otra vez vuelva exactamente como estaba.
+    if(baja) baja.onclick=()=>confirmar(`¿Dar de baja a ${str(existing,'Nombre')}? Dejará de aparecer en las citas y en la asistencia.`,
+      async()=>{ S.Activa=false;
+        await saveRow('Masajistas',datos(),existing); closeSheet(); toast('Dada de baja'); });
+    const altaBtn=ovl.querySelector('[data-alta]');
+    if(altaBtn) altaBtn.onclick=async()=>{ S.Activa=true;
+      await saveRow('Masajistas',datos(),existing); closeSheet(); toast('Dada de alta otra vez'); };
+    ovl.querySelector('[data-save]').onclick=async()=>{
+      if(!S.Nombre.trim()) return toast('Falta el nombre');
+      await saveRow('Masajistas',datos(),existing||null);
+      closeSheet(); toast('Terapeuta guardada');
+    };
+  });
 }
 function catPrecios(b){
   const lista=serviciosDe(UI.spa,false);
