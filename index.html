@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14110d">
+<!-- Que ningún buscador la indexe: el enlace se comparte a mano, no se busca. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="referrer" content="no-referrer">
+<title>ADHULIAV · Adhamar / Ulianov</title>
+<style>
+:root{
+  --gold:#c2a14d; --gold-dark:#9a7d2e; --gold-soft:#f6efdd;
+  --ink:#14110d; --ink-soft:#6b6558; --line:#e6e1d5;
+  --bg:#faf9f5; --card:#ffffff; --card-2:#fbfaf6;
+  --ok:#2e7d4f; --warn:#b8860b; --bad:#b3261e; --info:#2b5f8a;
+  --r:14px; --sh:0 1px 3px rgba(20,17,13,.08), 0 8px 24px rgba(20,17,13,.05);
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --gold:#d4b76a; --gold-dark:#c2a14d; --gold-soft:#2a2519;
+    --ink:#f3f0e7; --ink-soft:#a29b8b; --line:#302c24;
+    --bg:#121110; --card:#1b1a17; --card-2:#211f1b;
+    --sh:0 1px 3px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg); color:var(--ink);
+  font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  overscroll-behavior-y:none;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--gold-dark)}
+.hide{display:none !important}
+
+/* ---------- Layout ---------- */
+#app{display:flex;flex-direction:column;min-height:100%}
+header#top{
+  position:sticky;top:0;z-index:40;background:var(--card);
+  border-bottom:1px solid var(--line);
+  padding:8px 12px calc(8px) 12px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.5px}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex:none}
+.brand small{display:block;font-weight:400;font-size:11px;color:var(--ink-soft);letter-spacing:0}
+.top-sp{flex:1}
+main{flex:1;padding:12px 12px calc(84px + var(--safe-b)) 12px;max-width:1200px;width:100%;margin:0 auto}
+nav#tabs{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--card);border-top:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(6,1fr);
+  padding-bottom:var(--safe-b);
+}
+nav#tabs button{
+  background:none;border:0;padding:7px 2px 8px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  font-size:10px;color:var(--ink-soft);
+}
+nav#tabs button i{font-style:normal;font-size:19px;line-height:1}
+nav#tabs button.on{color:var(--gold-dark);font-weight:600}
+nav#tabs button.on i{filter:drop-shadow(0 0 6px rgba(194,161,77,.45))}
+
+@media (min-width:900px){
+  #app{flex-direction:row}
+  nav#tabs{
+    position:sticky;top:0;left:auto;right:auto;bottom:auto;height:100vh;
+    width:214px;flex:none;display:flex;flex-direction:column;gap:2px;
+    border-top:0;border-right:1px solid var(--line);padding:14px 10px;
+  }
+  nav#tabs button{flex-direction:row;justify-content:flex-start;gap:10px;font-size:14px;padding:10px 12px;border-radius:10px;width:100%}
+  nav#tabs button.on{background:var(--gold-soft)}
+  nav#tabs .navtitle{display:block;padding:0 12px 14px;font-weight:700;letter-spacing:1px;color:var(--gold-dark)}
+  .col-right{flex:1;min-width:0;display:flex;flex-direction:column}
+  main{padding:16px 20px 40px}
+  header#top{border-radius:0}
+}
+@media (max-width:899px){ nav#tabs .navtitle{display:none} }
+
+/* ---------- Piezas ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:14px;margin-bottom:12px}
+.card h2{margin:0 0 10px;font-size:15px;letter-spacing:.3px;display:flex;align-items:center;gap:8px}
+.card h2 .sp{flex:1}
+.sub{color:var(--ink-soft);font-size:12.5px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.grid{display:grid;gap:10px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(115px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(90px,1fr))}
+
+label.f{display:block;font-size:11.5px;color:var(--ink-soft);margin-bottom:3px;font-weight:600;letter-spacing:.2px}
+input,select,textarea{
+  width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;
+  background:var(--card-2);outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(194,161,77,.18)}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--gold-dark);vertical-align:-4px}
+.chk{display:flex;align-items:center;gap:7px;font-size:13.5px;padding:6px 0}
+.chk input{flex:none}
+
+.btn{
+  border:1px solid var(--line);background:var(--card);border-radius:10px;
+  padding:9px 13px;cursor:pointer;font-weight:600;font-size:13.5px;
+  display:inline-flex;align-items:center;gap:6px;justify-content:center;
+}
+.btn:active{transform:translateY(1px)}
+.btn.p{background:linear-gradient(180deg,var(--gold),var(--gold-dark));border-color:var(--gold-dark);color:#1a1509}
+.btn.d{color:var(--bad);border-color:#e8c8c5}
+.btn.s{padding:5px 9px;font-size:12px;border-radius:8px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.w{width:100%}
+
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.3px;border:1px solid transparent}
+.b-gold{background:var(--gold-soft);color:var(--gold-dark);border-color:var(--gold)}
+.b-ok{background:rgba(46,125,79,.12);color:var(--ok)}
+.b-bad{background:rgba(179,38,30,.1);color:var(--bad)}
+.b-info{background:rgba(43,95,138,.12);color:var(--info)}
+.b-mut{background:var(--card-2);color:var(--ink-soft);border-color:var(--line)}
+
+.list{display:flex;flex-direction:column;gap:8px}
+.item{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+  display:flex;gap:10px;align-items:flex-start;cursor:pointer;
+}
+.item:hover{border-color:var(--gold)}
+.item .t{flex:1;min-width:0}
+.item .t b{display:block;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .t span{font-size:12.5px;color:var(--ink-soft)}
+.item .r{text-align:right;flex:none}
+.item .hh{font-variant-numeric:tabular-nums;font-weight:700;color:var(--gold-dark);flex:none;width:64px;font-size:13px}
+.money{font-variant-numeric:tabular-nums;font-weight:700}
+.empty{text-align:center;padding:26px 10px;color:var(--ink-soft);font-size:13.5px}
+
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.kpi div{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:10px}
+.kpi b{display:block;font-size:19px;font-variant-numeric:tabular-nums}
+.kpi span{font-size:11.5px;color:var(--ink-soft)}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 6px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* ---------- Modal ---------- */
+.ovl{position:fixed;inset:0;background:rgba(20,17,13,.5);z-index:100;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}
+.sheet{
+  background:var(--bg);width:100%;max-width:620px;max-height:92vh;overflow:auto;
+  border-radius:18px 18px 0 0;padding:14px 14px calc(20px + var(--safe-b));
+  animation:up .18s ease-out;
+}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (min-width:900px){
+  .ovl{align-items:center}
+  .sheet{border-radius:18px;max-height:88vh;padding-bottom:20px}
+}
+.sheet h3{margin:2px 0 12px;font-size:17px;display:flex;align-items:center;gap:8px}
+.sheet h3 .sp{flex:1}
+.sticky-actions{position:sticky;bottom:-14px;background:var(--bg);padding:10px 0 0;margin-top:12px;border-top:1px solid var(--line);display:flex;gap:8px}
+.sticky-actions .btn{flex:1}
+
+/* ---------- Otros ---------- */
+#toast{position:fixed;left:50%;bottom:calc(78px + var(--safe-b));transform:translateX(-50%);z-index:200;
+  background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;
+  box-shadow:var(--sh);opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
+#toast.on{opacity:1}
+@media (min-width:900px){#toast{bottom:24px}}
+.fab{position:fixed;right:16px;bottom:calc(78px + var(--safe-b));z-index:45;width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(180deg,var(--gold),var(--gold-dark));color:#1a1509;border:0;font-size:28px;font-weight:300;
+  box-shadow:0 6px 20px rgba(154,125,46,.45);cursor:pointer;display:flex;align-items:center;justify-content:center}
+@media (min-width:900px){.fab{bottom:26px;right:26px}}
+.dotst{width:8px;height:8px;border-radius:50%;background:var(--ink-soft);flex:none;display:inline-block}
+.dotst.ok{background:var(--ok)} .dotst.bad{background:var(--bad)} .dotst.busy{background:var(--gold);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.3}}
+#syncbar{font-size:11.5px;color:var(--ink-soft);display:flex;align-items:center;gap:6px}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card-2)}
+.seg button{flex:1;border:0;background:none;padding:7px 10px;font-size:13px;cursor:pointer;font-weight:600;color:var(--ink-soft)}
+.seg button.on{background:var(--gold-soft);color:var(--gold-dark)}
+.gate{max-width:420px;margin:8vh auto;padding:0 16px}
+.gate .card{padding:20px}
+.gate h1{font-size:20px;margin:0 0 4px;letter-spacing:1px}
+.suggest{position:relative}
+.suggest .box{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:20;background:var(--card);
+  border:1px solid var(--line);border-radius:10px;box-shadow:var(--sh);max-height:210px;overflow:auto}
+.suggest .box div{padding:9px 11px;cursor:pointer;font-size:13.5px;border-bottom:1px solid var(--line)}
+.suggest .box div:last-child{border-bottom:0}
+.suggest .box div:hover{background:var(--gold-soft)}
+.warnbox{background:rgba(179,38,30,.08);border:1px solid rgba(179,38,30,.3);color:var(--bad);
+  padding:9px 11px;border-radius:10px;font-size:12.5px;font-weight:600;margin:8px 0}
+/* ---- Modo solo lectura ---- */
+body.ro [data-w]{display:none !important}
+.ro-lock input,.ro-lock select,.ro-lock textarea{pointer-events:none;opacity:.75}
+.ro-lock .sticky-actions [data-save],.ro-lock .sticky-actions [data-del],
+.ro-lock [data-acciones]{display:none !important}
+.ro-lock .sticky-actions{justify-content:flex-end}
+.rotag{background:var(--card-2);border:1px dashed var(--line);color:var(--ink-soft);
+  padding:7px 10px;border-radius:10px;font-size:12px;margin-bottom:10px;text-align:center}
+/* Caja dorada de cobro, como la del programa */
+.cobro{position:sticky;bottom:0;z-index:5;background:var(--gold-soft);border:1px solid var(--gold);
+  border-radius:12px;padding:10px;margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.cobro>div:first-child{display:flex;justify-content:space-between;align-items:baseline}
+.cobro span{font-size:12.5px;color:var(--gold-dark);font-weight:600}
+.cobro b{font-size:23px;font-variant-numeric:tabular-nums;color:var(--gold-dark)}
+.cobro .row{flex-wrap:nowrap}
+.cobro .btn{flex:1}
+#quien{font-size:12px;color:var(--ink-soft);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:520px){#quien{display:none}}
+.infobox{background:var(--gold-soft);border:1px solid var(--gold);color:var(--gold-dark);
+  padding:9px 11px;border-radius:10px;font-size:12.5px;margin:8px 0}
+</style>
+</head>
+<body>
+
+<!-- ====== PANTALLA DE ENTRADA (config + PIN) ====== -->
+<div id="gate" class="gate hide">
+  <div class="card">
+    <div class="brand" style="margin-bottom:14px"><span class="dot"></span>
+      <div><h1 style="margin:0;font-size:19px">ADHULIAV</h1><small>Adhamar · Ulianov</small></div>
+    </div>
+    <div id="gateBody"></div>
+  </div>
+</div>
+
+<!-- ====== APP ====== -->
+<div id="app" class="hide">
+  <nav id="tabs">
+    <div class="navtitle">ADHULIAV</div>
+    <button data-v="agenda"  class="on"><i>📝</i>Atención</button>
+    <button data-v="asistencia"><i>✋</i>Asistencia</button>
+    <button data-v="caja"><i>💰</i>Caja</button>
+    <button data-v="clientes"><i>👤</i>Clientes</button>
+    <button data-v="catalogo"><i>🏷️</i>Precios</button>
+    <button data-v="reportes"><i>📊</i>Reportes</button>
+  </nav>
+  <div class="col-right">
+    <header id="top">
+      <div class="brand"><span class="dot"></span><div>ADHULIAV<small id="topsub">—</small></div></div>
+      <div class="top-sp"></div>
+      <span id="quien"></span>
+      <select id="spaSel" style="width:auto;padding:6px 8px;font-size:13px;font-weight:600"></select>
+      <div id="syncbar"><span class="dotst" id="stDot"></span><span id="stTxt">…</span></div>
+      <button class="btn s" id="btnSync" title="Sincronizar ahora">⟳</button>
+      <button class="btn s" id="btnCfg" title="Ajustes">⚙</button>
+    </header>
+    <main id="view"></main>
+  </div>
+</div>
+
+<div id="toast"></div>
+<div id="modalRoot"></div>
+
+<script>
+"use strict";
+/* =====================================================================
+   ADHULIAV WEB  ·  espejo web del programa SpaPortable (Adhamar / Ulianov)
+   Escribe en la MISMA tabla que usa el .exe: adhuliav_sync_records.
+   Formato de payload / sync_key portado de CloudSyncService.cs.
+   ===================================================================== */
+
+const LS = {
+  cfg:'adhuliav_cfg', cache:'adhuliav_cache', outbox:'adhuliav_outbox',
+  state:'adhuliav_state', sess:'adhuliav_sess'
+};
+
+/* MODO SOLO LECTURA.
+   Para que la web también registre hay que hacer DOS cosas:
+     1. poner false aquí abajo, y
+     2. descomentar el bloque 3b de SUPABASE_1_SEGURIDAD.sql y ejecutarlo.
+   Con una sola de las dos no pasa nada: la nube manda. */
+const SOLO_LECTURA = false;
+
+/* Clave de las pantallas internas: es la MISMA del programa de la laptop.
+   Se guarda solo el resumen (SHA-256), nunca la clave en claro. */
+const CLAVE_INTERNA_HASH = '17dc3303cd10e0824497a0874a4b86275e63c943e3fefba5f5760959dd525fc2';
+/* Igual que el programa: la pantalla de citas es libre y el resto pide clave.
+   La asistencia también es libre: cada terapeuta marca la suya al llegar. */
+const VISTAS_LIBRES = ['agenda','asistencia'];
+
+/* ---------------- Opciones (puerto de Options.cs) ---------------- */
+const SPAS = ["Adhamar","Ulianov"];
+const METODOS = ["Efectivo","Yape","Plin","Visa","Transferencia","Otro","No registrado"];
+const DURACIONES = [15,30,45,60];
+const DURACIONES_ULIANOV = [30,45,60];
+const DUR_VARIANTES = [45,60];          // 4 manos y hol+4manos solo en 45 y 60
+const DUR_HOLISTICO = [30,45,60];       // holístico además ofrece 30
+const ESTADOS = ["Reservado","Atendido","No asistió","Cancelado"];
+const TURNOS = ["Mañana","Tarde","Ambos"];
+const TIPOS_CAJA = ["Caja inicial","Caja final","Entrada","Salida"];
+
+const TABLES = ["Clientes","Masajistas","ServiciosPrecios","Promociones","Atenciones",
+                "AsistenciasTerapeutas","InventarioItems","InventarioMovimientos",
+                "CajaMovimientos","HorariosTerapeutasMensuales"];
+
+/* Columnas exactas de cada tabla SQLite (schema + migraciones de SpaRepository.cs).
+   Los valores son los DEFAULT: así una fila nueva viaja completa y del tipo correcto. */
+const SCHEMA = {
+  Clientes:{Spa:'',Nombre:'',NombreNormalizado:'',CodigoCliente:'',Veces:0,UltimaVisita:null,
+    EsVip:0,EsAntiguo:0,VipDesde:null,AntiguoDesde:null,VipUltimaVisita:null,VipVence:null,
+    Bloqueado:0,MotivoBloqueo:'',FechaBloqueo:null},
+  Masajistas:{Spa:'',Nombre:'',NombreNormalizado:'',Apodo:'',NombreReal:'',TelefonoPago:'',
+    Activa:1,ActivaAdhamar:1,ActivaUlianov:1,NombreAdhamar:'',ApodoUlianov:'',Turno:'Ambos',
+    PuedeManana:1,PuedeTarde:1,TieneHijos:0,PuedeHolisticos:0,
+    HoraEntradaManana:'09:00',HoraSalidaManana:'15:00',HoraEntradaTarde:'15:00',HoraSalidaTarde:'22:00',Notas:''},
+  ServiciosPrecios:{Spa:'',Servicio:'',ServicioNormalizado:'',DuracionMin:60,Precio:0,TerapeutasDefault:1,
+    PagoTerapeuta1:0,PagoTerapeuta2:0,PagoTerapeuta3:0,Activo:1,EsHolistico:0,
+    Disp4Manos:0,Precio4Manos:0,PagoT1_4Manos:0,PagoT2_4Manos:0,
+    DispHolistico:0,PrecioHolistico:0,PagoT1_Holistico:0,
+    DispHol4Manos:0,PrecioHol4Manos:0,PagoT1_Hol4Manos:0,PagoT2_Hol4Manos:0},
+  Promociones:{Spa:'',Nombre:'',NombreNormalizado:'',Servicio:'',ServicioNormalizado:'',DuracionMin:60,
+    PrecioPromocional:0,DescuentoPorcentaje:0,TerapeutasDefault:1,
+    PagoTerapeuta1:0,PagoTerapeuta2:0,PagoTerapeuta3:0,Activo:1,EsHolistico:0,
+    Aplica4Manos:0,Precio4Manos:0,PagoT1_4Manos:0,PagoT2_4Manos:0,
+    AplicaHolistico:0,PrecioHolistico:0,PagoT1_Holistico:0,
+    AplicaHol4Manos:0,PrecioHol4Manos:0,PagoT1_Hol4Manos:0,PagoT2_Hol4Manos:0,
+    EsPaquete:0,PaqueteDetalle:''},
+  Atenciones:{Spa:'',SpaServicio:'',Fecha:'',HoraInicio:'09:00',DuracionMin:60,
+    ClienteId:0,ClienteNombre:'',MasajistaId:0,MasajistaNombre:'',Servicio:'',PromocionNombre:'',
+    PrecioBase:0,DescuentoPorcentaje:0,Total:0,PagoTerapeuta1:0,PagoTerapeuta2:0,PagoTerapeuta3:0,
+    MetodoPago:'Efectivo',PagosDetalle:'',EsVip:0,Es4Manos:0,EsHolistico:0,TerminoAntes:0,
+    VueltoEnYape:0,EfectivoRecibido:0,VueltoYape:0,Estado:'Atendido',Observacion:''},
+  AsistenciasTerapeutas:{Spa:'',Fecha:'',MasajistaId:0,MasajistaNombre:'',Turno:'Referencial',
+    Asistio:1,HoraIngreso:'',HoraSalida:'',DisponibleHastaCierre:0,SeRetiro:0,Observacion:''},
+  InventarioItems:{Spa:'',Nombre:'',NombreNormalizado:'',Unidad:'unidad',StockActual:0,StockMinimo:0,
+    DescuentaPorAtencion:0,CantidadPorAtencion:0},
+  InventarioMovimientos:{Spa:'',Fecha:'',ItemId:0,ItemNombre:'',Tipo:'Entrada',Cantidad:0,Motivo:'',AtencionId:null},
+  CajaMovimientos:{Spa:'',Fecha:'',Hora:'09:00',Tipo:'Salida',Concepto:'',Monto:0,MetodoPago:'Efectivo',Observacion:''},
+  HorariosTerapeutasMensuales:{Spa:'',Anio:0,Mes:0,MasajistaId:0,MasajistaNombre:'',Turno:'Mañana',
+    HoraEntrada:'09:00',HoraSalida:'15:00',Observacion:''}
+};
+
+/* ---------------- Utilidades de texto / hora (Options.cs) ---------------- */
+function normalizeText(t){
+  if(t===null||t===undefined) return '';
+  const s=String(t).trim(); if(!s) return '';
+  return s.normalize('NFD').replace(/[̀-ͯ]/g,'').normalize('NFC')
+          .toUpperCase().replace(/\s+/g,' ').trim();
+}
+function titleName(t){
+  if(!t) return '';
+  return String(t).trim().toLowerCase().replace(/(^|\s|\/)([\p{L}])/gu,(m,a,b)=>a+b.toUpperCase());
+}
+function hora12(v){
+  if(v===null||v===undefined||v==='') return '';
+  let mins;
+  if(typeof v==='number') mins=v;
+  else{
+    const m=/^(\d{1,2}):(\d{2})/.exec(String(v).trim());
+    if(!m) return String(v);
+    mins=(+m[1])*60+(+m[2]);
+  }
+  let h=Math.floor(mins/60)%24; if(h<0)h+=24;
+  const mi=((mins%60)+60)%60;
+  const suf=h<12?'AM':'PM'; let h12=h%12; if(h12===0)h12=12;
+  return h12+':'+String(mi).padStart(2,'0')+' '+suf;
+}
+/* Lectura tolerante: "5", "5 pm", "930", "17:00". Sin AM/PM: 1..8 sin cero
+   adelante se asumen de la tarde (el spa abre 9 AM). Igual que TryParseHora. */
+function parseHora(txt){
+  if(!txt) return null;
+  let s=String(txt).toUpperCase().replace(/[\s ]+/g,'');
+  s=s.replace(/A\.M\.?/g,'AM').replace(/P\.M\.?/g,'PM');
+  let pm=false,am=false;
+  if(s.endsWith('PM')){pm=true;s=s.slice(0,-2);}
+  else if(s.endsWith('AM')){am=true;s=s.slice(0,-2);}
+  else if(s.endsWith('P')&&s.length>1){pm=true;s=s.slice(0,-1);}
+  else if(s.endsWith('A')&&s.length>1){am=true;s=s.slice(0,-1);}
+  s=s.replace(/\./g,':');
+  if(!s.length) return null;
+  let h,m=0,horaParte=s;
+  if(s.includes(':')){
+    const p=s.split(':').filter(x=>x!=='');
+    if(p.length<1||p.length>3) return null;
+    horaParte=p[0]; h=parseInt(p[0],10); if(isNaN(h)) return null;
+    if(p.length>=2){ m=parseInt(p[1],10); if(isNaN(m)) return null; }
+  }else if(s.length>=3&&/^\d+$/.test(s)){
+    const hm=parseInt(s,10); h=Math.floor(hm/100); m=hm%100; horaParte=s.slice(0,-2);
+  }else{ h=parseInt(s,10); if(isNaN(h)) return null; }
+  if(m<0||m>59) return null;
+  if(am||pm){ if(h<1||h>12) return null; if(h===12)h=0; if(pm)h+=12; }
+  else{
+    if(h<0||h>23) return null;
+    const ceroAdelante=horaParte.length>=2&&horaParte[0]==='0';
+    if(!ceroAdelante&&h>=1&&h<=8) h+=12;
+  }
+  return h*60+m;
+}
+function horaGuardar(txt){
+  const m=parseHora(txt);
+  if(m===null) return (txt||'').trim();
+  return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+}
+function horaMin(hhmm){ const m=/^(\d{1,2}):(\d{2})/.exec(String(hhmm||'')); return m?(+m[1])*60+(+m[2]):null; }
+
+function normalizePaymentMethod(t){
+  const x=normalizeText(t);
+  if(!x) return 'No registrado';
+  if(x.includes('MIXTO')) return 'Mixto';
+  if(x.includes('YAPE')) return 'Yape';
+  if(x.includes('PLIN')) return 'Plin';
+  if(x.includes('VISA')||x.includes('TARJETA')||x.includes('POS')||x.includes('CREDITO')||x.includes('DEBITO')) return 'Visa';
+  if(x.includes('EFECTIVO')||x.includes('CASH')) return 'Efectivo';
+  if(x.includes('TRANSFER')||x.includes('DEPOSITO')||x.includes('BCP')||x.includes('INTERBANK')||x.includes('BBVA')) return 'Transferencia';
+  return METODOS.includes(t)?t:'Otro';
+}
+/* PagosDetalle: "Efectivo=60.00|Yape=40.00" (siempre punto decimal). */
+function pagosSerializar(list){
+  return list.filter(p=>p.metodo&&p.monto>0)
+             .map(p=>p.metodo.trim()+'='+Number(p.monto).toFixed(2)).join('|');
+}
+function pagosParsear(det){
+  if(!det) return [];
+  return String(det).split('|').filter(Boolean).map(part=>{
+    const i=part.indexOf('='); if(i<=0) return null;
+    const metodo=part.slice(0,i).trim(); const monto=parseFloat(part.slice(i+1));
+    return (metodo&&monto>0)?{metodo,monto}:null;
+  }).filter(Boolean);
+}
+function pagosTexto(det){ return pagosParsear(det).map(p=>p.metodo+' S/ '+money(p.monto)).join(' + '); }
+function pagosDeAtencion(metodo,total,detalle){
+  const d=pagosParsear(detalle);
+  return d.length? d : [{metodo:normalizePaymentMethod(metodo),monto:Number(total)||0}];
+}
+/* Paquetes: "Nombre=Precio@Min@1|..." */
+function parsePaquete(det){
+  if(!det) return [];
+  return String(det).split('|').filter(Boolean).map(part=>{
+    const kv=part.split('='); if(kv.length!==2||!kv[0].trim()) return null;
+    const d=kv[1].split('@'); const precio=parseFloat(d[0]); if(isNaN(precio)) return null;
+    return {nombre:kv[0].trim(),precio,minutos:d.length>1?(parseInt(d[1],10)||0):0,
+            ocupa:d.length<=2||d[2]!=='0'};
+  }).filter(Boolean);
+}
+function buildPaquete(comps){
+  return comps.filter(c=>c.nombre&&c.precio>0)
+    .map(c=>`${c.nombre.replace(/\|/g,'-').replace(/=/g,' ').trim()}=${c.precio}@${c.minutos||0}@${c.ocupa?1:0}`)
+    .join('|');
+}
+function paqueteResumen(det){ return parsePaquete(det).map(c=>`${c.nombre} S/${fmt(c.precio)} (${c.minutos}')`).join(' + '); }
+
+/* ---------------- Fechas ---------------- */
+function hoyISO(){ const d=new Date(); return isoOf(d); }
+function isoOf(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function dFromISO(s){ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(String(s||'')); return m?new Date(+m[1],+m[2]-1,+m[3]):null; }
+function fechaCorta(iso){ const d=dFromISO(iso); return d?String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear():(iso||''); }
+function addDaysISO(iso,n){ const d=dFromISO(iso)||new Date(); d.setDate(d.getDate()+n); return isoOf(d); }
+function diasEntre(isoA,isoB){ const a=dFromISO(isoA),b=dFromISO(isoB); if(!a||!b) return null; return Math.round((b-a)/86400000); }
+function fechaLarga(iso){
+  const d=dFromISO(iso); if(!d) return iso||'';
+  const dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const mes=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return `${dias[d.getDay()]} ${d.getDate()} ${mes[d.getMonth()]}`;
+}
+function money(n){ return (Number(n)||0).toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmt(n){ const v=Number(n)||0; return v%1===0?String(v):v.toFixed(2).replace(/0$/,''); }
+
+/* ---------------- Reglas de negocio ---------------- */
+function duracionesBasicas(spa){ return normalizeText(spa)==='ULIANOV'?DURACIONES_ULIANOV:DURACIONES; }
+/* Monto del descuento fijo: lo define el spa del SERVICIO (Ulianov 15, Adhamar 10). */
+function descuentoPorSpa(spaServicio){ return normalizeText(spaServicio)==='ULIANOV'?15:10; }
+
+function baseVigencia(ultimaVisita,desde){
+  if(ultimaVisita&&desde) return ultimaVisita>desde?ultimaVisita:desde;
+  return ultimaVisita||desde||null;
+}
+function vipVigente(c,fechaISO){
+  if(!num(c,'EsVip')) return false;
+  const b=baseVigencia(str(c,'UltimaVisita'),str(c,'VipDesde'));
+  if(!b) return false;
+  const d=diasEntre(b.slice(0,10),fechaISO);
+  return d!==null&&d<=60;
+}
+function antiguoVigente(c,fechaISO){
+  if(!num(c,'EsAntiguo')) return false;
+  const b=baseVigencia(str(c,'UltimaVisita'),str(c,'AntiguoDesde'));
+  if(!b) return false;
+  const bd=dFromISO(b.slice(0,10)); const fd=dFromISO(fechaISO);
+  if(!bd||!fd) return false;
+  const lim=new Date(bd.getFullYear(),bd.getMonth()+3,bd.getDate());
+  return lim>=fd;
+}
+function tieneDescuentoFijo(c,fechaISO){ return vipVigente(c,fechaISO)||antiguoVigente(c,fechaISO); }
+
+/* ---------------- Acceso tipado al payload ---------------- */
+function str(p,k){ const v=p?p[k]:null; return (v===null||v===undefined)?'':String(v); }
+function num(p,k){ const v=p?p[k]:null; if(v===null||v===undefined||v==='') return 0; const n=Number(v); return isNaN(n)?0:n; }
+function bool(p,k){ return num(p,k)===1||p?.[k]===true; }
+function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* =====================================================================
+   CONFIGURACIÓN
+   ===================================================================== */
+let CFG = null;
+function loadCfg(){
+  try{ CFG = JSON.parse(localStorage.getItem(LS.cfg)||'null'); }catch{ CFG=null; }
+  return CFG;
+}
+function saveCfg(){ localStorage.setItem(LS.cfg, JSON.stringify(CFG)); }
+async function sha256(txt){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(txt));
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+/* =====================================================================
+   CANDADO DEL PIN
+   El acceso guardado se cifra con el PIN. Sin el PIN correcto no hay
+   forma de reconstruirlo: no queda nada utilizable en el teléfono.
+   ===================================================================== */
+const hex = b => [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+const unhex = h => new Uint8Array((h.match(/../g)||[]).map(x=>parseInt(x,16)));
+async function claveDePin(pin, salt){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pin), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:150000, hash:'SHA-256'},
+    base, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
+}
+async function sellar(pin, texto){
+  const salt=crypto.getRandomValues(new Uint8Array(16)), iv=crypto.getRandomValues(new Uint8Array(12));
+  const k=await claveDePin(pin,salt);
+  const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv}, k, new TextEncoder().encode(texto));
+  return {s:hex(salt), i:hex(iv), c:hex(ct)};
+}
+async function abrirSello(pin, blob){
+  try{
+    const k=await claveDePin(pin, unhex(blob.s));
+    const pt=await crypto.subtle.decrypt({name:'AES-GCM', iv:unhex(blob.i)}, k, unhex(blob.c));
+    return new TextDecoder().decode(pt);
+  }catch{ return null; }   // PIN incorrecto o dato manipulado
+}
+
+/* =====================================================================
+   SESIÓN: cuenta propia de cada persona (Supabase Auth)
+   ===================================================================== */
+/* Ninguna petición puede quedarse colgada para siempre: a los 20 segundos
+   se corta y se avisa. Sin esto, la pantalla se quedaba en "Comprobando…". */
+async function fetchLimitado(url, opts, ms){
+  const ctrl = new AbortController();
+  const reloj = setTimeout(()=>ctrl.abort(), ms||20000);
+  try{
+    return await fetch(url, Object.assign({}, opts||{}, {signal:ctrl.signal}));
+  }catch(e){
+    if(e.name==='AbortError')
+      throw new Error('La nube no respondió en 20 segundos. Revisa que el equipo tenga internet y que la URL esté bien escrita.');
+    throw new Error('No se pudo conectar con la nube. Revisa el internet y la URL. ('+e.message+')');
+  }finally{ clearTimeout(reloj); }
+}
+
+const AUTH = {
+  sesion: null,
+  base(){ return CFG.url.replace(/\/+$/,'') + '/auth/v1/'; },
+  async post(ruta, body){
+    const r = await fetchLimitado(this.base()+ruta, {method:'POST',
+      headers:{'apikey':CFG.key,'Content-Type':'application/json'}, body:JSON.stringify(body)});
+    const j = await r.json().catch(()=>({}));
+    if(!r.ok){
+      const m = j.error_description || j.msg || j.message || ('HTTP '+r.status);
+      throw new Error(/invalid.*credential|invalid.*grant/i.test(m) ? 'Usuario o contraseña incorrectos' : m);
+    }
+    return j;
+  },
+  guardar(j){
+    this.sesion = {
+      access_token:j.access_token, refresh_token:j.refresh_token,
+      expira: Date.now() + ((j.expires_in||3600)*1000) - 60000,
+      email:(j.user&&j.user.email)||'', uid:(j.user&&j.user.id)||'',
+      nombre:'', rol:'personal', activo:false
+    };
+    return this.sesion;
+  },
+  async entrar(email, pass){ return this.guardar(await this.post('token?grant_type=password',{email,password:pass})); },
+  async renovar(rt){ return this.guardar(await this.post('token?grant_type=refresh_token',{refresh_token:rt})); },
+  async token(){
+    if(!this.sesion) throw new Error('SIN_SESION');
+    if(Date.now() > this.sesion.expira) await this.renovar(this.sesion.refresh_token);
+    return this.sesion.access_token;
+  },
+  /* Nombre, rol y si sigue habilitada. Si la administradora la dio de baja,
+     esta consulta ya no devuelve nada y la app no deja pasar. */
+  async ficha(){
+    const f = await API.tabla('adhuliav_web_usuarios',
+      'select=nombre,rol,activo&user_id=eq.'+encodeURIComponent(this.sesion.uid));
+    if(f.length){ this.sesion.nombre=f[0].nombre||''; this.sesion.rol=f[0].rol||'personal'; this.sesion.activo=!!f[0].activo; }
+    else { this.sesion.rol='personal'; this.sesion.activo=false; }
+    return this.sesion;
+  },
+  esAdmin(){ return !!this.sesion && this.sesion.rol==='admin' && this.sesion.activo; },
+  salir(){ this.sesion=null; localStorage.removeItem(LS.sess); }
+};
+
+/* =====================================================================
+   API SUPABASE (PostgREST)  —  sin librerías externas
+   Cada petición lleva la sesión de la persona Y el identificador de este
+   equipo. La nube exige las dos cosas (ver SUPABASE_1_SEGURIDAD.sql).
+   ===================================================================== */
+const API = {
+  base(){ return CFG.url.replace(/\/+$/,'') + '/rest/v1/'; },
+  async headers(extra){
+    return Object.assign({
+      'apikey': CFG.key,
+      'Authorization': 'Bearer ' + (await AUTH.token()),
+      'x-device-id': CFG.deviceId || '',
+      'Content-Type': 'application/json'
+    }, extra||{});
+  },
+  async pedir(url, opts){
+    const r = await fetchLimitado(url, opts);
+    if(!r.ok){
+      const txt=(await r.text()).slice(0,180);
+      if(r.status===401||r.status===403) throw new Error('SESION_VENCIDA');
+      throw new Error('HTTP '+r.status+' '+txt);
+    }
+    return r;
+  },
+  async tabla(nombre, query){
+    const r=await this.pedir(this.base()+nombre+'?'+query, {headers:await this.headers()});
+    return r.json();
+  },
+  async insertar(nombre, filas){
+    await this.pedir(this.base()+nombre, {method:'POST',
+      headers:await this.headers({'Prefer':'return=minimal'}), body:JSON.stringify(filas)});
+    return true;
+  },
+  async actualizar(nombre, query, cambios){
+    await this.pedir(this.base()+nombre+'?'+query, {method:'PATCH',
+      headers:await this.headers({'Prefer':'return=minimal'}), body:JSON.stringify(cambios)});
+    return true;
+  },
+  get(query){ return this.tabla('adhuliav_sync_records', query); },
+  async upsert(rows){
+    if(SOLO_LECTURA) throw new Error('La página está en modo solo lectura');
+    await this.pedir(this.base()+'adhuliav_sync_records?on_conflict=table_name,sync_key', {
+      method:'POST', headers:await this.headers({'Prefer':'resolution=merge-duplicates,return=minimal'}),
+      body: JSON.stringify(rows)});
+    return true;
+  },
+  /* Comprueba la URL y la clave anon sin necesidad de haber entrado. */
+  async pingClaves(){
+    const r = await fetchLimitado(CFG.url.replace(/\/+$/,'')+'/auth/v1/settings', {headers:{'apikey':CFG.key}});
+    if(!r.ok) throw new Error(r.status===401
+      ? 'La clave anon no es correcta (la nube la rechazó).'
+      : 'La URL o la clave anon no son correctas (HTTP '+r.status+')');
+    return true;
+  },
+  /* ¿Este equipo está registrado y activo? */
+  async equipoActivo(){
+    const d = await this.tabla('adhuliav_web_dispositivos',
+      'select=nombre,activo&device_id=eq.'+encodeURIComponent(CFG.deviceId||'-'));
+    return d.length ? !!d[0].activo : false;
+  }
+};
+
+/* =====================================================================
+   BASE LOCAL EN MEMORIA
+   DB[tabla] = Map(sync_key -> payload)
+   ===================================================================== */
+const DB = {};
+TABLES.forEach(t=>DB[t]=new Map());
+let STATE = { lastPull:null, loaded:false };
+/* Sube en cada cambio de datos: invalida cachés derivadas (disponibilidad). */
+let DATA_VERSION = 0;
+function tocarDatos(){ DATA_VERSION++; }
+
+function rows(table, filterFn){
+  const out=[];
+  DB[table].forEach((p,k)=>{ if(!p.__deleted && (!filterFn||filterFn(p))) { p.__key=k; out.push(p); } });
+  return out;
+}
+function rowByKey(table,key){ return DB[table].get(key)||null; }
+
+/* ---------------- sync_key: puerto exacto de BuildStableSyncKey ---------------- */
+function cleanPart(v){
+  if(v===null||v===undefined||String(v).trim()==='') return '';
+  return normalizeText(v).replace(/\|/g,'-');
+}
+function buildSyncKey(table,p,fallback){
+  const V=k=>{ const v=p[k]; return (v===null||v===undefined)?'':String(v); };
+  const K=(...parts)=> table+'|'+parts.map(x=>(!x||!String(x).trim())?'_':x).join('|');
+  const spa=cleanPart(V('Spa')), norm=cleanPart(V('NombreNormalizado')),
+        nombre=cleanPart(V('Nombre')), codigo=cleanPart(V('CodigoCliente'));
+  switch(table){
+    case 'Clientes': return K(spa, codigo||norm||cleanPart(V('ClienteNombre')));
+    case 'Masajistas': return K(spa, norm||cleanPart(V('NombreAdhamar'))||nombre||cleanPart(V('NombreReal')));
+    case 'ServiciosPrecios': return K(spa, cleanPart(V('ServicioNormalizado')), cleanPart(V('DuracionMin')));
+    case 'Promociones': return K(spa, norm||nombre);
+    case 'InventarioItems': return K(norm||nombre);
+    case 'AsistenciasTerapeutas': return K(spa, cleanPart(V('Fecha')), cleanPart(V('MasajistaNombre')), cleanPart(V('Turno')));
+    case 'HorariosTerapeutasMensuales': return K(spa, cleanPart(V('Anio')), cleanPart(V('Mes')), cleanPart(V('MasajistaNombre')));
+    // Atenciones: clave CONGELADA (no se recalcula nunca con datos que cambian).
+    case 'Atenciones': return fallback && fallback.trim() ? fallback : newGuid();
+    case 'CajaMovimientos': return K(spa, cleanPart(V('Fecha')), cleanPart(V('Hora')), cleanPart(V('Tipo')), cleanPart(V('Concepto')), cleanPart(V('Monto')));
+    case 'InventarioMovimientos': return K(spa, cleanPart(V('Fecha')), cleanPart(V('ItemNombre')), cleanPart(V('Tipo')), cleanPart(V('Cantidad')), cleanPart(V('Motivo')));
+    default: return fallback && fallback.trim() ? fallback : newGuid();
+  }
+}
+function newGuid(){
+  const b=crypto.getRandomValues(new Uint8Array(16));
+  return [...b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+/* =====================================================================
+   SINCRONIZACIÓN
+   ===================================================================== */
+const SYNC = {
+  status:'idle', err:'', pulling:false, pushing:false, timer:null,
+
+  setStatus(s,err){
+    this.status=s; this.err=err||'';
+    const dot=document.getElementById('stDot'), txt=document.getElementById('stTxt');
+    if(!dot) return;
+    dot.className='dotst '+(s==='ok'?'ok':s==='error'?'bad':s==='busy'?'busy':'');
+    const out=OUTBOX.count();
+    txt.textContent = s==='error' ? 'sin conexión'
+      : s==='busy' ? 'sincronizando…'
+      : (out>0 ? out+' por subir' : 'al día');
+    txt.title = this.err || '';
+  },
+
+  /* Descarga incremental. La primera vez baja catálogo completo + operación
+     de los últimos N días (histórico configurable). */
+  async pull(){
+    if(this.pulling) return; this.pulling=true;
+    this.setStatus('busy');
+    try{
+      let changed=false;
+      if(!STATE.lastPull){
+        const desde = addDaysISO(hoyISO(), -(CFG.dias||120));
+        // El almacén no se usa en la web: no se descarga (menos datos en el celular).
+        const catalogo=['Clientes','Masajistas','ServiciosPrecios','Promociones','HorariosTerapeutasMensuales'];
+        const operacion=['Atenciones','AsistenciasTerapeutas','CajaMovimientos'];
+        await this.page(`table_name=in.(${catalogo.join(',')})`);
+        await this.page(`table_name=in.(${operacion.join(',')})&payload->>Fecha=gte.${desde}`);
+        changed=true;
+      }else{
+        const n = await this.page(`updated_at=gte.${encodeURIComponent(STATE.lastPull)}`);
+        changed = n>0;
+      }
+      // Margen de 2 minutos: los relojes de las laptops no están perfectamente
+      // sincronizados y updated_at lo escribe cada terminal con su propia hora.
+      STATE.lastPull = new Date(Date.now()-120000).toISOString();
+      saveState(); if(changed) saveCache();
+      this.setStatus('ok');
+      if(changed) render();
+    }catch(e){
+      this.setStatus('error', e.message);
+      if(e.message==='SESION_VENCIDA'||e.message==='SIN_SESION') sesionCaida();
+    }finally{ this.pulling=false; }
+  },
+
+  async page(filter){
+    const LIMIT=1000; let off=0, total=0;
+    for(;;){
+      const q=`select=table_name,sync_key,payload,updated_at,deleted&${filter}&order=updated_at.asc&limit=${LIMIT}&offset=${off}`;
+      const data=await API.get(q);
+      data.forEach(r=>{
+        const p = (typeof r.payload==='string') ? JSON.parse(r.payload) : (r.payload||{});
+        p.__key=r.sync_key; p.__updated=r.updated_at; p.__deleted=!!r.deleted;
+        if(!DB[r.table_name]) return;
+        if(r.deleted) DB[r.table_name].delete(r.sync_key);
+        else DB[r.table_name].set(r.sync_key,p);
+        tocarDatos();
+      });
+      total+=data.length;
+      if(data.length<LIMIT) break;
+      off+=LIMIT;
+    }
+    return total;
+  },
+
+  async push(){
+    if(SOLO_LECTURA || this.pushing) return;
+    const pend=OUTBOX.all(); if(!pend.length) return;
+    this.pushing=true; this.setStatus('busy');
+    try{
+      // De a 40 por request para no armar cuerpos gigantes en el celular.
+      for(let i=0;i<pend.length;i+=40){
+        await API.upsert(pend.slice(i,i+40).map(x=>x.row));
+      }
+      OUTBOX.clear(pend.map(x=>x.id));
+      this.setStatus('ok');
+    }catch(e){
+      this.setStatus('error', e.message);
+    }finally{ this.pushing=false; }
+  },
+
+  async now(){ await this.push(); await this.pull(); },
+
+  start(){
+    clearInterval(this.timer);
+    const cada=Math.max(4,(CFG.refresh||7))*1000;
+    this.timer=setInterval(()=>{ if(document.visibilityState==='visible') this.now(); }, cada);
+    document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') this.now(); });
+    window.addEventListener('online',()=>this.now());
+  }
+};
+
+/* ---------------- Bandeja de salida (soporta trabajar sin señal) ---------------- */
+const OUTBOX = {
+  all(){ try{ return JSON.parse(localStorage.getItem(LS.outbox)||'[]'); }catch{ return []; } },
+  count(){ return this.all().length; },
+  add(row){
+    const list=this.all();
+    // Una sola entrada viva por (tabla, clave): la última gana.
+    const i=list.findIndex(x=>x.row.table_name===row.table_name&&x.row.sync_key===row.sync_key);
+    const entry={id:newGuid(),row};
+    if(i>=0) list[i]=entry; else list.push(entry);
+    localStorage.setItem(LS.outbox,JSON.stringify(list));
+  },
+  clear(ids){
+    const s=new Set(ids);
+    localStorage.setItem(LS.outbox,JSON.stringify(this.all().filter(x=>!s.has(x.id))));
+  }
+};
+
+/* ---------------- Guardar / borrar un registro ---------------- */
+async function saveRow(table, data, existing){
+  if(SOLO_LECTURA){ toast('Modo solo lectura: registra desde la laptop'); return null; }
+  const now = new Date().toISOString();
+  const payload = Object.assign({}, SCHEMA[table], existing||{}, data);
+  delete payload.__key; delete payload.__updated; delete payload.__deleted;
+  const fallback = (existing && existing.__key) || (existing && existing.SyncKey) || '';
+  const key = buildSyncKey(table, payload, fallback);
+  payload.SyncKey = key;
+  payload.UpdatedAt = now;
+  payload.SyncDeleted = 0;
+  if(payload.Id===undefined) payload.Id = (existing&&existing.Id)||0;
+
+  const json = JSON.stringify(payload);
+  const row = {
+    table_name: table, sync_key: key, payload: payload,
+    payload_hash: await sha256(json), updated_at: now,
+    device_id: 'WEB-' + (CFG.deviceName || 'movil'), deleted: false
+  };
+  // Se ve al instante en pantalla; la subida puede esperar a que haya señal.
+  const local = Object.assign({}, payload, {__key:key, __updated:now, __deleted:false});
+  DB[table].set(key, local); tocarDatos();
+  OUTBOX.add(row); saveCache();
+  render();
+  SYNC.push();
+  return key;
+}
+async function deleteRow(table, key){
+  if(SOLO_LECTURA){ toast('Modo solo lectura: bórralo desde la laptop'); return; }
+  const now=new Date().toISOString();
+  const payload={SyncKey:key};
+  const row={ table_name:table, sync_key:key, payload:payload,
+    payload_hash: await sha256(JSON.stringify(payload)), updated_at:now,
+    device_id: 'WEB-'+(CFG.deviceName||'movil'), deleted:true };
+  DB[table].delete(key); tocarDatos();
+  OUTBOX.add(row); saveCache();
+  render();
+  SYNC.push();
+}
+
+/* ---------------- Caché local (para abrir sin señal) ---------------- */
+function saveCache(){
+  try{
+    const obj={};
+    TABLES.forEach(t=>{ obj[t]=[...DB[t].entries()].map(([k,v])=>[k,v]); });
+    localStorage.setItem(LS.cache, JSON.stringify(obj));
+  }catch(e){ /* sin espacio: la app sigue funcionando online */ }
+}
+function loadCache(){
+  try{
+    const obj=JSON.parse(localStorage.getItem(LS.cache)||'null'); if(!obj) return false;
+    TABLES.forEach(t=>{ DB[t]=new Map(obj[t]||[]); });
+    return true;
+  }catch{ return false; }
+}
+function saveState(){ localStorage.setItem(LS.state, JSON.stringify(STATE)); }
+function loadState(){ try{ STATE=Object.assign(STATE,JSON.parse(localStorage.getItem(LS.state)||'{}')); }catch{} }
+
+/* =====================================================================
+   UI base
+   ===================================================================== */
+let VIEW='agenda';
+let UI = { fecha: hoyISO(), spa: 'Adhamar', qCliente:'', mesHorario:null };
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('on');
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2200);
+}
+function el(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstElementChild; }
+
+function openSheet(title, bodyHtml, onMount){
+  const ovl=el(`<div class="ovl"><div class="sheet">
+    <h3><span class="sp">${esc(title)}</span><button class="btn s" data-x>✕</button></h3>
+    <div data-body></div></div></div>`);
+  ovl.querySelector('[data-body]').innerHTML=bodyHtml;
+  ovl._datos=()=>{   // marca esta hoja como formulario de datos (se bloquea en solo lectura)
+    if(!SOLO_LECTURA) return;
+    const sh=ovl.querySelector('.sheet');
+    if(sh.querySelector('.rotag')) return;   // idempotente: los formularios se redibujan
+    sh.classList.add('ro-lock');
+    sh.querySelector('[data-body]').insertAdjacentHTML('afterbegin',
+      '<div class="rotag">Solo lectura · para cambiar algo, usa la laptop</div>');
+  };
+  ovl.addEventListener('click',e=>{ if(e.target===ovl) closeSheet(); });
+  ovl.querySelector('[data-x]').onclick=closeSheet;
+  document.getElementById('modalRoot').appendChild(ovl);
+  if(onMount) onMount(ovl);
+  return ovl;
+}
+function closeSheet(){ document.getElementById('modalRoot').innerHTML=''; render(); }
+function confirmar(msg, onYes){
+  openSheet('Confirmar', `<p style="margin:0 0 4px">${esc(msg)}</p>
+    <div class="sticky-actions">
+      <button class="btn" data-no>Cancelar</button>
+      <button class="btn p" data-si>Sí, continuar</button>
+    </div>`, ovl=>{
+    ovl.querySelector('[data-no]').onclick=closeSheet;
+    ovl.querySelector('[data-si]').onclick=()=>{ closeSheet(); onYes(); };
+  });
+}
+
+/* =====================================================================
+   SELECTORES DE DATOS
+   ===================================================================== */
+const esSpa=(p,spa)=>normalizeText(str(p,'Spa'))===normalizeText(spa);
+
+function serviciosDe(spa,soloActivos=true){
+  return rows('ServiciosPrecios',p=>esSpa(p,spa)&&(!soloActivos||num(p,'Activo')===1))
+    .sort((a,b)=>str(a,'Servicio').localeCompare(str(b,'Servicio'))||num(a,'DuracionMin')-num(b,'DuracionMin'));
+}
+function nombresServicio(spa){
+  const set=new Map();
+  serviciosDe(spa).forEach(s=>{ if(!set.has(str(s,'ServicioNormalizado'))) set.set(str(s,'ServicioNormalizado'),str(s,'Servicio')); });
+  return [...set.values()].sort((a,b)=>a.localeCompare(b));
+}
+function servicioRow(spa,nombre,dur){
+  const n=normalizeText(nombre);
+  return serviciosDe(spa).find(s=>normalizeText(str(s,'ServicioNormalizado')||str(s,'Servicio'))===n&&num(s,'DuracionMin')===Number(dur))||null;
+}
+function durasDeServicio(spa,nombre){
+  const n=normalizeText(nombre);
+  return serviciosDe(spa).filter(s=>normalizeText(str(s,'ServicioNormalizado')||str(s,'Servicio'))===n)
+    .map(s=>num(s,'DuracionMin')).sort((a,b)=>a-b);
+}
+function promosDe(spa,soloActivas=true){
+  return rows('Promociones',p=>esSpa(p,spa)&&(!soloActivas||num(p,'Activo')===1))
+    .sort((a,b)=>str(a,'Nombre').localeCompare(str(b,'Nombre')));
+}
+function nombreVisible(m,spa){
+  if(normalizeText(spa)==='ULIANOV')
+    return str(m,'ApodoUlianov')||str(m,'Apodo')||str(m,'Nombre');
+  return str(m,'NombreAdhamar')||str(m,'NombreReal')||str(m,'Nombre');
+}
+function aliasDe(m){
+  return new Set(['Nombre','Apodo','NombreAdhamar','ApodoUlianov','NombreReal']
+    .map(k=>normalizeText(str(m,k))).filter(Boolean));
+}
+function terapeutasDe(spa){
+  const ul=normalizeText(spa)==='ULIANOV';
+  return rows('Masajistas',p=>num(p,'Activa')===1&&(ul?num(p,'ActivaUlianov')===1:num(p,'ActivaAdhamar')===1))
+    .sort((a,b)=>nombreVisible(a,spa).localeCompare(nombreVisible(b,spa)));
+}
+function buscarTerapeuta(nombre){
+  const n=normalizeText(nombre); if(!n) return null;
+  return rows('Masajistas').find(m=>aliasDe(m).has(n))||null;
+}
+function splitNames(t){
+  if(!t) return [];
+  return String(t).split(/\s*(?:\/|,|;|\+|\by\b)\s*/i).map(x=>x.trim()).filter(Boolean).slice(0,3);
+}
+function atencionesDe(spa,fecha){
+  return rows('Atenciones',p=>esSpa(p,spa)&&str(p,'Fecha').slice(0,10)===fecha)
+    .sort((a,b)=>(horaMin(str(a,'HoraInicio'))??0)-(horaMin(str(b,'HoraInicio'))??0));
+}
+function atencionesRango(spa,desde,hasta){
+  return rows('Atenciones',p=>esSpa(p,spa)&&str(p,'Fecha').slice(0,10)>=desde&&str(p,'Fecha').slice(0,10)<=hasta)
+    .sort((a,b)=>str(a,'Fecha').localeCompare(str(b,'Fecha'))||(horaMin(str(a,'HoraInicio'))??0)-(horaMin(str(b,'HoraInicio'))??0));
+}
+function clientesDe(spa){ return rows('Clientes',p=>esSpa(p,spa)); }
+function buscarCliente(spa,nombre){
+  const n=normalizeText(nombre); if(!n) return null;
+  return clientesDe(spa).find(c=>normalizeText(str(c,'NombreNormalizado')||str(c,'Nombre'))===n
+                              ||normalizeText(str(c,'CodigoCliente'))===n)||null;
+}
+function clienteBloqueadoGlobal(nombre){
+  const n=normalizeText(nombre); if(!n) return null;
+  return rows('Clientes',p=>num(p,'Bloqueado')===1&&normalizeText(str(p,'NombreNormalizado')||str(p,'Nombre'))===n)[0]||null;
+}
+function cajaDe(spa,fecha){
+  return rows('CajaMovimientos',p=>esSpa(p,spa)&&str(p,'Fecha').slice(0,10)===fecha)
+    .sort((a,b)=>(horaMin(str(a,'Hora'))??0)-(horaMin(str(b,'Hora'))??0));
+}
+function asistenciasDe(spa,fecha){
+  return rows('AsistenciasTerapeutas',p=>esSpa(p,spa)&&str(p,'Fecha').slice(0,10)===fecha);
+}
+/* Pagos a terapeutas del día: se reconstruyen desde la atención (1ra/2da/3ra). */
+function pagosTerapeutasDia(spa,fecha){
+  const map=new Map();
+  atencionesDe(spa,fecha).filter(a=>str(a,'Estado')==='Atendido').forEach(a=>{
+    const nombres=splitNames(str(a,'MasajistaNombre'));
+    const pagos=[num(a,'PagoTerapeuta1'),num(a,'PagoTerapeuta2'),num(a,'PagoTerapeuta3')];
+    nombres.forEach((n,i)=>{
+      const k=normalizeText(n); if(!k) return;
+      if(!map.has(k)) map.set(k,{nombre:n,atenciones:0,total:0});
+      const e=map.get(k); e.atenciones++; e.total+=pagos[i]||0;
+    });
+  });
+  return [...map.values()].sort((a,b)=>a.nombre.localeCompare(b.nombre));
+}
+
+/* Cuadre del día: mismo cálculo que GetDailySummary (SpaRepository.cs). */
+function resumenDia(spa,fecha){
+  const ats=atencionesDe(spa,fecha), at=ats.filter(a=>str(a,'Estado')==='Atendido');
+  const efectivoDe=a=>pagosDeAtencion(str(a,'MetodoPago'),num(a,'Total'),str(a,'PagosDetalle'))
+    .filter(p=>normalizeText(p.metodo)==='EFECTIVO').reduce((s,p)=>s+p.monto,0);
+  const porMetodo={};
+  at.flatMap(a=>pagosDeAtencion(str(a,'MetodoPago'),num(a,'Total'),str(a,'PagosDetalle')))
+    .forEach(p=>{ porMetodo[p.metodo]=(porMetodo[p.metodo]||0)+p.monto; });
+  const mv=cajaDe(spa,fecha);
+  const sum=(tipo,met)=>mv.filter(m=>str(m,'Tipo')===tipo&&(!met||str(m,'MetodoPago')===met)).reduce((s,m)=>s+num(m,'Monto'),0);
+  const efectivoRecibidoReal=at.reduce((s,a)=>{
+    const ef=efectivoDe(a); if(ef<=0) return s;
+    const simple=!str(a,'PagosDetalle')&&str(a,'MetodoPago')==='Efectivo';
+    return s+((simple&&num(a,'EfectivoRecibido')>0)?num(a,'EfectivoRecibido'):ef);
+  },0);
+  const cajaInicial=sum('Caja inicial','Efectivo'), cajaFinal=sum('Caja final','Efectivo');
+  const salidas=sum('Salida','Efectivo'), entradas=sum('Entrada','Efectivo');
+  return {
+    atenciones:at.length, reservas:ats.filter(a=>str(a,'Estado')==='Reservado').length,
+    totalCaja:at.reduce((s,a)=>s+num(a,'Total'),0), porMetodo,
+    ventasEfectivo:at.reduce((s,a)=>s+efectivoDe(a),0),
+    efectivoRecibidoReal,
+    vueltoYape:at.filter(a=>str(a,'MetodoPago')==='Efectivo'&&num(a,'VueltoEnYape')===1).reduce((s,a)=>s+num(a,'VueltoYape'),0),
+    cajaInicial, cajaFinal, salidas, entradas,
+    cajaEsperada: cajaInicial+efectivoRecibidoReal+entradas-salidas,
+    movimientos:mv, ats
+  };
+}
+
+/* Disponibilidad: SOLO la 1ra terapeuta de cada cita queda ocupada.
+   Las citas del día se arman una sola vez por render (DATA_VERSION invalida la caché). */
+let _oc={v:-1,f:null,list:null};
+function ocupacionDia(fechaISO){
+  if(_oc.v===DATA_VERSION&&_oc.f===fechaISO) return _oc.list;
+  const list=[];
+  rows('Atenciones',p=>str(p,'Fecha').slice(0,10)===fechaISO).forEach(a=>{
+    const est=str(a,'Estado');
+    if(est==='Cancelado'||est==='No asistió') return;
+    if(num(a,'TerminoAntes')===1) return;           // el cliente se fue antes: liberada
+    const primera=normalizeText(splitNames(str(a,'MasajistaNombre'))[0]||'');
+    if(!primera) return;
+    const ini=horaMin(str(a,'HoraInicio')); if(ini===null) return;
+    list.push({primera,ini,fin:ini+(num(a,'DuracionMin')||60),at:a});
+  });
+  _oc={v:DATA_VERSION,f:fechaISO,list};
+  return list;
+}
+function estaLibre(m,fechaISO,desdeMin,durMin){
+  const alias=aliasDe(m), fin=desdeMin+durMin;
+  const choque=ocupacionDia(fechaISO).find(o=>alias.has(o.primera)&&desdeMin<o.fin&&fin>o.ini);
+  return {libre:!choque, hasta:choque?choque.fin:null, cita:choque?choque.at:null};
+}
+function asistenciaDe(m,spa,fechaISO){
+  const al=aliasDe(m);
+  return asistenciasDe(spa,fechaISO).find(a=>al.has(normalizeText(str(a,'MasajistaNombre'))))||null;
+}
+
+/* =====================================================================
+   ROUTER
+   ===================================================================== */
+function render(){
+  if(document.getElementById('modalRoot').children.length) return; // no pisar un formulario abierto
+  const v=document.getElementById('view'); if(!v) return;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===VIEW));
+  document.getElementById('topsub').textContent = UI.spa + ' · ' + fechaLarga(UI.fecha);
+  if(VIEW!=='agenda'){ FORM_SUCIO=false; v.dataset.montada=''; }
+  ({agenda:viewAgenda,asistencia:viewAsistencia,caja:viewCaja,clientes:viewClientes,
+    catalogo:viewCatalogo,reportes:viewReportes}[VIEW]||viewAgenda)(v);
+  SYNC.setStatus(SYNC.status,SYNC.err);
+}
+
+/* ---------- barra de fecha reutilizable ---------- */
+function barraFecha(){
+  return `<div class="row" style="margin-bottom:10px">
+    <button class="btn s" data-dia="-1">◀</button>
+    <input type="date" id="fInput" value="${UI.fecha}" style="width:auto;flex:1;min-width:130px">
+    <button class="btn s" data-dia="1">▶</button>
+    <button class="btn s" data-hoy>Hoy</button>
+  </div>`;
+}
+function bindBarraFecha(root){
+  root.querySelectorAll('[data-dia]').forEach(b=>b.onclick=()=>{ UI.fecha=addDaysISO(UI.fecha,+b.dataset.dia); render(); });
+  const h=root.querySelector('[data-hoy]'); if(h) h.onclick=()=>{ UI.fecha=hoyISO(); render(); };
+  const i=root.querySelector('#fInput'); if(i) i.onchange=()=>{ UI.fecha=i.value||hoyISO(); render(); };
+}
+
+/* =====================================================================
+   VISTA · AGENDA
+   ===================================================================== */
+/* Si hay algo escrito en el formulario de arriba, la sincronización de fondo
+   NO puede repintar la pantalla: se perdería lo que está escribiendo. */
+let FORM_SUCIO = false;
+
+function viewAgenda(v){
+  // Con el formulario a medio llenar solo se refresca la lista de abajo.
+  if(v.dataset.montada==='1' && FORM_SUCIO){
+    const caja=v.querySelector('#zonaLista');
+    if(caja){ caja.innerHTML=htmlZonaLista(); bindZonaLista(v); }
+    return;
+  }
+  v.innerHTML = `
+    <div class="card" id="cardNueva">
+      <h2><span class="sp">Nueva atención</span></h2>
+      <div id="formInline"></div>
+    </div>
+    <div id="zonaLista">${htmlZonaLista()}</div>`;
+  v.dataset.montada='1';
+  montarFormAtencion(v.querySelector('#formInline'), null, null);
+  bindZonaLista(v);
+}
+
+function htmlZonaLista(){
+  const proximas = UI.modoAgenda==='proximas';
+  const lista = proximas
+    ? rows('Atenciones',p=>esSpa(p,UI.spa)&&str(p,'Fecha').slice(0,10)>hoyISO()&&str(p,'Estado')==='Reservado')
+        .sort((a,b)=>str(a,'Fecha').localeCompare(str(b,'Fecha'))||(horaMin(str(a,'HoraInicio'))??0)-(horaMin(str(b,'HoraInicio'))??0))
+    : atencionesDe(UI.spa,UI.fecha);
+  const r = resumenDia(UI.spa,UI.fecha);
+  return `
+  <div class="seg" style="margin-bottom:10px">
+    <button data-modo="dia" class="${proximas?'':'on'}">Día seleccionado</button>
+    <button data-modo="proximas" class="${proximas?'on':''}">Próximas reservas</button>
+  </div>
+  ${proximas?'':barraFecha()}
+  ${proximas?'':`<div class="kpi" style="margin-bottom:12px">
+    <div><b>${r.atenciones}</b><span>atendidas</span></div>
+    <div><b>${r.reservas}</b><span>reservadas</span></div>
+    <div><b>S/ ${money(r.totalCaja)}</b><span>cobrado</span></div>
+  </div>`}
+  <div class="card">
+    <h2><span class="sp">${proximas?'Reservas futuras':'Citas del día'}</span>
+      <span class="sub">${lista.length}</span></h2>
+    <div class="list">
+      ${lista.length?lista.map(a=>itemAtencion(a,proximas)).join(''):'<div class="empty">Sin citas registradas.</div>'}
+    </div>
+  </div>
+  ${proximas?'':cardDisponibles()}`;
+}
+function bindZonaLista(v){
+  v.querySelectorAll('[data-modo]').forEach(b=>b.onclick=()=>{ UI.modoAgenda=b.dataset.modo; repintarLista(v); });
+  const z=v.querySelector('#zonaLista')||v;
+  z.querySelectorAll('[data-dia]').forEach(b=>b.onclick=()=>{ UI.fecha=addDaysISO(UI.fecha,+b.dataset.dia); repintarLista(v); });
+  const h=z.querySelector('[data-hoy]'); if(h) h.onclick=()=>{ UI.fecha=hoyISO(); repintarLista(v); };
+  const i=z.querySelector('#fInput'); if(i) i.onchange=()=>{ UI.fecha=i.value||hoyISO(); repintarLista(v); };
+  v.querySelectorAll('[data-at]').forEach(n=>n.onclick=()=>detalleAtencion(n.dataset.at));
+  bindDisponibles(v);
+}
+/* Cambiar de día o de vista no debe borrar lo que hay escrito arriba. */
+function repintarLista(v){
+  const caja=v.querySelector('#zonaLista');
+  if(!caja) return render();
+  caja.innerHTML=htmlZonaLista(); bindZonaLista(v);
+  document.getElementById('topsub').textContent = UI.spa + ' · ' + fechaLarga(UI.fecha);
+}
+function itemAtencion(a,conFecha){
+  const est=str(a,'Estado');
+  const bcls=est==='Atendido'?'b-ok':est==='Reservado'?'b-info':est==='Cancelado'?'b-bad':'b-mut';
+  const mod=[num(a,'Es4Manos')===1?'4 manos':'',num(a,'EsHolistico')===1?'Holístico':''].filter(Boolean).join(' + ');
+  const vip=num(a,'EsVip')===1?'<span class="badge b-gold">VIP</span> ':'';
+  return `<div class="item" data-at="${esc(a.__key)}">
+    <div class="hh">${conFecha?fechaCorta(str(a,'Fecha')):hora12(str(a,'HoraInicio'))}</div>
+    <div class="t">
+      <b>${vip}${esc(str(a,'ClienteNombre')||'(sin nombre)')}</b>
+      <span>${esc(str(a,'Servicio')||str(a,'PromocionNombre'))} · ${num(a,'DuracionMin')}'${mod?' · '+mod:''}<br>
+      ${esc(splitNames(str(a,'MasajistaNombre')).join(' / ')||'sin terapeuta')}</span>
+    </div>
+    <div class="r">
+      <div class="money">S/ ${money(num(a,'Total'))}</div>
+      <span class="badge ${bcls}">${esc(est)}</span>
+    </div>
+  </div>`;
+}
+function cardDisponibles(){
+  const hora=UI.dispHora||horaGuardar(String(new Date().getHours())+':'+String(new Date().getMinutes()).padStart(2,'0'));
+  const dur=UI.dispDur||60;
+  const min=horaMin(hora)??540;
+  const ts=terapeutasDe(UI.spa);
+  const filas=ts.map(m=>{
+    const as=asistenciaDe(m,UI.spa,UI.fecha);
+    const presente = as ? (num(as,'Asistio')===1&&num(as,'SeRetiro')!==1) : null;
+    const st=estaLibre(m,UI.fecha,min,Number(dur));
+    let badge,txt;
+    if(presente===false){ badge='b-mut'; txt='no asiste / se retiró'; }
+    else if(!st.libre){ badge='b-bad'; txt='ocupada hasta '+hora12(st.hasta); }
+    else { badge='b-ok'; txt=presente===null?'libre (asistencia sin marcar)':'libre'; }
+    return `<div class="item" style="cursor:default">
+      <div class="t"><b>${esc(nombreVisible(m,UI.spa))}</b><span>${txt}</span></div>
+      <div class="r"><span class="badge ${badge}">${presente===false?'—':st.libre?'✓':'✗'}</span></div>
+    </div>`;
+  }).join('');
+  return `<div class="card">
+    <h2><span class="sp">Terapeutas disponibles</span></h2>
+    <div class="row" style="margin-bottom:10px">
+      <div style="flex:1"><label class="f">A las</label><input id="dHora" value="${esc(hora12(hora))}"></div>
+      <div style="flex:1"><label class="f">Por (min)</label>
+        <select id="dDur">${DURACIONES.map(d=>`<option ${d==dur?'selected':''}>${d}</option>`).join('')}</select></div>
+    </div>
+    <div class="list">${filas||'<div class="empty">Sin terapeutas activas en este spa.</div>'}</div>
+  </div>`;
+}
+function bindDisponibles(v){
+  const h=v.querySelector('#dHora'), d=v.querySelector('#dDur');
+  if(h) h.onchange=()=>{ UI.dispHora=horaGuardar(h.value); render(); };
+  if(d) d.onchange=()=>{ UI.dispDur=+d.value; render(); };
+}
+
+/* ---------- Detalle de una atención ---------- */
+function detalleAtencion(key){
+  const a=rowByKey('Atenciones',key); if(!a) return;
+  const pagos=pagosDeAtencion(str(a,'MetodoPago'),num(a,'Total'),str(a,'PagosDetalle'));
+  const est=str(a,'Estado');
+  openSheet(str(a,'ClienteNombre')||'Cita', `
+    <div class="card" style="margin:0 0 10px">
+      <div class="row" style="justify-content:space-between">
+        <div><b style="font-size:18px">${hora12(str(a,'HoraInicio'))}</b>
+             <span class="sub"> · ${fechaCorta(str(a,'Fecha'))} · ${num(a,'DuracionMin')} min</span></div>
+        <span class="badge ${est==='Atendido'?'b-ok':est==='Reservado'?'b-info':'b-mut'}">${esc(est)}</span>
+      </div>
+      <div style="margin-top:8px" class="sub">
+        Servicio: <b>${esc(str(a,'Servicio')||'—')}</b>${str(a,'PromocionNombre')?' · Promo: <b>'+esc(str(a,'PromocionNombre'))+'</b>':''}<br>
+        Terapeuta(s): <b>${esc(splitNames(str(a,'MasajistaNombre')).join(' / ')||'—')}</b><br>
+        Modalidad: ${num(a,'Es4Manos')===1?'4 manos ':''}${num(a,'EsHolistico')===1?'Holístico':''}${!num(a,'Es4Manos')&&!num(a,'EsHolistico')?'básico':''}<br>
+        Caja: ${esc(str(a,'Spa'))} · Catálogo: ${esc(str(a,'SpaServicio')||str(a,'Spa'))}
+      </div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:10px 0">
+      <div class="row" style="justify-content:space-between"><span>Precio</span><span class="money">S/ ${money(num(a,'PrecioBase'))}</span></div>
+      ${num(a,'DescuentoPorcentaje')>0?`<div class="row" style="justify-content:space-between;color:var(--gold-dark)"><span>Descuento</span><span class="money">− S/ ${money(num(a,'DescuentoPorcentaje'))}</span></div>`:''}
+      <div class="row" style="justify-content:space-between;font-size:17px"><b>Total</b><b class="money">S/ ${money(num(a,'Total'))}</b></div>
+      <div class="sub" style="margin-top:6px">Pago: ${esc(pagos.map(p=>p.metodo+' S/ '+money(p.monto)).join(' + '))}
+      ${num(a,'VueltoEnYape')===1?'<br>Vuelto por Yape: S/ '+money(num(a,'VueltoYape')):''}
+      ${num(a,'EfectivoRecibido')>0?'<br>Efectivo recibido: S/ '+money(num(a,'EfectivoRecibido')):''}</div>
+      <div class="sub" style="margin-top:6px">Pago terapeuta: S/ ${money(num(a,'PagoTerapeuta1'))}${num(a,'PagoTerapeuta2')>0?' / S/ '+money(num(a,'PagoTerapeuta2')):''}</div>
+      ${str(a,'Observacion')?'<div class="infobox">'+esc(str(a,'Observacion'))+'</div>':''}
+    </div>
+    <div class="grid g2" data-acciones>
+      ${est!=='Atendido'?'<button class="btn p" data-cobrar>✓ Marcar atendido</button>':''}
+      <button class="btn" data-editar>✎ Editar</button>
+      ${est==='Reservado'?'<button class="btn" data-noasistio>Ⓧ No asistió</button>':''}
+      <button class="btn" data-antes>${num(a,'TerminoAntes')===1?'↺ Quitar «se fue antes»':'⏱ El cliente se fue antes'}</button>
+      <button class="btn d" data-borrar>🗑 Borrar cita</button>
+    </div>`, ovl=>{
+    ovl._datos();
+    const q=s=>ovl.querySelector(s);
+    q('[data-editar]').onclick=()=>{ closeSheet(); formAtencion(a); };
+    if(q('[data-cobrar]')) q('[data-cobrar]').onclick=async()=>{ await saveRow('Atenciones',{Estado:'Atendido'},a); closeSheet(); toast('Marcada como atendida'); };
+    if(q('[data-noasistio]')) q('[data-noasistio]').onclick=async()=>{ await saveRow('Atenciones',{Estado:'No asistió'},a); closeSheet(); toast('Marcada: no asistió'); };
+    q('[data-antes]').onclick=async()=>{ await saveRow('Atenciones',{TerminoAntes:num(a,'TerminoAntes')===1?0:1},a); closeSheet(); toast('Actualizado'); };
+    q('[data-borrar]').onclick=()=>confirmar('¿Borrar esta cita en todas las terminales?',async()=>{ await deleteRow('Atenciones',key); toast('Cita borrada'); });
+  });
+}
+
+/* =====================================================================
+   FORMULARIO · ATENCIÓN
+   ===================================================================== */
+function formAtencion(existing){   // ventana emergente: solo para EDITAR una cita ya guardada
+  openSheet('Editar cita', `<div id="fa"></div>`, ovl=>{
+    montarFormAtencion(ovl.querySelector('#fa'), existing, ovl);
+  });
+}
+
+/* El MISMO formulario sirve en la primera pantalla y en la ventana de edición.
+   Con ovl = null se dibuja dentro de la pantalla, con los botones PAGO y RESERVA. */
+function montarFormAtencion(cont, existing, ovl){
+  const nueva=!existing, inline=!ovl;
+  const S={
+    spa: existing?str(existing,'Spa'):UI.spa,
+    spaServicio: existing?(str(existing,'SpaServicio')||str(existing,'Spa')):UI.spa,
+    fecha: existing?str(existing,'Fecha').slice(0,10):UI.fecha,
+    hora: existing?str(existing,'HoraInicio'):horaGuardar(String(new Date().getHours())+':'+String(new Date().getMinutes()).padStart(2,'0')),
+    dur: existing?num(existing,'DuracionMin'):60,
+    cliente: existing?str(existing,'ClienteNombre'):'',
+    servicio: existing?str(existing,'Servicio'):'',
+    promo: existing?str(existing,'PromocionNombre'):'',
+    mod: existing?(num(existing,'Es4Manos')===1&&num(existing,'EsHolistico')===1?'hol4':num(existing,'Es4Manos')===1?'4m':num(existing,'EsHolistico')===1?'hol':'base'):'base',
+    t1: existing?(splitNames(str(existing,'MasajistaNombre'))[0]||''):'',
+    t2: existing?(splitNames(str(existing,'MasajistaNombre'))[1]||''):'',
+    precio: existing?num(existing,'PrecioBase'):0,
+    desc: existing?num(existing,'DescuentoPorcentaje'):0,
+    p1: existing?num(existing,'PagoTerapeuta1'):0,
+    p2: existing?num(existing,'PagoTerapeuta2'):0,
+    metodo: existing?str(existing,'MetodoPago'):'Efectivo',
+    mixto: existing?pagosParsear(str(existing,'PagosDetalle')):[],
+    efectivoRec: existing?num(existing,'EfectivoRecibido'):0,
+    vueltoYape: existing?num(existing,'VueltoEnYape')===1:false,
+    montoVuelto: existing?num(existing,'VueltoYape'):0,
+    estado: existing?str(existing,'Estado'):'Atendido',
+    vip: existing?num(existing,'EsVip')===1:false,
+    obs: existing?str(existing,'Observacion'):'',
+    // 2 terapeutas si la cita ya venía con dos nombres o con modalidad de 4 manos.
+    terapeutas2: (existing && (splitNames(str(existing,'MasajistaNombre')).length>1 || num(existing,'Es4Manos')===1)) ? 2 : 1
+  };
+
+    const draw=()=>{ cont.innerHTML=htmlForm(); bind(); if(ovl) ovl._datos(); };
+
+    function catalogo(){
+      if(S.promo){
+        const pr=promosDe(S.spaServicio,false).find(p=>str(p,'Nombre')===S.promo);
+        return pr?{tipo:'promo',row:pr}:null;
+      }
+      const sr=servicioRow(S.spaServicio,S.servicio,S.dur);
+      return sr?{tipo:'servicio',row:sr}:null;
+    }
+    function modsDisponibles(){
+      const c=catalogo(); if(!c) return {m4:false,hol:false,h4:false};
+      const r=c.row;
+      if(c.tipo==='promo') return {m4:num(r,'Aplica4Manos')===1,hol:num(r,'AplicaHolistico')===1,h4:num(r,'AplicaHol4Manos')===1};
+      return {m4:num(r,'Disp4Manos')===1&&DUR_VARIANTES.includes(S.dur),
+              hol:num(r,'DispHolistico')===1&&DUR_HOLISTICO.includes(S.dur),
+              h4:num(r,'DispHol4Manos')===1&&DUR_VARIANTES.includes(S.dur)};
+    }
+    /* Precio + pagos según catálogo y modalidad (misma tabla que ApplyServiceDefaults). */
+    function aplicarCatalogo(){
+      const c=catalogo(); if(!c){ S.terapeutas2=1; return; }
+      const r=c.row, promo=c.tipo==='promo';
+      if(promo&&num(r,'EsPaquete')===1){
+        S.precio=num(r,'PrecioPromocional'); S.p1=num(r,'PagoTerapeuta1'); S.p2=num(r,'PagoTerapeuta2');
+        S.terapeutas2=Math.min(2,Math.max(1,num(r,'TerapeutasDefault')||1));
+        S.dur=num(r,'DuracionMin')||S.dur; return;
+      }
+      if(S.mod==='hol4'){ S.precio=promo?num(r,'PrecioHol4Manos'):num(r,'PrecioHol4Manos');
+        S.p1=num(r,'PagoT1_Hol4Manos'); S.p2=num(r,'PagoT2_Hol4Manos'); S.terapeutas2=2; }
+      else if(S.mod==='4m'){ S.precio=num(r,'Precio4Manos');
+        S.p1=num(r,'PagoT1_4Manos'); S.p2=num(r,'PagoT2_4Manos'); S.terapeutas2=2; }
+      else if(S.mod==='hol'){ S.precio=num(r,'PrecioHolistico');
+        S.p1=num(r,'PagoT1_Holistico'); S.p2=0; S.terapeutas2=1; }
+      else{
+        S.precio=promo?num(r,'PrecioPromocional'):num(r,'Precio');
+        S.p1=num(r,'PagoTerapeuta1'); S.p2=num(r,'PagoTerapeuta2');
+        S.terapeutas2=Math.min(2,Math.max(1,num(r,'TerapeutasDefault')||1));
+      }
+      if(promo){ S.desc=0; if(num(r,'DuracionMin')>0&&S.mod==='base') S.dur=num(r,'DuracionMin'); }
+    }
+    /* Descuento sugerido: solo sin promoción y con VIP/Antiguo vigente. */
+    function descSugerido(){
+      if(S.promo) return 0;
+      const c=buscarCliente(S.spa,S.cliente);
+      return (c&&tieneDescuentoFijo(c,S.fecha))?descuentoPorSpa(S.spaServicio):0;
+    }
+    const total=()=>Math.max(0,Math.round((S.precio-Math.min(S.desc,S.precio))*100)/100);
+
+    function htmlForm(){
+      const c=buscarCliente(S.spa,S.cliente);
+      const blk=clienteBloqueadoGlobal(S.cliente);
+      const mods=modsDisponibles();
+      const ts=terapeutasDe(S.spa);
+      const durs=S.servicio?durasDeServicio(S.spaServicio,S.servicio):duracionesBasicas(S.spaServicio);
+      const opt=(arr,val)=>arr.map(x=>`<option ${String(x)===String(val)?'selected':''}>${esc(x)}</option>`).join('');
+      let aviso='';
+      if(blk) aviso=`<div class="warnbox">⚠ CLIENTE REPORTADO / BLOQUEADO — NO ATENDER. Motivo: ${esc(str(blk,'MotivoBloqueo')||'sin motivo registrado')}</div>`;
+      else if(S.cliente&&!c) aviso=`<div class="infobox">Cliente nuevo: se registrará al guardar. Si ya vino antes, revisa cómo se escribió el nombre.</div>`;
+      else if(c){
+        const est=[]; if(vipVigente(c,S.fecha))est.push('VIP'); if(antiguoVigente(c,S.fecha))est.push('Antiguo');
+        aviso=`<div class="infobox">Cliente conocido · ${num(c,'Veces')} visita(s)${str(c,'UltimaVisita')?' · última: '+fechaCorta(str(c,'UltimaVisita')):''}
+          ${est.length?` · <b>${est.join(' y ')}: descuento S/ ${descuentoPorSpa(S.spaServicio)}</b>`:''}</div>`;
+      }
+      const otroSpa = SPAS.find(x=>normalizeText(x)!==normalizeText(S.spa)) || 'Ulianov';
+      const esDelOtro = normalizeText(S.spaServicio)!==normalizeText(S.spa);
+      return `
+      <div class="grid g3">
+        <div><label class="f">Fecha</label><input type="date" data-k="fecha" value="${S.fecha}"></div>
+        <div><label class="f">Hora cita</label><input data-k="hora" value="${esc(hora12(S.hora))}" placeholder="5:00 PM"></div>
+        <div><label class="f">Tiempo</label><select data-k="dur">${opt(durs.length?durs:duracionesBasicas(S.spaServicio),S.dur)}</select></div>
+      </div>
+      <div style="margin-top:8px" class="suggest">
+        <label class="f">Cliente</label>
+        <input data-k="cliente" id="inCli" value="${esc(S.cliente)}" placeholder="Nombre del cliente" autocomplete="off">
+        <div class="box hide" id="cliBox"></div>
+      </div>
+      ${aviso}
+      <label class="chk"><input type="checkbox" data-k="otroSpa" ${esDelOtro?'checked':''}> Servicio de ${esc(otroSpa)}</label>
+      <div class="grid g2" style="margin-top:4px">
+        <div><label class="f">Servicio</label>
+          <select data-k="servicio"><option value="">— elegir —</option>${opt(nombresServicio(S.spaServicio),S.servicio)}</select></div>
+        <div><label class="f">Promoción / paquete</label>
+          <select data-k="promo"><option value="">Sin promoción</option>${
+            promosDe(S.spaServicio).map(p=>`<option ${str(p,'Nombre')===S.promo?'selected':''}>${esc(str(p,'Nombre'))}</option>`).join('')}</select></div>
+      </div>
+      ${(mods.m4||mods.hol||mods.h4)?`<div style="margin-top:8px"><label class="f">Modalidad</label>
+        <div class="seg">
+          <button type="button" data-mod="base" class="${S.mod==='base'?'on':''}">Básico</button>
+          ${mods.m4?`<button type="button" data-mod="4m" class="${S.mod==='4m'?'on':''}">4 manos</button>`:''}
+          ${mods.hol?`<button type="button" data-mod="hol" class="${S.mod==='hol'?'on':''}">Holístico</button>`:''}
+          ${mods.h4?`<button type="button" data-mod="hol4" class="${S.mod==='hol4'?'on':''}">Hol+4m</button>`:''}
+        </div></div>`:''}
+      <div class="grid g2" style="margin-top:8px">
+        <div><label class="f">Terapeuta 1</label>
+          <select data-k="t1"><option value="">— sin asignar —</option>${
+            ts.map(m=>{const n=nombreVisible(m,S.spa);
+              const st=estaLibre(m,S.fecha,horaMin(S.hora)??540,S.dur);
+              return `<option ${normalizeText(n)===normalizeText(S.t1)?'selected':''}>${esc(n)}</option>`;}).join('')}</select></div>
+        ${S.terapeutas2>=2?`<div><label class="f">Terapeuta 2 (4 manos)</label>
+          <select data-k="t2"><option value="">— sin asignar —</option>${
+            ts.map(m=>{const n=nombreVisible(m,S.spa);
+              return `<option ${normalizeText(n)===normalizeText(S.t2)?'selected':''}>${esc(n)}</option>`;}).join('')}</select></div>`:''}
+      </div>
+      ${avisoOcupada()}
+      <div class="grid g3" style="margin-top:8px">
+        <div><label class="f">Precio S/</label><input type="number" step="0.5" data-k="precio" value="${S.precio}"></div>
+        <div><label class="f">Descuento S/</label><input type="number" step="1" data-k="desc" value="${S.desc}"></div>
+        <div><label class="f">Total</label><input value="S/ ${money(total())}" disabled style="font-weight:700"></div>
+      </div>
+      <div class="grid g2" style="margin-top:8px">
+        <div><label class="f">Pago terapeuta 1</label><input type="number" step="0.5" data-k="p1" value="${S.p1}"></div>
+        ${S.terapeutas2>=2?`<div><label class="f">Pago terapeuta 2</label><input type="number" step="0.5" data-k="p2" value="${S.p2}"></div>`:''}
+      </div>
+      <div class="grid g2" style="margin-top:8px">
+        <div><label class="f">Medio de pago</label>
+          <select data-k="metodo">${opt(METODOS.concat(['Mixto']),S.metodo)}</select></div>
+        ${inline?'':`<div><label class="f">Estado</label><select data-k="estado">${opt(ESTADOS,S.estado)}</select></div>`}
+      </div>
+      ${S.metodo==='Mixto'?htmlMixto():''}
+      ${S.metodo==='Efectivo'?`<div class="grid g3" style="margin-top:8px">
+        <div><label class="f">Efectivo recibido</label><input type="number" step="1" data-k="efectivoRec" value="${S.efectivoRec}"></div>
+        <div><label class="f">Vuelto</label><input value="S/ ${money(Math.max(0,S.efectivoRec-total()))}" disabled></div>
+        <div style="align-self:end"><label class="chk"><input type="checkbox" data-k="vueltoYape" ${S.vueltoYape?'checked':''}> Vuelto por Yape</label></div>
+      </div>${S.vueltoYape?`<div style="margin-top:6px"><label class="f">Monto devuelto por Yape</label><input type="number" step="1" data-k="montoVuelto" value="${S.montoVuelto}"></div>`:''}`:''}
+      <div style="margin-top:8px"><label class="chk"><input type="checkbox" data-k="vip" ${S.vip?'checked':''}> Marcar la cita como VIP</label></div>
+      <div style="margin-top:4px"><label class="f">Obs</label><textarea data-k="obs" rows="2" placeholder="Observación opcional">${esc(S.obs)}</textarea></div>
+      ${inline?`
+      <div class="cobro">
+        <div><span>Total a cobrar</span><b>S/ ${money(total())}</b></div>
+        <div class="row">
+          <button class="btn p" data-pago>PAGO</button>
+          <button class="btn" data-reserva>RESERVA</button>
+          <button class="btn s" data-limpiar>Limpiar</button>
+        </div>
+      </div>`:`
+      <div class="sticky-actions">
+        <button class="btn" data-cancel>Cancelar</button>
+        <button class="btn p" data-save>Guardar cambios</button>
+      </div>`}`;
+    }
+    function htmlMixto(){
+      const l=S.mixto.length?S.mixto:[{metodo:'Efectivo',monto:0},{metodo:'Yape',monto:0}];
+      S.mixto=l;
+      return `<div class="card" style="margin:8px 0 0;padding:10px">
+        <div class="sub" style="margin-bottom:6px">Desglose del pago (debe sumar S/ ${money(total())})</div>
+        ${l.map((p,i)=>`<div class="row" style="margin-bottom:6px">
+          <select data-mx="${i}" data-mf="metodo" style="flex:2">${METODOS.map(m=>`<option ${m===p.metodo?'selected':''}>${m}</option>`).join('')}</select>
+          <input type="number" step="0.5" data-mx="${i}" data-mf="monto" value="${p.monto}" style="flex:1">
+        </div>`).join('')}
+        <button class="btn s" data-mxadd>+ agregar medio</button>
+        <span class="sub" style="margin-left:8px">suma: S/ ${money(S.mixto.reduce((s,p)=>s+(+p.monto||0),0))}</span>
+      </div>`;
+    }
+    function avisoOcupada(){
+      if(!S.t1) return '';
+      const m=buscarTerapeuta(S.t1); if(!m) return '';
+      const st=estaLibre(m,S.fecha,horaMin(S.hora)??540,S.dur);
+      if(st.libre) return '';
+      const key=existing&&existing.__key;
+      if(st.cita&&st.cita.__key===key) return '';
+      return `<div class="warnbox">⚠ ${esc(S.t1)} ya está ocupada a esa hora (libre desde ${hora12(st.hasta)}).</div>`;
+    }
+
+    function bind(){
+      cont.querySelectorAll('[data-k]').forEach(inp=>{
+        const k=inp.dataset.k;
+        const ev=(inp.tagName==='SELECT'||inp.type==='checkbox'||inp.type==='date')?'change':'change';
+        inp.addEventListener(ev,()=>{
+          if(inline) FORM_SUCIO=true;
+          if(inp.type==='checkbox') S[k]=inp.checked;
+          else if(inp.type==='number') S[k]=parseFloat(inp.value)||0;
+          else S[k]=inp.value;
+          // "Servicio de Ulianov": cambia el catálogo del que sale el precio.
+          if(k==='otroSpa'){
+            S.spaServicio = inp.checked ? (SPAS.find(x=>normalizeText(x)!==normalizeText(S.spa))||S.spa) : S.spa;
+            S.servicio=''; S.promo=''; S.mod='base'; aplicarCatalogo(); S.desc=descSugerido();
+          }
+          if(k==='hora') S.hora=horaGuardar(inp.value);
+          if(k==='dur') S.dur=+inp.value;
+          if(k==='servicio'){ S.promo=''; S.mod='base';
+            const d=durasDeServicio(S.spaServicio,S.servicio); if(d.length&&!d.includes(S.dur)) S.dur=d.includes(60)?60:d[0];
+            aplicarCatalogo(); S.desc=descSugerido(); }
+          if(k==='promo'){ if(S.promo) S.servicio=''; S.mod='base'; aplicarCatalogo(); S.desc=descSugerido(); }
+          if(k==='spaServicio'){ S.servicio=''; S.promo=''; aplicarCatalogo(); S.desc=descSugerido(); }
+          if(k==='cliente'||k==='fecha') S.desc=descSugerido();
+          draw();
+        });
+      });
+      cont.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{ S.mod=b.dataset.mod; aplicarCatalogo(); draw(); });
+      cont.querySelectorAll('[data-mx]').forEach(inp=>inp.addEventListener('change',()=>{
+        const i=+inp.dataset.mx, f=inp.dataset.mf;
+        S.mixto[i][f] = f==='monto' ? (parseFloat(inp.value)||0) : inp.value;
+        draw();
+      }));
+      const add=cont.querySelector('[data-mxadd]');
+      if(add) add.onclick=()=>{ S.mixto.push({metodo:'Yape',monto:0}); draw(); };
+
+      /* Autocompletado de cliente */
+      const inCli=cont.querySelector('#inCli'), box=cont.querySelector('#cliBox');
+      if(inCli){
+        inCli.addEventListener('input',()=>{
+          S.cliente=inCli.value;
+          const q=normalizeText(inCli.value);
+          if(q.length<2){ box.classList.add('hide'); return; }
+          const hits=clientesDe(S.spa).filter(c=>normalizeText(str(c,'Nombre')).includes(q)||normalizeText(str(c,'CodigoCliente'))===q).slice(0,8);
+          if(!hits.length){ box.classList.add('hide'); return; }
+          box.innerHTML=hits.map(c=>{
+            const t=[]; if(vipVigente(c,S.fecha))t.push('VIP'); if(antiguoVigente(c,S.fecha))t.push('Antiguo');
+            if(num(c,'Bloqueado')===1)t.push('⚠ BLOQUEADO');
+            return `<div data-pick="${esc(str(c,'Nombre'))}">${esc(str(c,'Nombre'))}
+              <span class="sub"> · ${num(c,'Veces')} visitas${t.length?' · '+t.join(', '):''}</span></div>`;
+          }).join('');
+          box.classList.remove('hide');
+          box.querySelectorAll('[data-pick]').forEach(d=>d.onclick=()=>{
+            S.cliente=d.dataset.pick; S.desc=descSugerido(); box.classList.add('hide'); draw();
+          });
+        });
+        inCli.addEventListener('blur',()=>setTimeout(()=>box.classList.add('hide'),200));
+      }
+      const bt=(sel,fn)=>{ const e=cont.querySelector(sel); if(e) e.onclick=fn; };
+      bt('[data-cancel]', closeSheet);
+      bt('[data-save]', ()=>guardar());
+      bt('[data-pago]', ()=>guardar('Atendido'));      // cobrada ahora
+      bt('[data-reserva]', ()=>guardar('Reservado'));  // queda agendada
+      bt('[data-limpiar]', ()=>{ FORM_SUCIO=false; render(); });
+    }
+
+    async function guardar(estadoForzado){
+      if(!S.cliente.trim()) return toast('Falta el nombre del cliente');
+      if(!S.servicio&&!S.promo) return toast('Elige un servicio o una promoción');
+      const estado = estadoForzado || S.estado;
+      const t=total();
+      if(S.metodo==='Mixto'){
+        const suma=S.mixto.reduce((s,p)=>s+(+p.monto||0),0);
+        if(Math.abs(suma-t)>0.009) return toast('El desglose suma S/ '+money(suma)+' y el total es S/ '+money(t));
+      }
+      const nombres=[S.t1,S.terapeutas2>=2?S.t2:''].filter(Boolean).map(titleName);
+      const data={
+        Spa:S.spa, SpaServicio:S.spaServicio, Fecha:S.fecha, HoraInicio:horaGuardar(S.hora),
+        DuracionMin:S.dur,
+        ClienteNombre:titleName(S.cliente), ClienteId: (buscarCliente(S.spa,S.cliente)?num(buscarCliente(S.spa,S.cliente),'Id'):0),
+        MasajistaNombre:nombres.join(' / '),
+        MasajistaId:(S.t1&&buscarTerapeuta(S.t1))?num(buscarTerapeuta(S.t1),'Id'):0,
+        Servicio:S.servicio||S.promo, PromocionNombre:S.promo,
+        PrecioBase:S.precio, DescuentoPorcentaje:S.desc, Total:t,
+        PagoTerapeuta1:S.p1, PagoTerapeuta2:S.terapeutas2>=2?S.p2:0, PagoTerapeuta3:0,
+        MetodoPago:S.metodo==='Mixto'?'Mixto':S.metodo,
+        PagosDetalle:S.metodo==='Mixto'?pagosSerializar(S.mixto):'',
+        EsVip:S.vip?1:0,
+        Es4Manos:(S.mod==='4m'||S.mod==='hol4')?1:0,
+        EsHolistico:(S.mod==='hol'||S.mod==='hol4')?1:0,
+        VueltoEnYape:(S.metodo==='Efectivo'&&S.vueltoYape)?1:0,
+        EfectivoRecibido:S.metodo==='Efectivo'?S.efectivoRec:0,
+        VueltoYape:(S.metodo==='Efectivo'&&S.vueltoYape)?S.montoVuelto:0,
+        Estado:estado, Observacion:S.obs
+      };
+      await saveRow('Atenciones',data,existing||null);
+      // Cliente nuevo: se crea la ficha para que exista en las demás terminales.
+      if(!buscarCliente(S.spa,S.cliente)){
+        await saveRow('Clientes',{Spa:S.spa,Nombre:titleName(S.cliente),NombreNormalizado:normalizeText(S.cliente),
+          Veces:0,UltimaVisita:S.fecha},null);
+      }
+      if(inline){
+        FORM_SUCIO=false;
+        toast(estado==='Reservado'?'Reserva guardada':'Atención guardada');
+        render();                       // el formulario queda limpio para la siguiente
+      }else{
+        closeSheet(); toast('Cambios guardados');
+      }
+    }
+
+  if(nueva){ S.desc=descSugerido(); }
+  draw();
+}
+
+/* =====================================================================
+   VISTA · CAJA
+   ===================================================================== */
+function viewCaja(v){
+  const r=resumenDia(UI.spa,UI.fecha);
+  const pt=pagosTerapeutasDia(UI.spa,UI.fecha);
+  const metodos=Object.keys(r.porMetodo);
+  v.innerHTML=`
+  ${barraFecha()}
+  <div class="card">
+    <h2><span class="sp">Cuadre de caja</span><span class="sub">${esc(UI.spa)}</span></h2>
+    <table>
+      <tr><td>Caja inicial (efectivo)</td><td class="n money">S/ ${money(r.cajaInicial)}</td></tr>
+      <tr><td>Ventas en efectivo (servicios)</td><td class="n money">S/ ${money(r.ventasEfectivo)}</td></tr>
+      <tr><td>Efectivo recibido real</td><td class="n money">S/ ${money(r.efectivoRecibidoReal)}</td></tr>
+      <tr><td>Vuelto por Yape</td><td class="n money">S/ ${money(r.vueltoYape)}</td></tr>
+      <tr><td>Entradas en efectivo</td><td class="n money">S/ ${money(r.entradas)}</td></tr>
+      <tr><td>Salidas en efectivo</td><td class="n money">− S/ ${money(r.salidas)}</td></tr>
+      <tr style="font-size:15px"><td><b>Caja esperada</b></td><td class="n money"><b>S/ ${money(r.cajaEsperada)}</b></td></tr>
+      <tr><td>Caja final registrada</td><td class="n money">S/ ${money(r.cajaFinal)}</td></tr>
+      ${r.cajaFinal>0?`<tr><td><b>Diferencia</b></td><td class="n money" style="color:${Math.abs(r.cajaFinal-r.cajaEsperada)<0.01?'var(--ok)':'var(--bad)'}"><b>S/ ${money(r.cajaFinal-r.cajaEsperada)}</b></td></tr>`:''}
+    </table>
+  </div>
+  <div class="card">
+    <h2><span class="sp">Cobrado por medio de pago</span><span class="money">S/ ${money(r.totalCaja)}</span></h2>
+    ${metodos.length?`<table>${metodos.map(m=>`<tr><td>${esc(m)}</td><td class="n money">S/ ${money(r.porMetodo[m])}</td></tr>`).join('')}</table>`
+      :'<div class="empty">Sin cobros registrados.</div>'}
+  </div>
+  <div class="card">
+    <h2><span class="sp">Movimientos de caja</span><button class="btn s" data-w data-nuevomov>+ Movimiento</button></h2>
+    <div class="list">${r.movimientos.length?r.movimientos.map(m=>`
+      <div class="item" data-mov="${esc(m.__key)}">
+        <div class="hh">${hora12(str(m,'Hora'))}</div>
+        <div class="t"><b>${esc(str(m,'Tipo'))}${str(m,'Concepto')?' · '+esc(str(m,'Concepto')):''}</b>
+          <span>${esc(str(m,'MetodoPago'))}${str(m,'Observacion')?' · '+esc(str(m,'Observacion')):''}</span></div>
+        <div class="r money" style="color:${str(m,'Tipo')==='Salida'?'var(--bad)':'inherit'}">
+          ${str(m,'Tipo')==='Salida'?'−':''}S/ ${money(num(m,'Monto'))}</div>
+      </div>`).join(''):'<div class="empty">Sin movimientos hoy.</div>'}</div>
+  </div>
+  <div class="card">
+    <h2><span class="sp">Pagos a terapeutas</span><span class="money">S/ ${money(pt.reduce((s,x)=>s+x.total,0))}</span></h2>
+    ${pt.length?`<table><tr><th>Terapeuta</th><th class="n">Citas</th><th class="n">A pagar</th></tr>
+      ${pt.map(x=>`<tr><td>${esc(x.nombre)}</td><td class="n">${x.atenciones}</td><td class="n money">S/ ${money(x.total)}</td></tr>`).join('')}</table>`
+      :'<div class="empty">Sin atenciones cobradas.</div>'}
+  </div>`;
+  bindBarraFecha(v);
+  v.querySelector('[data-nuevomov]').onclick=()=>formCaja(null);
+  v.querySelectorAll('[data-mov]').forEach(n=>n.onclick=()=>formCaja(rowByKey('CajaMovimientos',n.dataset.mov)));
+}
+
+function formCaja(existing){
+  const S={
+    tipo: existing?str(existing,'Tipo'):'Salida',
+    hora: existing?str(existing,'Hora'):horaGuardar(String(new Date().getHours())+':'+String(new Date().getMinutes()).padStart(2,'0')),
+    concepto: existing?str(existing,'Concepto'):'',
+    monto: existing?num(existing,'Monto'):0,
+    metodo: existing?str(existing,'MetodoPago'):'Efectivo',
+    obs: existing?str(existing,'Observacion'):''
+  };
+  const opt=(a,v)=>a.map(x=>`<option ${String(x)===String(v)?'selected':''}>${esc(x)}</option>`).join('');
+  openSheet(existing?'Editar movimiento':'Nuevo movimiento de caja',`
+    <div class="grid g2">
+      <div><label class="f">Tipo</label><select data-k="tipo">${opt(TIPOS_CAJA,S.tipo)}</select></div>
+      <div><label class="f">Hora</label><input data-k="hora" value="${esc(hora12(S.hora))}"></div>
+    </div>
+    <div style="margin-top:8px"><label class="f">Concepto</label><input data-k="concepto" value="${esc(S.concepto)}" placeholder="Ej. compra de aceite"></div>
+    <div class="grid g2" style="margin-top:8px">
+      <div><label class="f">Monto S/</label><input type="number" step="0.5" data-k="monto" value="${S.monto}"></div>
+      <div><label class="f">Medio</label><select data-k="metodo">${opt(METODOS,S.metodo)}</select></div>
+    </div>
+    <div style="margin-top:8px"><label class="f">Observación</label><input data-k="obs" value="${esc(S.obs)}"></div>
+    <div class="sticky-actions">
+      ${existing?'<button class="btn d" data-del>Borrar</button>':''}
+      <button class="btn" data-cancel>Cancelar</button>
+      <button class="btn p" data-save>Guardar</button>
+    </div>`, ovl=>{
+    ovl._datos();
+    ovl.querySelectorAll('[data-k]').forEach(i=>i.addEventListener('change',()=>{
+      S[i.dataset.k]= i.type==='number'?(parseFloat(i.value)||0):i.value;
+    }));
+    ovl.querySelector('[data-cancel]').onclick=closeSheet;
+    const d=ovl.querySelector('[data-del]');
+    if(d) d.onclick=()=>confirmar('¿Borrar este movimiento?',async()=>{ await deleteRow('CajaMovimientos',existing.__key); toast('Movimiento borrado'); });
+    ovl.querySelector('[data-save]').onclick=async()=>{
+      if(!S.monto) return toast('Falta el monto');
+      await saveRow('CajaMovimientos',{Spa:UI.spa,Fecha:UI.fecha,Hora:horaGuardar(S.hora),Tipo:S.tipo,
+        Concepto:S.concepto,Monto:S.monto,MetodoPago:S.metodo,Observacion:S.obs}, existing||null);
+      closeSheet(); toast('Movimiento guardado');
+    };
+  });
+}
+
+/* =====================================================================
+   VISTA · CLIENTES
+   ===================================================================== */
+function viewClientes(v){
+  const q=normalizeText(UI.qCliente);
+  let lista=clientesDe(UI.spa);
+  if(q) lista=lista.filter(c=>normalizeText(str(c,'Nombre')).includes(q)||normalizeText(str(c,'CodigoCliente')).includes(q));
+  lista.sort((a,b)=>(str(b,'UltimaVisita')||'').localeCompare(str(a,'UltimaVisita')||'')||str(a,'Nombre').localeCompare(str(b,'Nombre')));
+  const hoy=hoyISO();
+  const vip=lista.filter(c=>vipVigente(c,hoy)).length, ant=lista.filter(c=>antiguoVigente(c,hoy)).length;
+  v.innerHTML=`
+  <div class="card">
+    <input id="qCli" value="${esc(UI.qCliente)}" placeholder="Buscar cliente por nombre o código…">
+    <div class="kpi" style="margin-top:10px">
+      <div><b>${lista.length}</b><span>clientes</span></div>
+      <div><b>${vip}</b><span>VIP vigentes</span></div>
+      <div><b>${ant}</b><span>antiguos vigentes</span></div>
+    </div>
+  </div>
+  <div class="list">${lista.slice(0,300).map(c=>{
+    const tags=[]; if(vipVigente(c,hoy))tags.push('<span class="badge b-gold">VIP</span>');
+    if(antiguoVigente(c,hoy))tags.push('<span class="badge b-gold">Antiguo</span>');
+    if(num(c,'Bloqueado')===1)tags.push('<span class="badge b-bad">BLOQUEADO</span>');
+    return `<div class="item" data-cli="${esc(c.__key)}">
+      <div class="t"><b>${esc(str(c,'Nombre'))} ${tags.join(' ')}</b>
+        <span>${num(c,'Veces')} visita(s)${str(c,'UltimaVisita')?' · última '+fechaCorta(str(c,'UltimaVisita')):''}${str(c,'CodigoCliente')?' · '+esc(str(c,'CodigoCliente')):''}</span></div>
+      <div class="r">${tieneDescuentoFijo(c,hoy)?`<span class="badge b-gold">− S/ ${descuentoPorSpa(UI.spa)}</span>`:''}</div>
+    </div>`;}).join('')||'<div class="empty">Sin resultados.</div>'}</div>
+  ${lista.length>300?'<div class="sub" style="text-align:center">Mostrando 300 de '+lista.length+' · afina la búsqueda</div>':''}`;
+  const q2=v.querySelector('#qCli');
+  q2.oninput=()=>{ UI.qCliente=q2.value; clearTimeout(v._t); v._t=setTimeout(()=>{ render(); const n=document.getElementById('qCli'); if(n){n.focus();n.setSelectionRange(n.value.length,n.value.length);} },250); };
+  v.querySelectorAll('[data-cli]').forEach(n=>n.onclick=()=>formCliente(rowByKey('Clientes',n.dataset.cli)));
+}
+
+function formCliente(existing){
+  const hoy=hoyISO();
+  const S={
+    nombre: existing?str(existing,'Nombre'):'',
+    codigo: existing?str(existing,'CodigoCliente'):'',
+    vip: existing?num(existing,'EsVip')===1:false,
+    antiguo: existing?num(existing,'EsAntiguo')===1:false,
+    bloq: existing?num(existing,'Bloqueado')===1:false,
+    motivo: existing?str(existing,'MotivoBloqueo'):''
+  };
+  const info=existing?`<div class="sub" style="margin-bottom:8px">
+     ${num(existing,'Veces')} visita(s)${str(existing,'UltimaVisita')?' · última: '+fechaCorta(str(existing,'UltimaVisita')):''}<br>
+     VIP ${vipVigente(existing,hoy)?'<b>vigente</b>':'no vigente'} · Antiguo ${antiguoVigente(existing,hoy)?'<b>vigente</b>':'no vigente'}<br>
+     <span style="font-size:11.5px">VIP vence a los 60 días sin visitas; Antiguo, a los 3 meses.</span></div>`:'';
+  openSheet(existing?'Cliente':'Nuevo cliente', `
+    ${info}
+    <div><label class="f">Nombre</label><input data-k="nombre" value="${esc(S.nombre)}"></div>
+    <div style="margin-top:8px"><label class="f">Código (lo asigna el programa)</label><input data-k="codigo" value="${esc(S.codigo)}"></div>
+    <div style="margin-top:8px">
+      <label class="chk"><input type="checkbox" data-k="vip" ${S.vip?'checked':''}> Cliente VIP</label>
+      <label class="chk"><input type="checkbox" data-k="antiguo" ${S.antiguo?'checked':''}> Cliente antiguo</label>
+      <label class="chk"><input type="checkbox" data-k="bloq" ${S.bloq?'checked':''}> Bloqueado / reportado</label>
+    </div>
+    <div style="margin-top:4px"><label class="f">Motivo del bloqueo</label><input data-k="motivo" value="${esc(S.motivo)}"></div>
+    <div class="sticky-actions">
+      <button class="btn" data-cancel>Cancelar</button>
+      <button class="btn p" data-save>Guardar</button>
+    </div>`, ovl=>{
+    ovl._datos();
+    ovl.querySelectorAll('[data-k]').forEach(i=>i.addEventListener('change',()=>{
+      S[i.dataset.k]= i.type==='checkbox'?i.checked:i.value;
+    }));
+    ovl.querySelector('[data-cancel]').onclick=closeSheet;
+    ovl.querySelector('[data-save]').onclick=async()=>{
+      if(!S.nombre.trim()) return toast('Falta el nombre');
+      const data={Spa:existing?str(existing,'Spa'):UI.spa, Nombre:titleName(S.nombre),
+        NombreNormalizado:normalizeText(S.nombre), CodigoCliente:S.codigo.trim(),
+        EsVip:S.vip?1:0, EsAntiguo:S.antiguo?1:0,
+        Bloqueado:S.bloq?1:0, MotivoBloqueo:S.bloq?S.motivo:''};
+      // Al marcar el estado se sella la fecha desde la que corre su vigencia.
+      if(S.vip&&(!existing||num(existing,'EsVip')!==1)) data.VipDesde=hoy;
+      if(S.antiguo&&(!existing||num(existing,'EsAntiguo')!==1)) data.AntiguoDesde=hoy;
+      if(S.bloq&&(!existing||num(existing,'Bloqueado')!==1)) data.FechaBloqueo=hoy;
+      await saveRow('Clientes',data,existing||null);
+      closeSheet(); toast('Cliente guardado');
+    };
+  });
+}
+
+/* =====================================================================
+   VISTA · TERAPEUTAS / ASISTENCIA
+   ===================================================================== */
+/* Solo asistencia. No se muestra el listado de terapeutas ni sus nombres en
+   los dos spas: esta pantalla la usa cualquiera, incluidas ellas mismas. */
+function viewAsistencia(v){
+  const ts=terapeutasDe(UI.spa);
+  const hoy=UI.fecha;
+  const presentes=ts.filter(m=>{ const a=asistenciaDe(m,UI.spa,hoy);
+    return a&&num(a,'Asistio')===1&&num(a,'SeRetiro')!==1; }).length;
+  v.innerHTML=`
+  ${barraFecha()}
+  <div class="kpi" style="margin-bottom:12px">
+    <div><b>${presentes}</b><span>en el local</span></div>
+    <div><b>${ts.length}</b><span>del turno</span></div>
+  </div>
+  <div class="card">
+    <h2><span class="sp">Asistencia</span><span class="sub">${esc(UI.spa)}</span></h2>
+    <p class="sub" style="margin:0 0 10px">Toca tu nombre al llegar y marca tu hora de ingreso.
+    Al terminar tu turno, marca la salida.</p>
+    <div class="list">${ts.length?ts.map(m=>{
+      const as=asistenciaDe(m,UI.spa,hoy);
+      const asistio=as?num(as,'Asistio')===1:false;
+      const retiro=as?num(as,'SeRetiro')===1:false;
+      const ing=as?str(as,'HoraIngreso'):'', sal=as?str(as,'HoraSalida'):'';
+      const badge=!as?'<span class="badge b-mut">sin marcar</span>'
+        :retiro?'<span class="badge b-mut">se retiró</span>'
+        :asistio?'<span class="badge b-ok">presente</span>':'<span class="badge b-bad">no asistió</span>';
+      return `<div class="item" data-asis="${esc(nombreVisible(m,UI.spa))}">
+        <div class="t"><b>${esc(nombreVisible(m,UI.spa))}</b>
+          <span>${ing?'entró '+hora12(ing):'sin hora de ingreso'}${sal?' · salió '+hora12(sal):''}</span></div>
+        <div class="r">${badge}</div>
+      </div>`;}).join(''):'<div class="empty">Sin terapeutas activas en este spa.</div>'}</div>
+  </div>`;
+  bindBarraFecha(v);
+  v.querySelectorAll('[data-asis]').forEach(n=>n.onclick=()=>formAsistencia(n.dataset.asis));
+}
+
+function formAsistencia(nombreVis){
+  const m=buscarTerapeuta(nombreVis);
+  const ex=m?asistenciaDe(m,UI.spa,UI.fecha):null;
+  const ahora=()=>horaGuardar(String(new Date().getHours()).padStart(2,'0')+':'+String(new Date().getMinutes()).padStart(2,'0'));
+  const S={ asistio: ex?num(ex,'Asistio')===1:true, turno: ex?str(ex,'Turno'):'Referencial',
+    ing: ex?str(ex,'HoraIngreso'):'', sal: ex?str(ex,'HoraSalida'):'',
+    retiro: ex?num(ex,'SeRetiro')===1:false, obs: ex?str(ex,'Observacion'):'' };
+  openSheet('Asistencia · '+nombreVis, `
+    <div class="sub" style="margin-bottom:8px">${fechaLarga(UI.fecha)} · ${esc(UI.spa)}</div>
+    <label class="chk"><input type="checkbox" data-k="asistio" ${S.asistio?'checked':''}> Asistió</label>
+    <label class="chk"><input type="checkbox" data-k="retiro" ${S.retiro?'checked':''}> Ya se retiró (deja de aparecer disponible)</label>
+    <div class="grid g2" style="margin-top:8px">
+      <div><label class="f">Hora de ingreso</label><input data-k="ing" value="${esc(hora12(S.ing))}"><button class="btn s w" style="margin-top:6px" data-now="ing">Marcar ahora</button></div>
+      <div><label class="f">Hora de salida</label><input data-k="sal" value="${esc(hora12(S.sal))}"><button class="btn s w" style="margin-top:6px" data-now="sal">Marcar ahora</button></div>
+    </div>
+    <div style="margin-top:8px"><label class="f">Turno</label>
+      <select data-k="turno">${['Referencial'].concat(TURNOS).map(t=>`<option ${t===S.turno?'selected':''}>${t}</option>`).join('')}</select></div>
+    <div style="margin-top:8px"><label class="f">Observación</label><input data-k="obs" value="${esc(S.obs)}"></div>
+    <div class="sticky-actions">
+      <button class="btn" data-cancel>Cancelar</button>
+      <button class="btn p" data-save>Guardar</button>
+    </div>`, ovl=>{
+    ovl._datos();
+    ovl.querySelectorAll('[data-k]').forEach(i=>i.addEventListener('change',()=>{
+      S[i.dataset.k]= i.type==='checkbox'?i.checked:i.value; }));
+    ovl.querySelectorAll('[data-now]').forEach(b=>b.onclick=()=>{
+      const k=b.dataset.now; S[k]=ahora();
+      ovl.querySelector(`[data-k="${k}"]`).value=hora12(S[k]);
+    });
+    ovl.querySelector('[data-cancel]').onclick=closeSheet;
+    ovl.querySelector('[data-save]').onclick=async()=>{
+      await saveRow('AsistenciasTerapeutas',{
+        Spa:UI.spa, Fecha:UI.fecha, MasajistaNombre:nombreVis,
+        MasajistaId: m?num(m,'Id'):0, Turno:S.turno,
+        Asistio:S.asistio?1:0, HoraIngreso:horaGuardar(S.ing), HoraSalida:horaGuardar(S.sal),
+        SeRetiro:S.retiro?1:0, Observacion:S.obs}, ex||null);
+      closeSheet(); toast('Asistencia guardada');
+    };
+  });
+}
+
+/* =====================================================================
+   VISTA · CATÁLOGO (precios, promos, inventario)
+   ===================================================================== */
+function viewCatalogo(v){
+  const sub=UI.catTab==='promos'?'promos':'precios';
+  v.innerHTML=`
+  <div class="seg" style="margin-bottom:12px">
+    <button data-ct="precios" class="${sub==='precios'?'on':''}">Precios</button>
+    <button data-ct="promos" class="${sub==='promos'?'on':''}">Promos y paquetes</button>
+  </div>
+  <div id="catBody"></div>`;
+  v.querySelectorAll('[data-ct]').forEach(b=>b.onclick=()=>{ UI.catTab=b.dataset.ct; render(); });
+  const b=v.querySelector('#catBody');
+  if(sub==='precios') catPrecios(b); else catPromos(b);
+}
+function catPrecios(b){
+  const lista=serviciosDe(UI.spa,false);
+  b.innerHTML=`<div class="card">
+    <h2><span class="sp">Servicios · ${esc(UI.spa)}</span><button class="btn s" data-w data-new>+ Nuevo</button></h2>
+    <div class="scroll-x"><table>
+      <tr><th>Servicio</th><th class="n">Min</th><th class="n">Precio</th><th class="n">4 manos</th><th class="n">Holíst.</th><th class="n">Pago T1</th></tr>
+      ${lista.map(s=>`<tr data-sv="${esc(s.__key)}" style="cursor:pointer${num(s,'Activo')===1?'':';opacity:.5'}">
+        <td>${esc(str(s,'Servicio'))}</td><td class="n">${num(s,'DuracionMin')}</td>
+        <td class="n money">${money(num(s,'Precio'))}</td>
+        <td class="n">${num(s,'Disp4Manos')===1?money(num(s,'Precio4Manos')):'—'}</td>
+        <td class="n">${num(s,'DispHolistico')===1?money(num(s,'PrecioHolistico')):'—'}</td>
+        <td class="n">${money(num(s,'PagoTerapeuta1'))}</td></tr>`).join('')}
+    </table></div>
+    ${lista.length?'':'<div class="empty">Sin servicios en este spa.</div>'}
+  </div>`;
+  b.querySelectorAll('[data-sv]').forEach(n=>n.onclick=()=>formServicio(rowByKey('ServiciosPrecios',n.dataset.sv)));
+  b.querySelector('[data-new]').onclick=()=>formServicio(null);
+}
+function formServicio(existing){
+  const S={};
+  const campos=['Servicio','DuracionMin','Precio','TerapeutasDefault','PagoTerapeuta1','PagoTerapeuta2',
+    'Precio4Manos','PagoT1_4Manos','PagoT2_4Manos','PrecioHolistico','PagoT1_Holistico',
+    'PrecioHol4Manos','PagoT1_Hol4Manos','PagoT2_Hol4Manos'];
+  campos.forEach(k=>S[k]=existing?(k==='Servicio'?str(existing,k):num(existing,k)):(k==='DuracionMin'?60:k==='TerapeutasDefault'?1:0));
+  ['Activo','Disp4Manos','DispHolistico','DispHol4Manos'].forEach(k=>S[k]=existing?num(existing,k)===1:(k==='Activo'));
+  const nb=(k,l)=>`<div><label class="f">${l}</label><input type="number" step="0.5" data-k="${k}" value="${S[k]}"></div>`;
+  openSheet(existing?'Servicio / precio':'Nuevo servicio',`
+    <div><label class="f">Servicio</label><input data-k="Servicio" value="${esc(S.Servicio)}"></div>
+    <div class="grid g3" style="margin-top:8px">
+      <div><label class="f">Duración</label><select data-k="DuracionMin">${duracionesBasicas(UI.spa).map(d=>`<option ${d===S.DuracionMin?'selected':''}>${d}</option>`).join('')}</select></div>
+      ${nb('Precio','Precio S/')}
+      ${nb('PagoTerapeuta1','Pago T1')}
+    </div>
+    <label class="chk" style="margin-top:8px"><input type="checkbox" data-k="Activo" ${S.Activo?'checked':''}> Activo en el catálogo</label>
+    <div class="card" style="margin-top:10px;padding:10px">
+      <label class="chk"><input type="checkbox" data-k="Disp4Manos" ${S.Disp4Manos?'checked':''}> Ofrece 4 manos (solo 45 y 60 min)</label>
+      <div class="grid g3">${nb('Precio4Manos','Precio 4M')}${nb('PagoT1_4Manos','Pago T1')}${nb('PagoT2_4Manos','Pago T2')}</div>
+    </div>
+    <div class="card" style="padding:10px">
+      <label class="chk"><input type="checkbox" data-k="DispHolistico" ${S.DispHolistico?'checked':''}> Ofrece holístico</label>
+      <div class="grid g2">${nb('PrecioHolistico','Precio hol.')}${nb('PagoT1_Holistico','Pago T1')}</div>
+    </div>
+    <div class="card" style="padding:10px">
+      <label class="chk"><input type="checkbox" data-k="DispHol4Manos" ${S.DispHol4Manos?'checked':''}> Ofrece holístico + 4 manos</label>
+      <div class="grid g3">${nb('PrecioHol4Manos','Precio')}${nb('PagoT1_Hol4Manos','Pago T1')}${nb('PagoT2_Hol4Manos','Pago T2')}</div>
+    </div>
+    <div class="sticky-actions">
+      <button class="btn" data-cancel>Cancelar</button>
+      <button class="btn p" data-save>Guardar</button>
+    </div>`, ovl=>{
+    ovl._datos();
+    ovl.querySelectorAll('[data-k]').forEach(i=>i.addEventListener('change',()=>{
+      S[i.dataset.k]= i.type==='checkbox'?i.checked:(i.type==='number'||i.dataset.k==='DuracionMin')?(parseFloat(i.value)||0):i.value; }));
+    ovl.querySelector('[data-cancel]').onclick=closeSheet;
+    ovl.querySelector('[data-save]').onclick=async()=>{
+      if(!S.Servicio.trim()) return toast('Falta el nombre del servicio');
+      const data=Object.assign({},S,{Spa:existing?str(existing,'Spa'):UI.spa,
+        Servicio:titleName(S.Servicio), ServicioNormalizado:normalizeText(S.Servicio),
+        Activo:S.Activo?1:0, Disp4Manos:S.Disp4Manos?1:0, DispHolistico:S.DispHolistico?1:0, DispHol4Manos:S.DispHol4Manos?1:0});
+      await saveRow('ServiciosPrecios',data,existing||null);
+      closeSheet(); toast('Precio guardado');
+    };
+  });
+}
+function catPromos(b){
+  const lista=promosDe(UI.spa,false);
+  b.innerHTML=`<div class="card">
+    <h2><span class="sp">Promociones y paquetes</span></h2>
+    <div class="list">${lista.map(p=>`
+      <div class="item" data-pr="${esc(p.__key)}" ${num(p,'Activo')===1?'':'style="opacity:.5"'}>
+        <div class="t"><b>${num(p,'EsPaquete')===1?'📦 ':''}${esc(str(p,'Nombre'))}</b>
+          <span>${esc(str(p,'Servicio')||'—')} · ${num(p,'DuracionMin')}'${
+            num(p,'EsPaquete')===1?'<br>'+esc(paqueteResumen(str(p,'PaqueteDetalle'))):''}</span></div>
+        <div class="r money">S/ ${money(num(p,'PrecioPromocional'))}</div>
+      </div>`).join('')||'<div class="empty">Sin promociones.</div>'}</div>
+  </div>`;
+  b.querySelectorAll('[data-pr]').forEach(n=>n.onclick=()=>{
+    const p=rowByKey('Promociones',n.dataset.pr);
+    openSheet(str(p,'Nombre'),`
+      <div class="sub">Servicio base: <b>${esc(str(p,'Servicio')||'—')}</b> · ${num(p,'DuracionMin')} min · ${num(p,'Activo')===1?'activa':'inactiva'}</div>
+      <table style="margin-top:8px">
+        <tr><td>Precio promocional</td><td class="n money">S/ ${money(num(p,'PrecioPromocional'))}</td></tr>
+        ${num(p,'Aplica4Manos')===1?`<tr><td>4 manos</td><td class="n money">S/ ${money(num(p,'Precio4Manos'))}</td></tr>`:''}
+        ${num(p,'AplicaHolistico')===1?`<tr><td>Holístico</td><td class="n money">S/ ${money(num(p,'PrecioHolistico'))}</td></tr>`:''}
+        ${num(p,'AplicaHol4Manos')===1?`<tr><td>Holístico + 4 manos</td><td class="n money">S/ ${money(num(p,'PrecioHol4Manos'))}</td></tr>`:''}
+        <tr><td>Pago terapeuta 1 / 2</td><td class="n money">S/ ${money(num(p,'PagoTerapeuta1'))} / ${money(num(p,'PagoTerapeuta2'))}</td></tr>
+      </table>
+      ${num(p,'EsPaquete')===1?`<div class="infobox">Paquete: ${esc(paqueteResumen(str(p,'PaqueteDetalle')))}</div>`:''}
+      <div class="sub">Las promociones se crean y editan en el programa de la laptop; aquí se consultan y se usan al registrar una cita.</div>`);
+  });
+}
+/* =====================================================================
+   VISTA · REPORTES
+   ===================================================================== */
+function viewReportes(v){
+  if(!UI.repDesde){ UI.repDesde=addDaysISO(hoyISO(),-29); UI.repHasta=hoyISO(); }
+  const ats=atencionesRango(UI.spa,UI.repDesde,UI.repHasta).filter(a=>str(a,'Estado')==='Atendido');
+  const total=ats.reduce((s,a)=>s+num(a,'Total'),0);
+  const porMetodo={}; ats.flatMap(a=>pagosDeAtencion(str(a,'MetodoPago'),num(a,'Total'),str(a,'PagosDetalle')))
+    .forEach(p=>porMetodo[p.metodo]=(porMetodo[p.metodo]||0)+p.monto);
+  const porServicio={}; ats.forEach(a=>{ const k=str(a,'Servicio')||'—';
+    if(!porServicio[k]) porServicio[k]={n:0,t:0}; porServicio[k].n++; porServicio[k].t+=num(a,'Total'); });
+  const porTerapeuta={}; ats.forEach(a=>{
+    const nombres=splitNames(str(a,'MasajistaNombre')); const pg=[num(a,'PagoTerapeuta1'),num(a,'PagoTerapeuta2'),num(a,'PagoTerapeuta3')];
+    nombres.forEach((n,i)=>{ if(!porTerapeuta[n]) porTerapeuta[n]={n:0,t:0,v:0};
+      porTerapeuta[n].n++; porTerapeuta[n].t+=pg[i]||0; porTerapeuta[n].v+=i===0?num(a,'Total'):0; });});
+  const porCliente={}; ats.forEach(a=>{ const k=str(a,'ClienteNombre')||'—';
+    if(!porCliente[k]) porCliente[k]={n:0,t:0}; porCliente[k].n++; porCliente[k].t+=num(a,'Total'); });
+  const porDia={}; ats.forEach(a=>{ const k=str(a,'Fecha').slice(0,10); porDia[k]=(porDia[k]||0)+num(a,'Total'); });
+  const tabla=(obj,cols,orden)=>Object.entries(obj).sort((a,b)=>orden(b[1])-orden(a[1])).slice(0,25)
+    .map(([k,x])=>`<tr><td>${esc(k)}</td>${cols.map(c=>`<td class="n">${c(x)}</td>`).join('')}</tr>`).join('');
+  const maxDia=Math.max(1,...Object.values(porDia));
+  v.innerHTML=`
+  <div class="card">
+    <h2><span class="sp">Rango</span></h2>
+    <div class="grid g2">
+      <div><label class="f">Desde</label><input type="date" id="rd" value="${UI.repDesde}"></div>
+      <div><label class="f">Hasta</label><input type="date" id="rh" value="${UI.repHasta}"></div>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <button class="btn s" data-rango="7">7 días</button>
+      <button class="btn s" data-rango="30">30 días</button>
+      <button class="btn s" data-rango="90">90 días</button>
+      <div style="flex:1"></div>
+      <button class="btn s" data-csv>⇩ CSV</button>
+    </div>
+  </div>
+  <div class="kpi" style="margin-bottom:12px">
+    <div><b>${ats.length}</b><span>atenciones</span></div>
+    <div><b>S/ ${money(total)}</b><span>facturado</span></div>
+    <div><b>S/ ${money(ats.length?total/ats.length:0)}</b><span>ticket promedio</span></div>
+    <div><b>S/ ${money(ats.reduce((s,a)=>s+num(a,'PagoTerapeuta1')+num(a,'PagoTerapeuta2')+num(a,'PagoTerapeuta3'),0))}</b><span>pago terapeutas</span></div>
+  </div>
+  <div class="card"><h2>Por día</h2>
+    ${Object.keys(porDia).length?Object.entries(porDia).sort().map(([d,t])=>`
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+        <span class="sub" style="width:52px;flex:none">${fechaCorta(d).slice(0,5)}</span>
+        <div style="flex:1;background:var(--card-2);border-radius:6px;overflow:hidden;height:16px">
+          <div style="width:${(t/maxDia*100).toFixed(1)}%;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-dark))"></div></div>
+        <span class="money" style="width:78px;text-align:right;font-size:12px">S/ ${money(t)}</span>
+      </div>`).join(''):'<div class="empty">Sin datos.</div>'}
+  </div>
+  <div class="card"><h2>Por medio de pago</h2><table>
+    ${Object.entries(porMetodo).sort((a,b)=>b[1]-a[1]).map(([m,t])=>`<tr><td>${esc(m)}</td><td class="n money">S/ ${money(t)}</td></tr>`).join('')||'<tr><td class="sub">Sin datos</td></tr>'}
+  </table></div>
+  <div class="card"><h2>Por servicio</h2><div class="scroll-x"><table>
+    <tr><th>Servicio</th><th class="n">Citas</th><th class="n">Total</th></tr>
+    ${tabla(porServicio,[x=>x.n,x=>'S/ '+money(x.t)],x=>x.t)}
+  </table></div></div>
+  <div class="card"><h2>Por terapeuta</h2><div class="scroll-x"><table>
+    <tr><th>Terapeuta</th><th class="n">Citas</th><th class="n">Ventas</th><th class="n">A pagar</th></tr>
+    ${tabla(porTerapeuta,[x=>x.n,x=>'S/ '+money(x.v),x=>'S/ '+money(x.t)],x=>x.t)}
+  </table></div></div>
+  <div class="card"><h2>Clientes más frecuentes</h2><div class="scroll-x"><table>
+    <tr><th>Cliente</th><th class="n">Visitas</th><th class="n">Gastado</th></tr>
+    ${tabla(porCliente,[x=>x.n,x=>'S/ '+money(x.t)],x=>x.n)}
+  </table></div></div>`;
+  const rd=v.querySelector('#rd'), rh=v.querySelector('#rh');
+  rd.onchange=()=>{ UI.repDesde=rd.value; render(); };
+  rh.onchange=()=>{ UI.repHasta=rh.value; render(); };
+  v.querySelectorAll('[data-rango]').forEach(b=>b.onclick=()=>{
+    UI.repHasta=hoyISO(); UI.repDesde=addDaysISO(hoyISO(),-(+b.dataset.rango-1)); render(); });
+  v.querySelector('[data-csv]').onclick=()=>exportarCSV(ats);
+}
+function exportarCSV(ats){
+  const cols=['Fecha','HoraInicio','Spa','SpaServicio','ClienteNombre','MasajistaNombre','Servicio','PromocionNombre',
+    'DuracionMin','PrecioBase','DescuentoPorcentaje','Total','MetodoPago','PagosDetalle','Estado','Observacion'];
+  const cab=['Fecha','Hora','Caja','Catálogo','Cliente','Terapeuta(s)','Servicio','Promoción','Min','Precio','Descuento S/','Total','Pago','Desglose','Estado','Observación'];
+  const esc2=s=>'"'+String(s??'').replace(/"/g,'""')+'"';
+  const csv=[cab.join(';')].concat(ats.map(a=>cols.map(c=>esc2(a[c]??'')).join(';'))).join('\r\n');
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`ADHULIAV_${UI.spa}_${UI.repDesde}_a_${UI.repHasta}.csv`;
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('CSV descargado');
+}
+
+/* =====================================================================
+   ENTRADA
+   Tres pasos, y los tres son obligatorios:
+     activar → la administradora sella este equipo (una sola vez)
+     login   → la persona entra con su usuario y contraseña
+     pin     → después, a diario, solo el PIN
+   ===================================================================== */
+function showGate(paso, extra){
+  document.getElementById('app').classList.add('hide');
+  document.getElementById('gate').classList.remove('hide');
+  const b=document.getElementById('gateBody');
+  const g=s=>b.querySelector(s);
+
+  /* ---------- Paso 1: activar el equipo (solo la administradora) ---------- */
+  if(paso==='activar'){
+    const c=CFG||{};
+    b.innerHTML=`
+      <p class="sub">Este equipo todavía no está activado. La activación la hace
+      <b>la administradora</b>, una sola vez por equipo.</p>
+      <div style="margin-top:10px"><label class="f">URL del proyecto Supabase</label>
+        <input id="cUrl" value="${esc(c.url||'')}" placeholder="https://xxxxxxxx.supabase.co" autocapitalize="off" spellcheck="false"></div>
+      <div style="margin-top:8px"><label class="f">Clave pública (anon key)</label>
+        <textarea id="cKey" rows="3" placeholder="eyJhbGciOi..." spellcheck="false">${esc(c.key||'')}</textarea></div>
+      <div style="margin-top:8px"><label class="f">Nombre para este equipo</label>
+        <input id="cDev" value="${esc(c.deviceName||'')}" placeholder="Ej. Celular de recepción"></div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
+      <p class="sub">Ahora entra <b>tú</b> con tu cuenta de administradora para autorizarlo:</p>
+      <div style="margin-top:8px"><label class="f">Tu usuario</label>
+        <input id="aMail" autocapitalize="off" spellcheck="false" placeholder="admin@adhamar.local"></div>
+      <div style="margin-top:8px"><label class="f">Tu contraseña</label>
+        <input id="aPass" type="password"></div>
+      <div id="cMsg"></div>
+      <button class="btn p w" id="cSave" style="margin-top:12px">Activar este equipo</button>
+      ${c.activado?'<button class="btn w" id="cBack" style="margin-top:8px">Volver</button>':''}
+      <p class="sub" style="margin-top:12px">Sin este paso, el equipo no puede leer nada: la nube exige que
+      esté registrado. Después de activarlo, cada persona entra con su propia cuenta.</p>`;
+    const msg=g('#cMsg');
+    if(g('#cBack')) g('#cBack').onclick=()=>showGate(localStorage.getItem(LS.sess)?'pin':'login');
+    g('#cSave').onclick=async()=>{
+      const url=g('#cUrl').value.trim().replace(/\/+$/,'');
+      const key=g('#cKey').value.trim();
+      const nombreEquipo=g('#cDev').value.trim();
+      const mail=g('#aMail').value.trim(), pass=g('#aPass').value;
+      if(!/^https:\/\/.+/.test(url)) return msg.innerHTML='<div class="warnbox">La URL debe empezar con https://</div>';
+      if(key.length<30) return msg.innerHTML='<div class="warnbox">La clave anon parece incompleta.</div>';
+      if(!nombreEquipo) return msg.innerHTML='<div class="warnbox">Ponle un nombre al equipo para reconocerlo después.</div>';
+      if(!mail||!pass) return msg.innerHTML='<div class="warnbox">Faltan tu usuario y contraseña.</div>';
+      msg.innerHTML='<div class="infobox">Comprobando…</div>';
+      const prev=CFG;
+      CFG={url, key, deviceName:nombreEquipo,
+           deviceId:(prev&&prev.deviceId)||newGuid()+newGuid(),
+           activado:false, dias:(prev&&prev.dias)||120, refresh:(prev&&prev.refresh)||7,
+           spa:(prev&&prev.spa)||'Adhamar'};
+      try{
+        await API.pingClaves();
+        await AUTH.entrar(mail,pass);
+        await AUTH.ficha();
+        if(!AUTH.esAdmin()){ AUTH.salir(); CFG=prev;
+          return msg.innerHTML='<div class="warnbox">Esa cuenta no es de administradora, así que no puede activar equipos.<br>'+
+            'Si eres tú, revisa que te hayas agregado con rol <b>admin</b> en el paso 6 del archivo SQL.</div>'; }
+        await API.insertar('adhuliav_web_dispositivos',
+          [{device_id:CFG.deviceId, nombre:nombreEquipo, activo:true, creado_por:AUTH.sesion.uid}]);
+      }catch(e){
+        CFG=prev; AUTH.salir();
+        return msg.innerHTML=`<div class="warnbox">No se pudo activar.<br>${esc(e.message==='SESION_VENCIDA'?'La nube rechazó el permiso: revisa que ejecutaste SUPABASE_1_SEGURIDAD.sql.':e.message)}</div>`;
+      }
+      CFG.activado=true; saveCfg();
+      AUTH.salir();
+      STATE={lastPull:null,loaded:false}; saveState();
+      localStorage.removeItem(LS.cache); localStorage.removeItem(LS.sess);
+      showGate('login', {aviso:'✓ Equipo activado. Ahora entra con la cuenta de quien va a usarlo.'});
+    };
+    return;
+  }
+
+  /* ---------- Paso 2: la persona entra con su cuenta ---------- */
+  if(paso==='login'){
+    b.innerHTML=`
+      ${extra&&extra.aviso?`<div class="infobox">${esc(extra.aviso)}</div>`:''}
+      <p class="sub">Equipo: <b>${esc(CFG.deviceName||'este equipo')}</b></p>
+      <div style="margin-top:10px"><label class="f">Usuario</label>
+        <input id="lMail" autocapitalize="off" spellcheck="false" placeholder="tunombre@adhamar.local"></div>
+      <div style="margin-top:8px"><label class="f">Contraseña</label>
+        <input id="lPass" type="password"></div>
+      <div id="lMsg"></div>
+      <button class="btn p w" id="lOk" style="margin-top:12px">Entrar</button>
+      <button class="btn w" id="lCfg" style="margin-top:8px">Activar otro equipo (administradora)</button>`;
+    const msg=g('#lMsg');
+    const entrar=async()=>{
+      const mail=g('#lMail').value.trim(), pass=g('#lPass').value;
+      if(!mail||!pass) return msg.innerHTML='<div class="warnbox">Faltan tus datos.</div>';
+      msg.innerHTML='<div class="infobox">Entrando…</div>';
+      try{
+        await AUTH.entrar(mail,pass);
+        await AUTH.ficha();
+        if(!AUTH.sesion.activo){ AUTH.salir();
+          return msg.innerHTML='<div class="warnbox">Esta cuenta no tiene acceso a la web. Habla con la administradora.</div>'; }
+        if(!await API.equipoActivo()){ AUTH.salir();
+          return msg.innerHTML='<div class="warnbox">Este equipo ya no está autorizado. La administradora debe activarlo otra vez.</div>'; }
+      }catch(e){
+        AUTH.salir();
+        return msg.innerHTML=`<div class="warnbox">${esc(e.message==='SESION_VENCIDA'?'Este equipo no está autorizado.':e.message)}</div>`;
+      }
+      pedirPinNuevo();
+    };
+    g('#lOk').onclick=entrar;
+    g('#lPass').addEventListener('keydown',e=>{ if(e.key==='Enter') entrar(); });
+    g('#lCfg').onclick=()=>showGate('activar');
+    return;
+  }
+
+  /* ---------- Paso 3: PIN del día a día ---------- */
+  if(paso==='pin'){
+    let sess={}; try{ sess=JSON.parse(localStorage.getItem(LS.sess)||'{}'); }catch{}
+    b.innerHTML=`
+      <p class="sub">Hola${sess.nombre?', <b>'+esc(sess.nombre)+'</b>':''}. Ingresa tu PIN.</p>
+      <input id="pIn" type="password" inputmode="numeric" maxlength="8"
+             style="text-align:center;font-size:26px;letter-spacing:10px" autofocus>
+      <div id="pMsg"></div>
+      <button class="btn p w" id="pOk" style="margin-top:12px">Entrar</button>
+      <button class="btn w" id="pOtro" style="margin-top:8px">Entrar con otra cuenta</button>`;
+    const inp=g('#pIn'), msg=g('#pMsg');
+    const probar=async()=>{
+      const pin=inp.value.trim(); inp.value='';
+      const rt=await abrirSello(pin, sess.blob||{});
+      if(!rt){
+        sess.fallos=(sess.fallos||0)+1;
+        if(sess.fallos>=5){
+          localStorage.removeItem(LS.sess);
+          return showGate('login',{aviso:'Demasiados intentos. Vuelve a entrar con tu usuario y contraseña.'});
+        }
+        localStorage.setItem(LS.sess,JSON.stringify(sess));
+        msg.innerHTML=`<div class="warnbox">PIN incorrecto. Te quedan ${5-sess.fallos} intentos.</div>`;
+        return;
+      }
+      msg.innerHTML='<div class="infobox">Entrando…</div>';
+      try{
+        await AUTH.renovar(rt);
+        await AUTH.ficha();
+        if(!AUTH.sesion.activo){ AUTH.salir(); return showGate('login',{aviso:'Tu acceso fue retirado. Consulta con la administradora.'}); }
+        if(!await API.equipoActivo()){ AUTH.salir(); return showGate('login',{aviso:'Este equipo ya no está autorizado.'}); }
+      }catch(e){
+        AUTH.salir();
+        return showGate('login',{aviso:'Hay que entrar de nuevo con usuario y contraseña.'});
+      }
+      // El token de acceso rota en cada renovación: se vuelve a sellar con el mismo PIN.
+      sess.fallos=0; sess.blob=await sellar(pin, AUTH.sesion.refresh_token);
+      sess.nombre=AUTH.sesion.nombre||AUTH.sesion.email;
+      localStorage.setItem(LS.sess,JSON.stringify(sess));
+      await arrancar();
+    };
+    g('#pOk').onclick=probar;
+    inp.addEventListener('keydown',e=>{ if(e.key==='Enter') probar(); });
+    g('#pOtro').onclick=()=>{ localStorage.removeItem(LS.sess); AUTH.salir(); showGate('login'); };
+    setTimeout(()=>inp.focus(),100);
+    return;
+  }
+}
+
+/* Pide un PIN nuevo y sella con él el acceso de esta persona en este equipo. */
+function pedirPinNuevo(){
+  const b=document.getElementById('gateBody');
+  b.innerHTML=`
+    <p class="sub">Listo, <b>${esc(AUTH.sesion.nombre||AUTH.sesion.email)}</b>.
+    Elige un PIN de 4 a 8 dígitos: es lo único que te pedirá al abrir la app.</p>
+    <input id="n1" type="password" inputmode="numeric" maxlength="8"
+           style="text-align:center;font-size:26px;letter-spacing:10px" placeholder="PIN">
+    <input id="n2" type="password" inputmode="numeric" maxlength="8" style="text-align:center;font-size:26px;letter-spacing:10px;margin-top:8px" placeholder="Repite el PIN">
+    <div id="nMsg"></div>
+    <button class="btn p w" id="nOk" style="margin-top:12px">Guardar y entrar</button>`;
+  const msg=b.querySelector('#nMsg');
+  b.querySelector('#nOk').onclick=async()=>{
+    const a=b.querySelector('#n1').value.trim(), c=b.querySelector('#n2').value.trim();
+    if(!/^\d{4,8}$/.test(a)) return msg.innerHTML='<div class="warnbox">El PIN debe tener de 4 a 8 dígitos.</div>';
+    if(a!==c) return msg.innerHTML='<div class="warnbox">Los dos PIN no coinciden.</div>';
+    localStorage.setItem(LS.sess, JSON.stringify({
+      nombre: AUTH.sesion.nombre||AUTH.sesion.email, fallos:0,
+      blob: await sellar(a, AUTH.sesion.refresh_token)
+    }));
+    localStorage.removeItem(LS.cache);
+    STATE={lastPull:null,loaded:false}; saveState();
+    await arrancar();
+  };
+  setTimeout(()=>b.querySelector('#n1').focus(),100);
+}
+
+/* La sesión se cayó o fue revocada mientras la app estaba abierta. */
+let _cayendo=false;
+function sesionCaida(){
+  if(_cayendo) return; _cayendo=true;
+  AUTH.salir();
+  closeSheet();
+  showGate(localStorage.getItem(LS.sess)?'pin':'login',{aviso:'Tu sesión se cerró. Vuelve a entrar.'});
+  setTimeout(()=>_cayendo=false,1000);
+}
+
+/* =====================================================================
+   CLAVE DE LAS PANTALLAS INTERNAS (la misma del programa)
+   ===================================================================== */
+let INTERNO_ABIERTO=false;
+function pedirClaveInterna(alEntrar){
+  openSheet('Acceso interno', `
+    <p class="sub">Ingresa la clave para las opciones internas.</p>
+    <input id="ci" type="password" style="text-align:center;font-size:22px;letter-spacing:6px">
+    <div id="ciMsg"></div>
+    <div class="sticky-actions">
+      <button class="btn" data-no>Cerrar</button>
+      <button class="btn p" data-si>Entrar</button>
+    </div>`, ovl=>{
+    const inp=ovl.querySelector('#ci'), msg=ovl.querySelector('#ciMsg');
+    const probar=async()=>{
+      if(await sha256(inp.value.trim())===CLAVE_INTERNA_HASH){
+        INTERNO_ABIERTO=true; closeSheet(); alEntrar();
+      }else{
+        msg.innerHTML='<div class="warnbox">Clave incorrecta.</div>'; inp.value=''; inp.focus();
+      }
+    };
+    ovl.querySelector('[data-si]').onclick=probar;
+    inp.addEventListener('keydown',e=>{ if(e.key==='Enter') probar(); });
+    ovl.querySelector('[data-no]').onclick=()=>{ closeSheet(); };
+    setTimeout(()=>inp.focus(),120);
+  });
+}
+
+/* =====================================================================
+   AJUSTES
+   ===================================================================== */
+function verAjustes(){
+  const s=AUTH.sesion||{};
+  openSheet('Ajustes', `
+    <div class="card" style="margin:0 0 10px">
+      <div class="row" style="justify-content:space-between"><span class="sub">Persona</span><b>${esc(s.nombre||s.email||'—')}</b></div>
+      <div class="row" style="justify-content:space-between"><span class="sub">Rol</span><b>${s.rol==='admin'?'Administradora':'Personal'}</b></div>
+      <div class="row" style="justify-content:space-between"><span class="sub">Equipo</span><b>${esc(CFG.deviceName||'—')}</b></div>
+      <div class="row" style="justify-content:space-between"><span class="sub">Modo</span><b>${SOLO_LECTURA?'Solo lectura':'Lectura y registro'}</b></div>
+      <div class="row" style="justify-content:space-between"><span class="sub">Historial</span><b>${CFG.dias||120} días</b></div>
+    </div>
+    <div class="grid g2">
+      <button class="btn" data-pin>Cambiar mi PIN</button>
+      <button class="btn" data-dias>Días de historial</button>
+      ${AUTH.esAdmin()?'<button class="btn" data-equipos>Equipos autorizados</button>':''}
+      <button class="btn" data-salir>Cerrar sesión</button>
+    </div>
+    ${AUTH.esAdmin()?'<button class="btn w d" data-conexion style="margin-top:8px">Cambiar conexión / activar equipo</button>':''}
+    <p class="sub" style="margin-top:10px">Para dar de alta o quitar personas se usa Supabase
+    (Authentication → Users) y el archivo <b>SUPABASE_1_SEGURIDAD.sql</b>.</p>`, ovl=>{
+    ovl.querySelector('[data-pin]').onclick=()=>{ closeSheet(); cambiarPin(); };
+    ovl.querySelector('[data-dias]').onclick=()=>{ closeSheet(); cambiarDias(); };
+    ovl.querySelector('[data-salir]').onclick=()=>{
+      localStorage.removeItem(LS.sess); AUTH.salir(); closeSheet(); showGate('login');
+    };
+    const eq=ovl.querySelector('[data-equipos]');
+    if(eq) eq.onclick=()=>{ closeSheet(); verEquipos(); };
+    const cx=ovl.querySelector('[data-conexion]');
+    if(cx) cx.onclick=()=>{ closeSheet(); showGate('activar'); };
+  });
+}
+function cambiarPin(){
+  openSheet('Cambiar PIN', `
+    <input id="q1" type="password" inputmode="numeric" maxlength="8" placeholder="PIN nuevo" style="text-align:center;font-size:24px;letter-spacing:8px">
+    <input id="q2" type="password" inputmode="numeric" maxlength="8" placeholder="Repite el PIN" style="text-align:center;font-size:24px;letter-spacing:8px;margin-top:8px">
+    <div id="qMsg"></div>
+    <div class="sticky-actions"><button class="btn" data-no>Cancelar</button><button class="btn p" data-si>Guardar</button></div>`, ovl=>{
+    ovl.querySelector('[data-no]').onclick=closeSheet;
+    ovl.querySelector('[data-si]').onclick=async()=>{
+      const a=ovl.querySelector('#q1').value.trim(), c=ovl.querySelector('#q2').value.trim();
+      const msg=ovl.querySelector('#qMsg');
+      if(!/^\d{4,8}$/.test(a)) return msg.innerHTML='<div class="warnbox">De 4 a 8 dígitos.</div>';
+      if(a!==c) return msg.innerHTML='<div class="warnbox">No coinciden.</div>';
+      let sess={}; try{ sess=JSON.parse(localStorage.getItem(LS.sess)||'{}'); }catch{}
+      sess.blob=await sellar(a, AUTH.sesion.refresh_token); sess.fallos=0;
+      sess.nombre=AUTH.sesion.nombre||AUTH.sesion.email;
+      localStorage.setItem(LS.sess,JSON.stringify(sess));
+      closeSheet(); toast('PIN actualizado');
+    };
+  });
+}
+function cambiarDias(){
+  openSheet('Días de historial', `
+    <p class="sub">Cuántos días de citas, caja y almacén se descargan al abrir.
+    Menos días = más rápido en el celular.</p>
+    <input type="number" id="dd" value="${CFG.dias||120}" min="7" max="1095">
+    <div class="sticky-actions"><button class="btn" data-no>Cancelar</button><button class="btn p" data-si>Guardar</button></div>`, ovl=>{
+    ovl.querySelector('[data-no]').onclick=closeSheet;
+    ovl.querySelector('[data-si]').onclick=async()=>{
+      CFG.dias=Math.min(1095,Math.max(7,parseInt(ovl.querySelector('#dd').value,10)||120));
+      saveCfg(); localStorage.removeItem(LS.cache);
+      STATE={lastPull:null,loaded:false}; saveState();
+      TABLES.forEach(t=>DB[t]=new Map()); tocarDatos();
+      closeSheet(); toast('Descargando de nuevo…'); SYNC.now();
+    };
+  });
+}
+async function verEquipos(){
+  let lista=[];
+  try{ lista=await API.tabla('adhuliav_web_dispositivos','select=device_id,nombre,activo,creado_at&order=creado_at.desc'); }
+  catch(e){ return toast('No se pudo leer: '+e.message); }
+  openSheet('Equipos autorizados', `
+    <p class="sub">Si se pierde un celular, quítale el permiso aquí: deja de leer al instante,
+    aunque tenga la clave guardada.</p>
+    <div class="list">${lista.map(d=>`
+      <div class="item" style="cursor:default">
+        <div class="t"><b>${esc(d.nombre||'(sin nombre)')}${d.device_id===CFG.deviceId?' · <span class="badge b-gold">este</span>':''}</b>
+          <span>desde ${fechaCorta((d.creado_at||'').slice(0,10))}</span></div>
+        <div class="r"><button class="btn s" data-eq="${esc(d.device_id)}" data-act="${d.activo?0:1}">
+          ${d.activo?'Quitar permiso':'Volver a permitir'}</button></div>
+      </div>`).join('')||'<div class="empty">Sin equipos registrados.</div>'}</div>`, ovl=>{
+    ovl.querySelectorAll('[data-eq]').forEach(btn=>btn.onclick=async()=>{
+      const activo=btn.dataset.act==='1';
+      if(btn.dataset.eq===CFG.deviceId && !activo)
+        return confirmar('Vas a quitarle el permiso a ESTE equipo. Tendrás que activarlo otra vez para volver a entrar. ¿Seguro?',
+          async()=>{ await cambiarEquipo(btn.dataset.eq,false); });
+      await cambiarEquipo(btn.dataset.eq,activo);
+    });
+  });
+}
+async function cambiarEquipo(id,activo){
+  try{
+    await API.actualizar('adhuliav_web_dispositivos','device_id=eq.'+encodeURIComponent(id),{activo});
+    closeSheet(); toast(activo?'Equipo permitido':'Permiso retirado');
+    if(id===CFG.deviceId && !activo) sesionCaida();
+  }catch(e){ toast('No se pudo cambiar: '+e.message); }
+}
+
+/* =====================================================================
+   ARRANQUE
+   ===================================================================== */
+async function arrancar(){
+  document.getElementById('gate').classList.add('hide');
+  document.getElementById('app').classList.remove('hide');
+  document.body.classList.toggle('ro', SOLO_LECTURA);
+  loadState();
+  const tuvoCache=loadCache();
+  UI.spa=(CFG.spa&&SPAS.includes(CFG.spa))?CFG.spa:'Adhamar';
+  const sel=document.getElementById('spaSel');
+  sel.innerHTML=SPAS.map(s=>`<option ${s===UI.spa?'selected':''}>${s}</option>`).join('');
+  sel.onchange=()=>{ UI.spa=sel.value; CFG.spa=UI.spa; saveCfg(); render(); };
+  document.getElementById('quien').textContent=(AUTH.sesion&&(AUTH.sesion.nombre||AUTH.sesion.email))||'';
+  VIEW='agenda'; INTERNO_ABIERTO=false;
+  render();
+  if(!tuvoCache) SYNC.setStatus('busy');
+  await SYNC.now();
+  SYNC.start();
+  render();
+}
+
+/* Igual que el programa: la agenda es libre; el resto pide la clave interna,
+   y al volver a la agenda se vuelve a cerrar. */
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{
+  const destino=b.dataset.v;
+  const ir=()=>{ VIEW=destino; window.scrollTo(0,0); render(); };
+  if(VISTAS_LIBRES.includes(destino)){ INTERNO_ABIERTO=false; return ir(); }
+  if(INTERNO_ABIERTO) return ir();
+  pedirClaveInterna(ir);
+});
+document.getElementById('btnSync').onclick=()=>{ SYNC.now(); toast('Sincronizando…'); };
+document.getElementById('btnCfg').onclick=verAjustes;
+
+/* El navegador solo habilita el cifrado en un contexto seguro (https:// o un
+   archivo abierto con doble clic). Si se abre desde una descarga de WhatsApp o
+   desde un gestor de archivos de Android, la dirección es content:// y el
+   cifrado queda apagado: sin él no se puede sellar el PIN ni guardar. Antes se
+   rompía en silencio; ahora se avisa. */
+if(!window.crypto || !window.crypto.subtle){
+  document.getElementById('gate').classList.remove('hide');
+  document.getElementById('gateBody').innerHTML=`
+    <div class="warnbox">Este navegador abrió el archivo en un modo sin seguridad
+      (${esc(location.protocol)}), y así no se puede proteger tu acceso.</div>
+    <p class="sub">Soluciones, de la más fácil a la mejor:</p>
+    <ul class="sub" style="padding-left:18px;line-height:1.7">
+      <li><b>En la computadora:</b> abre el archivo con doble clic desde su carpeta,
+          no desde la descarga del navegador.</li>
+      <li><b>En el celular:</b> guarda el archivo en <i>Archivos</i> y ábrelo desde ahí
+          con Chrome; si sigue igual, hay que publicarlo con un enlace https.</li>
+      <li><b>Definitivo:</b> subir la página a un enlace https. Funciona en todos
+          los aparatos y además siempre está actualizada.</li>
+    </ul>
+    <p class="sub">Dirección actual: <code>${esc(location.href.slice(0,80))}</code></p>`;
+  throw new Error('contexto no seguro');
+}
+
+loadCfg();
+if(!CFG||!CFG.url||!CFG.key||!CFG.activado) showGate('activar');
+else if(localStorage.getItem(LS.sess)) showGate('pin');
+else showGate('login');
+</script>
+</body>
+</html>
